@@ -9,10 +9,18 @@ namespace MyArt
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
-                      ));
+                ));
+            bundles.Add(new ScriptBundle("~/bundles/scripts-admin").Include(
+                "~/Scripts/jquery-3.2.1.min.js",
+                "~/Scripts/bootstrap.min.js"                
+                ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      ));
+                ));
+            bundles.Add(new StyleBundle("~/Content/css-admin").Include(
+                "~/Content/bootstrap.min.css",
+                "~/Content/ff/ff-admin.css"
+                ));
         }
     }
 }

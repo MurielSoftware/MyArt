@@ -4,12 +4,43 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Admin</title>
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css-admin")
 </head>
 <body>
-    @RenderBody()
-    
-    @Scripts.Render("~/bundles/csripts")
+    <div class="wrapper">
+        <header>
+            <div class="header-left">
+                MyArt
+            </div>
+            <div class="header-right">
+                xxx
+            </div>
+        </header>
+        <aside class="nav-vertical">
+            <div class="profile-box">
+            </div>
+            <nav>
+                <ul class="nav">
+                    <li><a href="#">Domů</a></li>
+                    <li>
+                        <a href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false">Obrazy</a>
+                        <ul class="nav collapse" id="submenu1" role="menu" aria-labelledby="btn-1">
+                            <li><a href="#">Link 2.1</a></li>
+                            <li><a href="#">Link 2.2</a></li>
+                            <li><a href="#">Link 2.3</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Umělci</a></li>
+                    <li><a href="#">Exhibice</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <div class="main-content">
+            @RenderBody()
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/scripts-admin")
     @RenderSection("scripts", required: false)
 </body>
 </html>
