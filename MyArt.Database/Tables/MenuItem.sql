@@ -1,0 +1,16 @@
+﻿CREATE TABLE [dbo].[MENU_ITEM]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL,
+	[CreatedDate] DATETIME NOT NULL,
+	[UpdatedDate] DATETIME NOT NULL,
+	[Name] NVARCHAR(MAX) NOT NULL,
+	[Url] NVARCHAR(MAX) NULL,
+	[BuiltIn] BIT NOT NULL,
+	[Order] INT NOT NULL,
+	[EntityType] INT NOT NULL,
+	[AssociationType] INT NOT NULL,
+	[Level] INT NOT NULL,
+
+	[ParentMenuItemId] UNIQUEIDENTIFIER NULL, 
+    [UserDefinableId] UNIQUEIDENTIFIER NULL
+)
