@@ -21,5 +21,7 @@ namespace Shared.Services.Users
         ///// </summary>
         ///// <param name="id">The ID of the User</param>
         //void ChangeUserPositionDown(Guid id);
+
+        bool IsEmailUnique(string email);
     }
 }

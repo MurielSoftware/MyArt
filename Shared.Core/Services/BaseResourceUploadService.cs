@@ -14,9 +14,9 @@ namespace Shared.Core.Services
     /// Base upload service. It should be extended by all upload services.
     /// </summary>
     /// <typeparam name="T">The type of the Base Upload DTO</typeparam>
-    public class BaseResourceService<T> : BaseService where T : ResourceDto
+    public class BaseResourceUploadService<T> : BaseService where T : ResourceDto
     {
-        public BaseResourceService(IUnitOfWork unitOfWork) 
+        public BaseResourceUploadService(IUnitOfWork unitOfWork) 
             : base(unitOfWork)
         {
         }
@@ -32,8 +32,6 @@ namespace Shared.Core.Services
             {
                 return resourceDto;
             }
-
-            ValidateBeforeUpload(resourceDto);
 
             IOUtils.CreateDirectories(resourceDto.GetAbsolutePath());
 
@@ -57,10 +55,6 @@ namespace Shared.Core.Services
 
             IOUtils.Delete(resourceDto.GetAbsoluteFilePath());
             IOUtils.DeleteDirectoryIfNeeded(resourceDto.GetAbsolutePath());
-        }
-
-        protected void ValidateBeforeUpload(T resourceDto)
-        {
         }
     }
 }

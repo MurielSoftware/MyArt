@@ -33,6 +33,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,12 +44,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\Administration\AdministrationDto.cs" />
+    <Compile Include="Dtos\Collections\CollectionDto.cs" />
+    <Compile Include="Dtos\Exhibitions\ExhibitionDto.cs" />
+    <Compile Include="Dtos\Galleries\AlbumGalleryDto.cs" />
+    <Compile Include="Dtos\Galleries\GalleryDto.cs" />
+    <Compile Include="Dtos\Galleries\ProfileGalleryDto.cs" />
+    <Compile Include="Dtos\Paintings\PaintingCheckedDto.cs" />
+    <Compile Include="Dtos\Paintings\PaintingDto.cs" />
+    <Compile Include="Dtos\Paintings\Surface.cs" />
+    <Compile Include="Dtos\Paintings\Technique.cs" />
+    <Compile Include="Dtos\Resources\IPhotoResourcableDto.cs" />
     <Compile Include="Dtos\Resources\PhotoResourceDto.cs" />
     <Compile Include="Dtos\UserDefinableDto.cs" />
     <Compile Include="Dtos\Users\UserDto.cs" />
     <Compile Include="Dtos\Users\UserFilterDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Administration\IAdministrationService.cs" />
+    <Compile Include="Services\Collections\ICollectionCRUDService.cs" />
+    <Compile Include="Services\Exhibitions\IExhibitionCRUDService.cs" />
+    <Compile Include="Services\Paintings\IPaintingCRUDService.cs" />
     <Compile Include="Services\Resources\IPhotoCRUDService.cs" />
+    <Compile Include="Services\Resources\PhotoThumbnailInfo.cs" />
+    <Compile Include="Services\Resources\PhotoThumbnailInfoProvider.cs" />
     <Compile Include="Services\Roles\IRoleCRUDService.cs" />
     <Compile Include="Services\Users\IUserCRUDService.cs" />
   </ItemGroup>

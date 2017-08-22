@@ -1,14 +1,16 @@
 ﻿using Shared.Core.Attributes;
 using Shared.Core.Constants;
 using Shared.Core.Dtos;
+using Shared.Dtos.Resources;
 using Shared.I18n.Constants;
 using Shared.I18n.Resources;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Shared.Dtos.Users
 {
-    public class UserDto : UserDefinableDto
+    public class UserDto : UserDefinableDto, IPhotoResourcableDto
     {
         [Display(Name = MessageKeyConstants.LABEL_FIRSTNAME, ResourceType = typeof(Resource))]
         [Required(ErrorMessageResourceName = MessageKeyConstants.VALIDATION_REQUIRED_MESSAGE, ErrorMessageResourceType = typeof(Resource))]
@@ -21,6 +23,7 @@ namespace Shared.Dtos.Users
         [Display(Name = MessageKeyConstants.LABEL_EMAIL, ResourceType = typeof(Resource))]
         [Required(ErrorMessageResourceName = MessageKeyConstants.VALIDATION_REQUIRED_MESSAGE, ErrorMessageResourceType = typeof(Resource))]
         [EmailAddress(ErrorMessageResourceName = MessageKeyConstants.VALIDATION_EMAIL_MESSAGE, ErrorMessageResourceType = typeof(Resource))]
+        [Remote("IsEmailUnique", WebConstants.CONTROLLER_USER)]
         public virtual string Email { get; set; }
 
         [Display(Name = MessageKeyConstants.LABEL_PASSWORD, ResourceType = typeof(Resource))]
@@ -34,5 +37,18 @@ namespace Shared.Dtos.Users
         [ListReference(DaoConstants.ATTRIBUTE_ROLE)]
         [Display(Name = MessageKeyConstants.LABEL_ROLE, ResourceType = typeof(Resource))]
         public virtual ReferenceString RoleReference { get; set; }
+
+
+        [Display(Name = MessageKeyConstants.LABEL_PAINTINGS_COUNT, ResourceType = typeof(Resource))]
+        public virtual int PaintingsCount { get; set; }
+
+        public virtual PhotoResourceDto PhotoResourceDto { get; set; }
+        public virtual PhotoCropDto PhotoCropDto { get; set; }
+
+        public UserDto()
+        {
+            PhotoResourceDto = new PhotoResourceDto(GetType());
+            PhotoCropDto = new PhotoCropDto();
+        }
     }
 }

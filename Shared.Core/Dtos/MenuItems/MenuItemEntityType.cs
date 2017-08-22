@@ -10,7 +10,7 @@ namespace Shared.Core.Dtos.MenuItems
 {
     public enum MenuItemEntityType
     {
-        [Enum(DaoConstants.ENTITY_TEACHER)]
+        [Enum(DaoConstants.ENTITY_USER)]
         USER
     }
 }

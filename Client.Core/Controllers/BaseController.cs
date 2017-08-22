@@ -20,7 +20,7 @@ namespace Client.Core.Controllers
             return View();
         }
 
-        protected object SaveToTempAndView(string propertyName)
+        protected object GetFromTemp(string propertyName)
         {
             ViewData[propertyName] = TempData[propertyName];
             TempData[propertyName] = ViewData[propertyName];

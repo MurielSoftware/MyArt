@@ -1,0 +1,63 @@
+﻿.upload-content-dropbox {
+    display: inline-block;
+  	border: 1px dashed #696969;
+	width: 100%;
+	height: 100px;
+	text-align: center;
+    vertical-align: middle;
+	font-weight: bold;
+    line-height: 100px;
+	color: #696969; 
+    margin-bottom: 20px;
+}
+
+.upload-content-dropbox:hover {
+	background-color: #d5e1f2;
+}
+
+.uploaded-images .thumbnail {
+    border: none;
+    display: inline-block;
+}
+
+.uploaded-images img {
+    height: 100px;
+}
+
+/*.thumbnail-centralize {
+    border: none;
+    overflow:hidden;
+    height: 160px;
+    width: 160px;
+    margin: 5px;
+    position: relative;
+    display: inline-block;
+}
+
+.thumbnail-centralize img {
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+    width:240px;
+    height: 140px;
+}
+
+.thumbnail-centralize .btn-group {
+    position: absolute;
+    z-index: 1000;
+    margin: 5px;
+    right: 0;
+}
+
+.thumbnail-centralize .btn-group .btn {
+    padding: 1px 6px;
+}
+
+.thumbnail-centralize .btn-group .fa {
+    font-size: 12px;
+}
+
+.thumbnail-centralize .btn-group .dropdown-menu {
+    font-size: 12px;
+    min-width: 80px;
+}*/

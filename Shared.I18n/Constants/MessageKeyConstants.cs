@@ -8,22 +8,68 @@ namespace Shared.I18n.Constants
 {
     public class MessageKeyConstants
     {
+        public const string LABEL_ADDRESS = "label_address";
+        public const string LABEL_ARTISTS = "label_artists";
+        public const string LABEL_AUTHOR = "label_author";
         public const string LABEL_CLOSE = "label_close";
+        public const string LABEL_COLLECTION = "label_collection";
+        public const string LABEL_COLLECTIONS = "label_collections";
         public const string LABEL_CONFIRMATION = "label_confirmation";
-        public const string LABEL_CONTINUE = "label_continue";    
+        public const string LABEL_CONTINUE = "label_continue";
+        public const string LABEL_CITY = "label_city";
+        public const string LABEL_DATE = "label_date";
         public const string LABEL_DESCRIPTION = "label_description";      
         public const string LABEL_DROP_PHOTOS = "label_drop_photos";
         public const string LABEL_EMAIL = "label_email";
+        public const string LABEL_END = "label_end";
+        public const string LABEL_EXHIBITIONS = "label_exhibitions";
         public const string LABEL_FILL_FORM = "label_fill_form";
-        public const string LABEL_FIRSTNAME = "label_firstname";    
-        public const string LABEL_HOME = "label_home";     
+        public const string LABEL_FIRSTNAME = "label_firstname";
+        public const string LABEL_GPS = "label_gps";
+        public const string LABEL_HEIGHT = "label_height";
+        public const string LABEL_HOME = "label_home";
+        public const string LABEL_INFO = "label_info";
         public const string LABEL_NAME = "label_name";
         public const string LABEL_PASSWORD = "label_password";
+        public const string LABEL_PAINTINGS = "label_paintings";
         public const string LABEL_ROLE = "label_role";
         public const string LABEL_ROLES = "label_roles";
         public const string LABEL_ROLE_CREATION = "label_role_creation";
         public const string LABEL_SAVE = "label_save";
+        public const string LABEL_START = "label_start";
         public const string LABEL_SURNAME = "label_surname";
+        public const string LABEL_SURFACE = "label_surface";
+        public const string LABEL_TECHNIQUE = "label_technique";
+        public const string LABEL_TITLE = "label_title";
+        public const string LABEL_VIEW_DETAILS = "label_view_details";
+        public const string LABEL_WIDTH = "label_width";
+        public const string LABEL_PEN = "label_pen";
+        public const string LABEL_PENCIL = "label_pencil";
+        public const string LABEL_CRAYONS = "label_crayons";
+        public const string LABEL_ACRYLIC = "label_acrylic";
+        public const string LABEL_TEMPER = "label_temper";
+        public const string LABEL_OIL = "label_oil";
+        public const string LABEL_PASTEL = "label_pastel";
+        public const string LABEL_CHALK = "label_chalk";
+        public const string LABEL_AQUAREL = "label_aquarel";
+        public const string LABEL_PAPER = "label_paper";
+        public const string LABEL_SOLOLIT = "label_sololit";
+        public const string LABEL_CANVAS = "label_canvas";
+        public const string LABEL_GLASS = "label_glass";
+        public const string LABEL_WOOD = "label_wood";
+        public const string LABEL_SIZE = "label_size";
+        public const string LABEL_DATE_FINISH = "label_date_finish";
+        public const string LABEL_ADD_ROLE = "label_add_role";
+        public const string LABEL_ADD_PAINTING = "label_add_painting";
+        public const string LABEL_ADD_ARTIST = "label_add_artist";
+        public const string LABEL_ADD_COLLECTION = "label_add_collection";
+        public const string LABEL_ADD_EXHIBITION = "label_add_exhibition";
+        public const string LABEL_ZIPCODE = "label_zipcode";
+        public const string LABEL_PROFILE = "label_profile";
+        public const string LABEL_PAINTINGS_COUNT = "label_paintings_count";
+        public const string LABEL_OWNER = "label_owner";
+        public const string LABEL_CHANGE_PASSWORD = "label_change_password";
+        public const string LABEL_UPLOAD_PHOTOS = "label_upload_photos";
 
         public const string LABEL_INPUT = "label_input";
         public const string LABEL_LINK = "label_link";
@@ -43,6 +89,9 @@ namespace Shared.I18n.Constants
         public const string LABEL_SECTION_MENU = "label_section_menu";
         public const string LABEL_YES = "label_yes";
         public const string LABEL_NO = "label_no";
+        public const string LABEL_UPDATE = "label_update";
+        public const string LABEL_DELETE = "label_delete";
+        public const string LABEL_LIST = "label_list";
 
         public const string VALIDATION_EMAIL_MESSAGE = "validation_email_message";
         public const string VALIDATION_RANGE_MESSAGE = "validation_range_message";
@@ -51,6 +100,7 @@ namespace Shared.I18n.Constants
         public const string VALIDATION_OBJECT_IS_USED_MESSAGE = "validation_object_is_used_message";
         public const string VALIDATION_PARSE_BULK_INPUT_MESSAGE = "validation_parse_bulk_input_message";
 
+        public const string DELETE_INFORMATION_MESSAGE = "delete_information_message";
         public const string OBJECT_SAVE_SUCCESS_MESSAGE = "object_save_success_message";
         public const string OBJECT_INFORMATION_DELETE_MESSAGE = "object_information_delete_message";
         public const string ROLE_INFORMATION_DELETE_MESSAGE = "role_information_delete_message";

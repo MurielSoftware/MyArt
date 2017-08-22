@@ -46,6 +46,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -74,20 +75,37 @@
     <Compile Include="Converters\References\Reference\EntityToDto\SingleReferenceAttributeEntityToDtoConverter.cs" />
     <Compile Include="Converters\References\Utils\ReferenceConversionUtils.cs" />
     <Compile Include="Daos\BaseDao.cs" />
+    <Compile Include="Daos\CollectionDao.cs" />
+    <Compile Include="Daos\ExhibitionDao.cs" />
     <Compile Include="Daos\GenericDao.cs" />
     <Compile Include="Daos\MenuItemDao.cs" />
     <Compile Include="Daos\OrderDao.cs" />
+    <Compile Include="Daos\PaintingDao.cs" />
     <Compile Include="Daos\RoleDao.cs" />
     <Compile Include="Daos\UserDao.cs" />
+    <Compile Include="Model\AlbumGallery.cs" />
     <Compile Include="Model\BaseEntity.cs" />
+    <Compile Include="Model\Collection.cs" />
+    <Compile Include="Model\Exhibition.cs" />
+    <Compile Include="Model\Gallery.cs" />
     <Compile Include="Model\MenuItem.cs" />
+    <Compile Include="Model\Painting.cs" />
+    <Compile Include="Model\ProfileGallery.cs" />
     <Compile Include="Model\Resource.cs" />
     <Compile Include="Model\Role.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserDefinable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Administration\AdministrationService.cs" />
+    <Compile Include="Services\Collections\CollectionCRUDService.cs" />
+    <Compile Include="Services\Exhibitions\ExhibitionCRUDService.cs" />
     <Compile Include="Services\GenericCRUDService.cs" />
     <Compile Include="Services\MenuItemCRUDService.cs" />
+    <Compile Include="Services\Paintings\PaintingCRUDService.cs" />
+    <Compile Include="Services\Resources\BaseResourceCRUDService.cs" />
+    <Compile Include="Services\Resources\PhotoSupportService.cs" />
+    <Compile Include="Services\Resources\PhotoUploadService.cs" />
+    <Compile Include="Services\Resources\ResourceCRUDService.cs" />
     <Compile Include="Services\Resources\PhotoCRUDService.cs" />
     <Compile Include="Services\Roles\RoleCRUDService.cs" />
     <Compile Include="Services\UploadFileService.cs" />
@@ -115,5 +133,6 @@
       <Name>Shared</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

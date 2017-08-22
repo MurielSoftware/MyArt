@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.Core.Dtos.Roles
+namespace Server.Model
 {
-    public enum RoleType
+    public class AlbumGallery : Gallery
     {
     }
 }

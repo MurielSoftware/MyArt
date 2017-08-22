@@ -1,0 +1,113 @@
+﻿@model Shared.Dtos.Paintings.PaintingDto
+
+@using Client.Core.HtmlHelpers
+@using Shared.Core.Constants
+@using Shared.I18n.Constants
+
+<div class="modal-backdrop fade in"></div>
+<div class="modal fade in" style="display:block" id="@HtmlConstants.DIALOG_PAINTING" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close btn-dialog-close">&times;</button>
+                <h4 class="modal-title">@Html.LocalizedDisplay(MessageKeyConstants.LABEL_PAINTINGS)</h4>
+            </div>            
+            @using (Html.BeginForm(WebConstants.VIEW_NEXT, WebConstants.CONTROLLER_PAINTING, FormMethod.Post, new { @class = "asynchronous-form", @data_wizard_current_step = "0" }))
+            {
+                <div class="modal-body">
+                    <div class="wizard-step" data-wizard-step="0">
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.CreatedDate)
+                        @Html.AntiForgeryToken()
+                        <div class="form-horizontal">
+                            <div id="dialog-validation-summary"></div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Title, new { @class = "control-label col-sm-2 form-control-required" })
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.UsersReference, new { @class = "control-label col-sm-2 form-control-required" })
+                                <div class="col-sm-10">
+                                    @Html.ReferenceFor(model => model.UsersReference.Value, "User", "/Admin/User/GetByPrefix", 1)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CollectionId, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-4">
+                                    @Html.RemoteDropDownListFor(model => model.CollectionId, "/Admin/Collection/GetAllCollectionReferences")
+                                </div>
+                                @Html.LabelFor(model => model.Date, new { @class = "control-label col-sm-2 form-control-required" })
+                                <div class="col-sm-4">
+                                    @Html.DateFor(model => model.Date, new { @class = "form-control-editable" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">@Html.LocalizedDisplay(MessageKeyConstants.LABEL_SIZE)</label>
+                                <div class="col-sm-2">
+                                    @Html.EditorFor(model => model.Width, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.EditorFor(model => model.Height, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Surface, new { @class = "control-label col-sm-2 form-control-required" })
+                                <div class="col-sm-4">
+                                    @Html.LocalizedDropDownListFor(model => model.Surface, new { @class = "form-control" })
+                                </div>
+                                @Html.LabelFor(model => model.Technique, new { @class = "control-label col-sm-2 form-control-required" })
+                                <div class="col-sm-4">
+                                    @Html.LocalizedDropDownListFor(model => model.Technique, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Owner, new { @class = "control-label col-sm-2" })
+                                <div class="col-sm-10">
+                                    @Html.EditorFor(model => model.Owner, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wizard-step" data-wizard-step="1">
+                        <input type="file" id="file-selector" />
+                        <br />
+                        <div class="upload" data-upload-target=".uploaded-images" data-upload-mode="append">
+                            <div class="upload-content-dropbox">
+                                <form class="photo-upload-form">
+                                    @* @Html.Hidden(DaoConstants.USER_DEFINABLE_ID, Model.Id)
+                                        @Html.TextBoxFor(model => model.UserDefinableId)*@
+                                    <div>
+                                        @*@Html.HiddenFor(model => model.PhotoResourceDto.PhotoThumbnailInfo.Path, new { @class = "form-control" })
+                                        @Html.HiddenFor(model => model.PhotoResourceDto.PhotoThumbnailInfo.MinimumWidth)
+                                        @Html.HiddenFor(model => model.PhotoResourceDto.PhotoThumbnailInfo.MinimumHeight)
+                                        @Html.HiddenFor(model => model.PhotoResourceDto.PhotoThumbnailInfo.MaximumPhotos)
+                                        @Html.HiddenFor(model => model.PhotoResourceDto.UserDefinableId)
+                                        @Html.TextBox("UserDefinableOwnerId", Model.Id)*@
+                                    </div>  
+@*   @Html.HiddenFor(model => model.OwnerType)*@
+                                </form>
+                                <span class="message">@Html.LocalizedDisplay(MessageKeyConstants.LABEL_DROP_PHOTOS)</span>
+                            </div>
+                            <div class="uploaded-images">
+                                @*@Ajax.RemoteContent(WebConstants.VIEW_LIST, WebConstants.CONTROLLER_PHOTO, WebConstants.AREA_ADMIN, new { UserDefinableId = Model.Id })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-sm-7">
+                            <div class="progress">
+                                <div class="progress-bar"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <button type="button" class="btn btn-default btn-dialog-close"><i class="fa fa-close"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_CLOSE)</button>
+                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_SAVE)</button>
+                        </div>
+                    </div>
+                </div>
+            }          
+        </div>
+    </div>
+</div>

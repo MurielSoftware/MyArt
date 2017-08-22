@@ -1,0 +1,47 @@
+﻿@model PagedList.IPagedList<Shared.Core.Dtos.Roles.RoleDto>
+
+@using Client.Core.HtmlHelpers
+@using Shared.Core.Constants
+@using PagedList.Mvc
+@using Shared.I18n.Constants
+
+@{
+//Culture = UICulture = Shared.Core.Utils.LocalizationUtils.GetCultureString();
+}
+
+<div id="@HtmlConstants.PAGED_LIST_ROLE">
+    <table class="table table-hover">
+        <thead>
+            <tr role="row">
+                <th class="th-icon"></th>
+                <th>@Html.LocalizedDisplay(MessageKeyConstants.LABEL_NAME)</th>
+                <th class="text-center">@Html.LocalizedDisplay(MessageKeyConstants.LABEL_CREATE_UPDATE_DELETE_ALL)</th>
+                <th class="text-center">@Html.LocalizedDisplay(MessageKeyConstants.LABEL_USER_CREATION)</th>
+                <th class="text-center">@Html.LocalizedDisplay(MessageKeyConstants.LABEL_ROLE_CREATION)</th>
+                <th class="text-center">@Html.LocalizedDisplay(MessageKeyConstants.LABEL_MENU_CREATION)</th>
+                <th class="th-administration-box"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><i class='@HtmlConstants.FA_IMAGE_ROLE'></i></td>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.CreateUpdateDeleteAll)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.UserCreation)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.RoleCreation)</td>
+                    <td class="text-center">@Html.DisplayFor(modelItem => item.MenuCreation)</td>
+                    <td>
+                        @Html.DialogActionLink("<i class='fa fa-pencil-square-o'></i>", HtmlConstants.DIALOG_ROLE, WebConstants.VIEW_CREATE, WebConstants.CONTROLLER_ROLE, new { id = item.Id }, new { title = MessageKeyConstants.LABEL_UPDATE })
+                        @Html.DialogActionLink("<i class='fa fa-remove'></i>", HtmlConstants.DIALOG_CONFIRMATION, WebConstants.DIALOG_CONFIRMATION, WebConstants.CONTROLLER_ROLE, new { id = item.Id, message = MessageKeyConstants.ROLE_INFORMATION_DELETE_MESSAGE, afterSuccessAction = WebConstants.VIEW_DELETE_CONFIRMED }, new { title = MessageKeyConstants.LABEL_DELETE })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (Model.PageCount > 1)
+    {
+        @*@Html.PagedListPager(Model, page => Url.Action(wEBConstants.VIEW_PAGED_LIST, new Shared.Core.Url.PageRouteValueDictionary(ViewBag.FilterDto, new Dictionary<string, object>() { { "page", page } })), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = HtmlConstants.PAGED_LIST_ROLE, LoadingElementId = "loading" }));*@
+    }
+</div>

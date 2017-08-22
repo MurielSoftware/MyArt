@@ -1,4 +1,5 @@
-﻿using Client.Core.Constants;
+﻿using Client.Core.AfterSaves;
+using Client.Core.Constants;
 using Client.Core.HtmlHelpers;
 using Shared.Core.Constants;
 using Shared.Core.Dtos;
@@ -22,7 +23,7 @@ namespace Client.Core.Controllers
         {
             if (!id.HasValue)
             {
-                SaveToTempAndView(TempDataConstants.PRECREATED_DTO);
+                GetFromTemp(TempDataConstants.PRECREATED_DTO);
                 if (ViewData[TempDataConstants.PRECREATED_DTO] == null)
                 {
                     return PartialView(Activator.CreateInstance<T>());
@@ -37,19 +38,19 @@ namespace Client.Core.Controllers
             return PartialView(entity);
         }
 
-        protected override ActionResult RedirectToActionAfterClientFailCreate(T dto, string validationResult)
+        protected override ActionResult RedirectToActionAfterClientFailCreate(T dto, AfterFailSaveParam afterFailSaveParam)
         {
-            return Json(new JsonDialogResult(false, HtmlConstants.DIALOG_VALIDATION_SUMMARY, ValidationSummaryExtensions.CustomValidationSummary(ModelState).ToString()));
+            return Json(JsonDialogResult.CreateFail(HtmlConstants.DIALOG_VALIDATION_SUMMARY, ValidationSummaryExtensions.CustomValidationSummary(ModelState).ToString()));
         }
 
-        protected override ActionResult RedirectToActionAfterServerFailCreate(T dto, string validationResult)
+        protected override ActionResult RedirectToActionAfterServerFailCreate(T dto, AfterFailSaveParam afterFailSaveParam)
         {
-            return Json(new JsonDialogResult(false, HtmlConstants.DIALOG_VALIDATION_SUMMARY, validationResult));
+            return Json(JsonDialogResult.CreateFail(HtmlConstants.DIALOG_VALIDATION_SUMMARY, afterFailSaveParam.ValidationMessage));
         }
 
-        protected override ActionResult RedirectToActionAfterSuccessCreate(Guid id, string actionName, string controllerName, object routeValues, string targetHtmlId, JsonRefreshMode refreshMode)
+        protected override ActionResult RedirectToActionAfterSuccessCreate(AfterSuccessSaveParam afterSuccessSaveParam)
         {
-            return Json(new JsonDialogResult(true, targetHtmlId, Url.Action(actionName, controllerName, routeValues), JsonRefreshMode.FULL));
+            return Json(JsonDialogResult.CreateSuccess(afterSuccessSaveParam.TargetHtmlId, null, afterSuccessSaveParam.GetAction()));
         }
     }
 }

@@ -9,10 +9,12 @@ namespace Shared.Core.Json
     public enum JsonRefreshMode
     {
         NONE,
-        PARTIAL,
-        FULL,
-        TREE,
-        IMAGE_TO_RICHTEXTBOX
+        //PARTIAL,
+        //FULL,
+        REFRESH_AFTER_WIZARD_NEXT_STEP,
+        REFRESH_AFTER_DIALOG_CLOSE,
+        REFRESH_TREE_AFTER_DIALOG_CLOSE,
+        REFRESH_AFTER_UPLOAD_IMAGE_TO_RICHTEXTBOX,
     }
 }
 

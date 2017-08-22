@@ -41,6 +41,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -71,27 +74,32 @@
     <Compile Include="Dtos\Bulks\RecordDelimiterType.cs" />
     <Compile Include="Dtos\Bulks\BulkPersistDto.cs" />
     <Compile Include="Dtos\DialogDto.cs" />
+    <Compile Include="Dtos\IDto.cs" />
     <Compile Include="Dtos\ListReferenceDto.cs" />
     <Compile Include="Dtos\MenuItems\MenuItemAssociationType.cs" />
     <Compile Include="Dtos\MenuItems\MenuItemDto.cs" />
     <Compile Include="Dtos\MenuItems\MenuItemEntityType.cs" />
+    <Compile Include="Dtos\CheckedDto.cs" />
     <Compile Include="Dtos\PhotoCropDto.cs" />
     <Compile Include="Dtos\ReferencedDto.cs" />
     <Compile Include="Dtos\ReferenceString.cs" />
     <Compile Include="Dtos\ResourceDto.cs" />
     <Compile Include="Dtos\Roles\RoleDto.cs" />
-    <Compile Include="Dtos\Roles\RoleType.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Exceptions\ValidationResult.cs" />
     <Compile Include="Json\JsonDialogResult.cs" />
     <Compile Include="Json\JsonFileSelectDialogResult.cs" />
+    <Compile Include="Json\JsonResult.cs" />
+    <Compile Include="Json\JsonUploadResult.cs" />
     <Compile Include="Json\RefreshMode.cs" />
+    <Compile Include="Json\JsonWizardResult.cs" />
     <Compile Include="Messages\Message.cs" />
     <Compile Include="Messages\MessageType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\BaseResourceService.cs" />
+    <Compile Include="Services\BaseResourceUploadService.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\IBulkPersistService.cs" />
+    <Compile Include="Services\ICheckedListReaderService.cs" />
     <Compile Include="Services\ICRUDService.cs" />
     <Compile Include="Services\IListReferenceService.cs" />
     <Compile Include="Services\IMenuItemCRUDService.cs" />
@@ -104,6 +112,8 @@
     <Compile Include="Utils\PasswordUtils.cs" />
     <Compile Include="Utils\StringUtils.cs" />
     <Compile Include="Utils\UrlUtils.cs" />
+    <Compile Include="Validators\IgnoreValidation.cs" />
+    <Compile Include="Validators\ReferenceRequired.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sessions\" />

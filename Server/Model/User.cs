@@ -34,8 +34,7 @@ namespace Server.Model
         [ForeignKey("RoleId")]
         public virtual Role Role { get; set; }
 
-        //public virtual ICollection<BaseEvent> Events { get; set; }
-        //public virtual ICollection<Training> Trainings { get; set; }
+        public virtual ICollection<Painting> Paintings { get; set; }
 
         public override string ToString()
         {

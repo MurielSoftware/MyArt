@@ -7,14 +7,59 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Shared.Core.Context;
+using Shared.Core.Services;
+using Shared.Core.Dtos;
+using System.Drawing;
 
 namespace Server.Services.Resources
 {
-    public class PhotoCRUDService : GenericCRUDService<PhotoResourceDto, Resource>, IPhotoCRUDService
+    public class PhotoCRUDService : BaseResourceCRUDService<PhotoResourceDto, Resource>, IPhotoCRUDService
     {
         public PhotoCRUDService(IUnitOfWork unitOfWork) 
             : base(unitOfWork)
         {
+        }
+
+        public override BaseResourceUploadService<PhotoResourceDto> GetUploadResourceService()
+        {
+            return new PhotoUploadService(_unitOfWork);
+        }
+
+        public override PhotoResourceDto Persist(PhotoResourceDto photoResourceDto)
+        {
+            Gallery gallery = null;
+            bool automaticCoverPhotoSet = false;
+            if(Guid.Empty.Equals(photoResourceDto.UserDefinableId))
+            {
+                gallery = CreateAndPersistEmptyGallery();
+                gallery.OwnerId = photoResourceDto.UserDefinableOwnerId;
+                photoResourceDto.UserDefinableId = gallery.Id;
+                automaticCoverPhotoSet = true;
+            }
+            photoResourceDto.Path = string.Format(photoResourceDto.PhotoThumbnailInfo.Path, photoResourceDto.UserDefinableOwnerId, photoResourceDto.UserDefinableId);
+            photoResourceDto = base.Persist(photoResourceDto);
+            if(automaticCoverPhotoSet)
+            {
+                gallery.CoverPhotoId = photoResourceDto.Id;
+                _genericDao.Persist<Gallery>(gallery);
+            }
+            return photoResourceDto;
+        }
+
+        public void Crop(PhotoCropDto photoCropDto)
+        {
+            PhotoSupportService photoSupportService = new PhotoSupportService(_unitOfWork);
+            PhotoResourceDto photoResourceDto = Read(photoCropDto.Id);
+            photoSupportService.Crop(photoCropDto);
+        }
+
+        private Gallery CreateAndPersistEmptyGallery()
+        {
+            Gallery gallery = new ProfileGallery()
+            {
+                Name = Guid.NewGuid().ToString()
+            };
+            return _genericDao.Persist<Gallery>(gallery);
         }
     }
 }

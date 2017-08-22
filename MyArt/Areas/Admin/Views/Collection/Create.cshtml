@@ -1,0 +1,45 @@
+﻿@model Shared.Dtos.Collections.CollectionDto
+
+@using Client.Core.HtmlHelpers
+@using Shared.Core.Constants
+@using Shared.I18n.Constants
+
+<div class="modal-backdrop fade in"></div>
+<div class="modal fade in" style="display:block" id="@HtmlConstants.DIALOG_COLLECTION" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close btn-dialog-close">&times;</button>
+                <h4 class="modal-title">@Html.LocalizedDisplay(MessageKeyConstants.LABEL_COLLECTION)</h4>
+            </div>
+            @using (Html.BeginForm(WebConstants.VIEW_CREATE, WebConstants.CONTROLLER_COLLECTION, FormMethod.Post, new { @class = "asynchronous-form" }))
+            {
+                <div class="modal-body">
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.CreatedDate)
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        <div id="dialog-validation-summary"></div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, new { @class = "control-label col-sm-2 form-control-required" })
+                            <div class="col-sm-10">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-sm-7">
+                        <div class="progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <button type="button" class="btn btn-default btn-dialog-close"><i class="fa fa-close"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_CLOSE)</button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_SAVE)</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

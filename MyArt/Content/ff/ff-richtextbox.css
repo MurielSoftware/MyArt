@@ -1,0 +1,21 @@
+﻿.richtextbox-toolbar {
+    background: #fdfdfd;
+    height: 34px;
+    padding: 2px;
+}
+
+.richtextbox-toolbar .btn-default {
+    color: #696969;
+    border: none;
+}
+
+.richtextbox-toolbar .btn-default:hover {
+    background-color: #c2d5f2;
+}
+
+.richtextbox-textarea {
+    height: 240px;
+    overflow-y: scroll;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+}

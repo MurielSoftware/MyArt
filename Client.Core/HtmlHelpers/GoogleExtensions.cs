@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using System.Web.Routing;
 
 namespace Client.Core.HtmlHelpers
 {
@@ -27,10 +28,19 @@ namespace Client.Core.HtmlHelpers
             ModelMetadata metadata = ModelMetadata.FromLambdaExpression(expression, htmlHelper.ViewData);
             string gps = metadata.Model == null ? DEFAULT_COORDINATES : metadata.Model.ToString();
 
-            StringBuilder sb = new StringBuilder();
-            sb.Append(string.Format(@"<div id='map-canvas' {0}></div>", HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes)));
-            sb.Append(InputExtensions.Hidden(htmlHelper, metadata.PropertyName, gps));
-            return MvcHtmlString.Create(sb.ToString());
+            //StringBuilder sb = new StringBuilder();
+            //sb.Append(string.Format(@"<div id='map-canvas' {0}></div>", htmlAttributes.ToString()));
+            //sb.Append(InputExtensions.Hidden(htmlHelper, metadata.PropertyName, gps));
+            //return MvcHtmlString.Create(sb.ToString());
+
+            //TagBuilder hidden = new TagBuilder("input");
+
+            TagBuilder tagBuilder = new TagBuilder("div");
+            tagBuilder.MergeAttributes(new RouteValueDictionary(htmlAttributes));
+            tagBuilder.MergeAttribute("id", "map-canvas");
+            tagBuilder.InnerHtml = InputExtensions.Hidden(htmlHelper, metadata.PropertyName, gps).ToString();
+            return MvcHtmlString.Create(tagBuilder.ToString(TagRenderMode.Normal));
+
         }
     }
 }

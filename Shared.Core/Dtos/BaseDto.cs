@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shared.Core.Dtos
 {
-    public abstract class BaseDto
+    public abstract class BaseDto : IDto
     {
         public Guid Id { get; set; }
         public virtual DateTime CreatedDate { get; set; }

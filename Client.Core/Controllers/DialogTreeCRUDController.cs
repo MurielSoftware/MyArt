@@ -1,4 +1,5 @@
-﻿using Shared.Core.Constants;
+﻿using Client.Core.AfterSaves;
+using Shared.Core.Constants;
 using Shared.Core.Dtos;
 using Shared.Core.Json;
 using Shared.Core.Services;
@@ -15,29 +16,37 @@ namespace Client.Core.Controllers
         where T : BaseDto
         where U : ITreeCRUDService<T>
     {
-        protected override ActionResult RedirectToActionAfterSuccessCreate(Guid id, string actionName, string controllerName, object routeValues, string targetHtmlId, JsonRefreshMode refreshMode)
+        protected override ActionResult RedirectToActionAfterSuccessCreate(AfterSuccessSaveParam afterSuccessSaveParam)
         {
-            Guid? parentId = GetService().GetParentId(id);
+            Guid? parentId = GetService().GetParentId(afterSuccessSaveParam.Id);
             if(parentId.HasValue)
             {
-                return base.RedirectToActionAfterSuccessCreate(id, actionName, controllerName, routeValues, parentId.Value.ToString(), JsonRefreshMode.TREE);
+                return Json(JsonDialogResult.CreateTreeSuccess(afterSuccessSaveParam.TargetHtmlId, null, afterSuccessSaveParam.Action));
+                //return base.RedirectToActionAfterSuccessCreate(id, actionName, controllerName, routeValues, parentId.Value.ToString(), JsonRefreshMode.REFRESH_TREE_AFTER_DIALOG_CLOSE);
             }
-            return base.RedirectToActionAfterSuccessCreate(id, actionName, controllerName, routeValues, targetHtmlId, JsonRefreshMode.FULL);
+            return base.RedirectToActionAfterSuccessCreate(afterSuccessSaveParam);
         }
 
-        protected override ActionResult RedirectToActionAfterSuccessDelete(Guid id, string actionName, string controllerName, string targetId, object routeValues, JsonRefreshMode refreshMode)
+        protected override ActionResult RedirectToActionAfterSuccessDelete(AfterSuccessSaveParam afterSuccessSaveParam)
         {
-            if(!Guid.Empty.Equals(id))
-            {
-                return RedirectToActionAfterSuccessDelete(id, actionName, controllerName, targetId, routeValues, JsonRefreshMode.TREE);
-            }
-            return RedirectToActionAfterSuccessDelete(id, actionName, controllerName, targetId, routeValues, JsonRefreshMode.FULL);
+            return null;
+            //if (affectedId.HasValue)
+            //{
+            //    return base.RedirectToActionAfterSuccessDelete(affectedId, affectedId.ToString(), action, routeValues, JsonRefreshMode.TREE);
+            //}
+            //return base.RedirectToActionAfterSuccessDelete(affectedId, targetId, action, routeValues, JsonRefreshMode.FULL);
+            //if(!Guid.Empty.Equals(id))
+            //{
+            //    return RedirectToActionAfterSuccessDelete(id, actionName, controllerName, targetId, routeValues);
+            //}
+            //return RedirectToActionAfterSuccessDelete(id, actionName, controllerName, targetId, routeValues);
         }
 
         public ActionResult TreeNodeChangePosition(Guid sourceId, Guid targetId)
         {
             GetService().TreeNodeChangePosition(sourceId, targetId);
-            return RedirectToActionAfterSuccessCreate(sourceId, WebConstants.VIEW_LIST, null, null, HtmlConstants.TREE_MENU_ITEM, JsonRefreshMode.FULL);
+            return RedirectToActionAfterSuccessCreate(AfterSuccessSaveParam.Create(sourceId, null, WebConstants.VIEW_LIST, null, null, HtmlConstants.TREE_MENU_ITEM));
+            //return RedirectToActionAfterSuccessCreate(sourceId, WebConstants.VIEW_LIST, null, null, HtmlConstants.TREE_MENU_ITEM);
         }
     }
 }

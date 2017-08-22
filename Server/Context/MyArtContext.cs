@@ -1,5 +1,6 @@
 ﻿using Server.Model;
 using Shared.Core.Context;
+using Shared.Dtos.Galleries;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -18,6 +19,11 @@ namespace Server.Context
         public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Resource> Resources { get; set; }
+        public DbSet<UserDefinable> UserDefinables { get; set; }
+        public DbSet<Painting> Paintings { get; set; }
+        public DbSet<Collection> Collections { get; set; }
+        public DbSet<Exhibition> Exhibitions { get; set; }
+        public DbSet<Gallery> Galleries { get; set; }
 
         public MyArtContext()
             : base(DB_CONTEXT_NAME)
@@ -41,16 +47,31 @@ namespace Server.Context
             //    .Map<Link>(m => m.Requires("Discriminator").HasValue(Link.DISC))
             //    .Map<Video>(m => m.Requires("Discriminator").HasValue(Video.DISC));
 
-            //modelBuilder.Entity<BaseEvent>()
-            //    .HasMany(x => x.Users)
-            //    .WithMany(y => y.Events)
-            //    .Map(m =>
-            //    {
-            //        m.ToTable("JOIN_USER_EVENT");
-            //        m.MapLeftKey("EventId");
-            //        m.MapRightKey("UserId");
-            //    }
-            //);
+            modelBuilder.Entity<Painting>()
+                .HasMany(x => x.Users)
+                .WithMany(y => y.Paintings)
+                .Map(m =>
+                {
+                    m.ToTable("JOIN_USER_PAINTING");
+                    m.MapLeftKey("PaintingId");
+                    m.MapRightKey("UserId");
+                }
+            );
+
+            modelBuilder.Entity<Exhibition>()
+                .HasMany(x => x.Paintings)
+                .WithMany(y => y.Exhibitions)
+                .Map(m =>
+                {
+                    m.ToTable("JOIN_PAINTING_EXHIBITION");
+                    m.MapLeftKey("ExhibitionId");
+                    m.MapRightKey("PaintingId");
+                }
+            );
+
+            modelBuilder.Entity<Gallery>()
+                .Map<ProfileGallery>(m => m.Requires("Discriminator").HasValue(ProfileGalleryDto.DISC))
+                .Map<AlbumGallery>(m => m.Requires("Discriminator").HasValue(AlbumGalleryDto.DISC));
 
             base.OnModelCreating(modelBuilder);
         }

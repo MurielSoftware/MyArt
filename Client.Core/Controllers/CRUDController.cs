@@ -1,4 +1,5 @@
-﻿using Client.Core.Constants;
+﻿using Client.Core.AfterSaves;
+using Client.Core.Constants;
 using Client.Core.HtmlHelpers;
 using Shared.Core.Constants;
 using Shared.Core.Dtos;
@@ -28,7 +29,7 @@ namespace Client.Core.Controllers
         {
             if (!id.HasValue)
             {
-                SaveToTempAndView(TempDataConstants.PRECREATED_DTO);
+                GetFromTemp(TempDataConstants.PRECREATED_DTO);
                 if (ViewData[TempDataConstants.PRECREATED_DTO] == null)
                 {
                     return View(Activator.CreateInstance<T>());
@@ -63,7 +64,7 @@ namespace Client.Core.Controllers
         /// <param name="controllerName">The name of the controller</param>
         /// <param name="routeValues">The route values for redirect</param>
         /// <returns>The apropriate View</returns>
-        public virtual ActionResult DoCreate(T dto, Message message, string actionName, string controllerName, object routeValues = null, string targetHtmlId = null)
+        public virtual ActionResult DoCreate(T dto, AfterSuccessSaveParam afterSuccessSaveParam)
         {
             if (!ModelState.IsValid)
             {
@@ -75,29 +76,33 @@ namespace Client.Core.Controllers
                 GetUnitOfWork().StartTransaction();
                 dto = GetService().Persist(dto);
                 GetUnitOfWork().EndTransaction();
-                TempData[TempDataConstants.MESSAGE] = message;
+
+                afterSuccessSaveParam.Id = dto.Id;
+
+                TempData[TempDataConstants.MESSAGE] = afterSuccessSaveParam.Message;
+                TempData[TempDataConstants.DTO] = dto;
             }
             catch (ValidationException ex)
             {
-                return RedirectToActionAfterServerFailCreate(dto, ex.GetValidationResults());
+                return RedirectToActionAfterServerFailCreate(dto, AfterFailSaveParam.Create(ex.GetValidationResults()));
             }
-            return RedirectToActionAfterSuccessCreate(dto.Id, actionName, controllerName, routeValues, targetHtmlId, JsonRefreshMode.FULL);
+            return RedirectToActionAfterSuccessCreate(afterSuccessSaveParam);
         }
 
-        protected virtual ActionResult RedirectToActionAfterClientFailCreate(T dto, string validationResult)
+        protected virtual ActionResult RedirectToActionAfterClientFailCreate(T dto, AfterFailSaveParam afterFailSaveParam)
         {
             return View(dto);
         }
 
-        protected virtual ActionResult RedirectToActionAfterServerFailCreate(T dto, string validationResult)
+        protected virtual ActionResult RedirectToActionAfterServerFailCreate(T dto, AfterFailSaveParam afterFailSaveParam)
         {
-            ModelState.AddModelError(TempDataConstants.SERVER_VALIDATION_ERROR, validationResult);
+            ModelState.AddModelError(TempDataConstants.SERVER_VALIDATION_ERROR, afterFailSaveParam.ValidationMessage);
             return View(dto);
         }
 
-        protected virtual ActionResult RedirectToActionAfterSuccessCreate(Guid id, string actionName, string controllerName, object routeValues, string targetHtmlId, JsonRefreshMode jsonRefreshMode)
+        protected virtual ActionResult RedirectToActionAfterSuccessCreate(AfterSuccessSaveParam afterSuccessSaveParam)
         {
-            return RedirectToAction(actionName, controllerName, routeValues);
+            return RedirectToAction(afterSuccessSaveParam.Action, afterSuccessSaveParam.Controller, afterSuccessSaveParam.RouteValues);
         }
 
         /// <summary>
@@ -108,30 +113,30 @@ namespace Client.Core.Controllers
         /// <param name="controllerName">The name of the controller of the action to call after success deletion</param>
         /// <param name="message">The message ti display after deletion</param>
         /// <returns>The validation summary if the deletion is not possible or appropriate refreshed view</returns>
-        public virtual ActionResult DoDeleteConfirmed(Guid id, Message message, string actionName, string controllerName, object routeValues = null, string targetHtmlId = null)
+        public virtual ActionResult DoDeleteConfirmed(AfterSuccessSaveParam afterSuccessSaveParam)
         {
             try
             {
                 GetUnitOfWork().StartTransaction();
-                GetService().Delete(id);
+                GetService().Delete(afterSuccessSaveParam.Id);
                 GetUnitOfWork().EndTransaction();
-                TempData[TempDataConstants.MESSAGE] = message;
+                TempData[TempDataConstants.MESSAGE] = afterSuccessSaveParam.Message;
             }
             catch(ValidationException ex)
             {
-                return RedirectToActionAfterFailDelete(ex.GetValidationResults());
+                return RedirectToActionAfterFailDelete(AfterFailSaveParam.Create(ex.GetValidationResults()));
             }
-            return RedirectToActionAfterSuccessDelete(id, actionName, controllerName, targetHtmlId, routeValues, JsonRefreshMode.PARTIAL);
+            return RedirectToActionAfterSuccessDelete(afterSuccessSaveParam);
         }
 
-        protected virtual ActionResult RedirectToActionAfterFailDelete(string validationResult)
+        protected virtual ActionResult RedirectToActionAfterFailDelete(AfterFailSaveParam afterFailSaveParam)
         {
-            return Json(new JsonDialogResult(false, HtmlConstants.DIALOG_VALIDATION_SUMMARY, ValidationSummaryExtensions.CustomValidationSummary(validationResult).ToString()));
+            return Json(JsonDialogResult.CreateFail(HtmlConstants.DIALOG_VALIDATION_SUMMARY, ValidationSummaryExtensions.CustomValidationSummary(afterFailSaveParam.ValidationMessage).ToString()));
         }
 
-        protected virtual ActionResult RedirectToActionAfterSuccessDelete(Guid id, string actionName, string controllerName, string targetId, object routeValues, JsonRefreshMode refreshMode)
+        protected virtual ActionResult RedirectToActionAfterSuccessDelete(AfterSuccessSaveParam afterSuccessSaveParam)
         {
-            return Json(new JsonDialogResult(true, targetId, Url.Action(actionName, controllerName, routeValues), refreshMode));
+            return Json(JsonDialogResult.CreateSuccess(afterSuccessSaveParam.TargetHtmlId, null, afterSuccessSaveParam.GetAction()));
         }
 
         /// <summary>

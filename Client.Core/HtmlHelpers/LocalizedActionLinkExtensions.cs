@@ -28,7 +28,7 @@ namespace Client.Core.HtmlHelpers
         public static MvcHtmlString LocalizedActionLink<T>(this HtmlHelper<T> htmlHelper, string resourceKey, string action = "#", string controller = "", object routeValues = null, object htmlAttributes = null)
         {
             string tempName = Guid.NewGuid().ToString();
-            if (routeValues == null && action != "Index")
+            if (routeValues == null && action != "Index" && action != "#")
             {
                 action += "/";
             }

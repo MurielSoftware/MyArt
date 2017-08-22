@@ -47,12 +47,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AfterSaves\AfterFailSaveParam.cs" />
+    <Compile Include="AfterSaves\AfterSuccessSaveParam.cs" />
     <Compile Include="Constants\TempDataConstants.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CRUDController.cs" />
     <Compile Include="Controllers\DialogCRUDController.cs" />
     <Compile Include="Controllers\DialogTreeCRUDController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
+    <Compile Include="Controllers\WizardCRUDController.cs" />
     <Compile Include="HtmlHelpers\DateExtensions.cs" />
     <Compile Include="HtmlHelpers\DivExtensions.cs" />
     <Compile Include="HtmlHelpers\EditableControlExtensions.cs" />

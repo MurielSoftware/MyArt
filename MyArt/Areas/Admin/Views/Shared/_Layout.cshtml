@@ -1,10 +1,17 @@
-﻿<!DOCTYPE html>
+﻿@using Client.Core.HtmlHelpers
+@using Shared.Core.Constants
+@using Shared.I18n.Constants
+@using Shared.I18n.Utils
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Admin</title>
     @Styles.Render("~/Content/css-admin")
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body>
     <div class="wrapper">
@@ -13,25 +20,59 @@
                 MyArt
             </div>
             <div class="header-right">
-                xxx
+                <div class="header-logged-user">
+                    <div class="btn-group">
+                        <a class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img /> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>@Html.LocalizedActionLink("<i class='fa fa-user-circle'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_PROFILE), WebConstants.VIEW_PROFILE, WebConstants.CONTROLLER_USER)</li>
+                            <li>@Html.LocalizedActionLink("<i class='fa fa-key'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_ROLES), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_ROLE, new { area = "Admin" })</li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#"><i class="fa fa-sign-out"></i> Odhlásit</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </header>
         <aside class="nav-vertical">
             <div class="profile-box">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <img class="media-object" />
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">Jméno</h4>
+                        Ahojky
+                    </div>
+                </div>
             </div>
             <nav>
                 <ul class="nav">
-                    <li><a href="#">Domů</a></li>
                     <li>
-                        <a href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false">Obrazy</a>
+                        @Html.LocalizedActionLink("<i class='fa fa-home'></i> " + "Domů", WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_HOME, new { area = "Admin" } )
+                    </li>
+                    <li>
+                        <a href="#" class="nav-dropdown-toggle" data-toggle="collapse" data-target="#submenu1" aria-expanded="false">
+                            <i class='fa fa-image'></i> Obrazy
+                        </a>
                         <ul class="nav collapse" id="submenu1" role="menu" aria-labelledby="btn-1">
-                            <li><a href="#">Link 2.1</a></li>
-                            <li><a href="#">Link 2.2</a></li>
-                            <li><a href="#">Link 2.3</a></li>
+                            <li>
+                                @Html.LocalizedActionLink("<i class='fa fa-paint-brush'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_PAINTINGS), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_PAINTING, new { area = "Admin" })
+                            </li>
+                            <li>
+                                @Html.LocalizedActionLink("<i class='fa fa-folder'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_COLLECTIONS), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_COLLECTION, new { area = "Admin" })
+                            </li>
                         </ul>
                     </li>
-                    <li><a href="#">Umělci</a></li>
-                    <li><a href="#">Exhibice</a></li>
+                    <li>
+                    <li>
+                        @Html.LocalizedActionLink("<i class='fa fa-group'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_ARTISTS), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_USER, new { area = "Admin" })
+                    </li>
+                    <li>
+                    <li>
+                        @Html.LocalizedActionLink("<i class='fa fa-institution'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_EXHIBITIONS), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_EXHIBITION, new { area = "Admin" })
+                    </li>
                 </ul>
             </nav>
         </aside>
@@ -40,6 +81,7 @@
         </div>
     </div>
 
+    <div id="modal-dialogs"></div>
     @Scripts.Render("~/bundles/scripts-admin")
     @RenderSection("scripts", required: false)
 </body>

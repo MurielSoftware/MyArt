@@ -183,4 +183,151 @@
   <data name="label_yes" xml:space="preserve">
     <value>Ano</value>
   </data>
+  <data name="label_artists" xml:space="preserve">
+    <value>Umělci</value>
+  </data>
+  <data name="label_collections" xml:space="preserve">
+    <value>Kolekce</value>
+  </data>
+  <data name="label_exhibitions" xml:space="preserve">
+    <value>Výstavy</value>
+  </data>
+  <data name="label_paintings" xml:space="preserve">
+    <value>Malby</value>
+  </data>
+  <data name="label_view_details" xml:space="preserve">
+    <value>Více informací</value>
+  </data>
+  <data name="label_title" xml:space="preserve">
+    <value>Název</value>
+  </data>
+  <data name="label_acrylic" xml:space="preserve">
+    <value>Akryl</value>
+  </data>
+  <data name="label_aquarel" xml:space="preserve">
+    <value>Akvarel</value>
+  </data>
+  <data name="label_author" xml:space="preserve">
+    <value>Autor</value>
+  </data>
+  <data name="label_canvas" xml:space="preserve">
+    <value>Plátno</value>
+  </data>
+  <data name="label_chalk" xml:space="preserve">
+    <value>Křída</value>
+  </data>
+  <data name="label_collection" xml:space="preserve">
+    <value>Kolekce</value>
+  </data>
+  <data name="label_crayons" xml:space="preserve">
+    <value>Pastelky</value>
+  </data>
+  <data name="label_glass" xml:space="preserve">
+    <value>Sklo</value>
+  </data>
+  <data name="label_height" xml:space="preserve">
+    <value>Výška</value>
+  </data>
+  <data name="label_oil" xml:space="preserve">
+    <value>Olej</value>
+  </data>
+  <data name="label_paper" xml:space="preserve">
+    <value>Papír</value>
+  </data>
+  <data name="label_pen" xml:space="preserve">
+    <value>Pero</value>
+  </data>
+  <data name="label_pencil" xml:space="preserve">
+    <value>Tužka</value>
+  </data>
+  <data name="label_size" xml:space="preserve">
+    <value>Rozměry</value>
+  </data>
+  <data name="label_sololit" xml:space="preserve">
+    <value>Sololit</value>
+  </data>
+  <data name="label_surface" xml:space="preserve">
+    <value>Povrch</value>
+  </data>
+  <data name="label_technique" xml:space="preserve">
+    <value>Technika</value>
+  </data>
+  <data name="label_temper" xml:space="preserve">
+    <value>Tempera</value>
+  </data>
+  <data name="label_width" xml:space="preserve">
+    <value>Šířka</value>
+  </data>
+  <data name="label_wood" xml:space="preserve">
+    <value>Dřevo</value>
+  </data>
+  <data name="label_date_finish" xml:space="preserve">
+    <value>Dokončeno</value>
+  </data>
+  <data name="label_password" xml:space="preserve">
+    <value>Heslo</value>
+  </data>
+  <data name="label_pastel" xml:space="preserve">
+    <value>Pastel</value>
+  </data>
+  <data name="label_create_update_delete_all" xml:space="preserve">
+    <value>Administrace dat</value>
+  </data>
+  <data name="label_list" xml:space="preserve">
+    <value>Seznam</value>
+  </data>
+  <data name="label_name" xml:space="preserve">
+    <value>Jméno</value>
+  </data>
+  <data name="label_user_creation" xml:space="preserve">
+    <value>Administrace uživatelů</value>
+  </data>
+  <data name="label_address" xml:space="preserve">
+    <value>Adresa</value>
+  </data>
+  <data name="label_add_artist" xml:space="preserve">
+    <value>Přidat umělce</value>
+  </data>
+  <data name="label_add_collection" xml:space="preserve">
+    <value>Přidat kolekci</value>
+  </data>
+  <data name="label_add_exhibition" xml:space="preserve">
+    <value>Přidat výstavu</value>
+  </data>
+  <data name="label_add_painting" xml:space="preserve">
+    <value>Přidat obraz</value>
+  </data>
+  <data name="label_city" xml:space="preserve">
+    <value>Město</value>
+  </data>
+  <data name="label_end" xml:space="preserve">
+    <value>Konec</value>
+  </data>
+  <data name="label_gps" xml:space="preserve">
+    <value>GPS pozice</value>
+  </data>
+  <data name="label_logout" xml:space="preserve">
+    <value>Odhlásit</value>
+  </data>
+  <data name="label_profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="label_start" xml:space="preserve">
+    <value>Začátek</value>
+  </data>
+  <data name="label_zipcode" xml:space="preserve">
+    <value>PSČ</value>
+  </data>
+  <data name="label_paintings_count" xml:space="preserve">
+    <value>Počet obrazů</value>
+  </data>
+  <data name="label_owner" xml:space="preserve">
+    <value>Majitel</value>
+  </data>
+  <data name="label_change_password" xml:space="preserve">
+    <value>Změnit heslo</value>
+  </data>
+  <data name="label_upload_photos" xml:space="preserve">
+    <value>Nahrát fotky</value>
+  </data>
 </root>

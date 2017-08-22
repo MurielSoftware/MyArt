@@ -26,21 +26,21 @@ namespace Server.Services
             _genericDao = new GenericDao(unitOfWork);
         }
 
-        public void Delete(Guid id)
+        public virtual void Delete(Guid id)
         {
             U entityToDelete = _genericDao.FindTracking<U>(id);
             ValidationBeforeDelete(entityToDelete);
             DoDelete(entityToDelete);
         }
 
-        public T Persist(T dto)
+        public virtual T Persist(T dto)
         {
             ValidationBeforePersist(dto);
             U persistedEntity = DoPersist(CreateEntity(dto));
             return CreateDto(persistedEntity);
         }
 
-        public T Read(Guid id)
+        public virtual T Read(Guid id)
         {
             return CreateDto(_genericDao.Find<U>(id));
         }

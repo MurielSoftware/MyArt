@@ -36,6 +36,10 @@ namespace Shared.Core.Dtos
 
         public List<Guid> GetIds()
         {
+            if(Value == null)
+            {
+                return null;
+            }
             Dictionary<Guid, string> parsedReferenceString = Parse(Value);
             return parsedReferenceString.Keys.ToList();
         }
@@ -80,6 +84,10 @@ namespace Shared.Core.Dtos
 
         private static Dictionary<Guid, string> Parse(string referenceString)
         {
+            if(referenceString == null)
+            {
+                return null;
+            }
             string[] values = referenceString.Split(new string[] { REFERENCE_SEPARATOR }, StringSplitOptions.RemoveEmptyEntries);
             Dictionary<Guid, string> parsedReferenceString = new Dictionary<Guid, string>();
             foreach (string value in values)

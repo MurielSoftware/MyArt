@@ -9,6 +9,7 @@ namespace Client.Core.Constants
     public class TempDataConstants
     {
         public const string PRECREATED_DTO = "precreatedDto";
+        public const string DTO = "dto";
         public const string MESSAGE = "message";
         public const string SERVER_VALIDATION_ERROR = "serverValidationError";
     }

@@ -12,5 +12,8 @@ namespace Server.Model
     {
         public virtual bool Public { get; set; }
         public virtual Guid? UserCreatorId { get; set; }
+
+        public virtual ICollection<Gallery> Galleries { get; set; }
+        public virtual ICollection<Resource> Resources { get; set; }
     }
 }

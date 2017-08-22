@@ -1,0 +1,36 @@
+﻿@model Shared.Core.Dtos.DialogDto
+
+@using Client.Core.HtmlHelpers
+@using Shared.Core.Constants
+@using Shared.I18n.Constants
+
+<div class="modal-backdrop fade in"></div>
+<div id="@HtmlConstants.DIALOG_CONFIRMATION" class="modal fade in" style="display:block" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close btn-dialog-close">&times;</button>
+                <h4 class="modal-title">@Html.LocalizedDisplay(MessageKeyConstants.LABEL_CONFIRMATION)</h4>
+            </div>
+            @using (Html.BeginForm(Model.Action, null, FormMethod.Post, new { @class = "asynchronous-form" }))
+            {
+                <div class="modal-body">
+                    <div id="dialog-validation-summary"></div>
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.LocalizedDisplay(Model.MessageResourceKey)
+                </div>
+                <div class="modal-footer">
+                    <div class="col-sm-6">
+                        <div class="progress">
+                            <div class="progress-bar" />
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-default btn-dialog-close"><i class="fa fa-close"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_CLOSE)</button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_CONTINUE)</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

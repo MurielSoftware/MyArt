@@ -73,6 +73,12 @@
     <Build Include="Constraints\UniqueKeyConstraint.sql" />
     <Build Include="Constraints\Indexing.sql" />
     <Build Include="Tables\UserDefinables\UserDefinable.sql" />
+    <Build Include="Tables\UserDefinables\Painting.sql" />
+    <Build Include="Tables\UserDefinables\Exhibition.sql" />
+    <Build Include="Tables\UserDefinables\Join_User_Painting.sql" />
+    <Build Include="Tables\UserDefinables\Join_Painting_Exhibition.sql" />
+    <Build Include="Tables\UserDefinables\Collection.sql" />
+    <Build Include="Tables\UserDefinables\Gallery.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Data\Script.BuiltIn.PostDeployment.sql" />

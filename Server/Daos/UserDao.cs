@@ -29,7 +29,7 @@ namespace Server.Daos
             return _modelContext.Set<User>()
                 .Where(ExpressionQueryBuilder.BuildWhere<User>(userFilterDto))
                 .OrderBy(x => x.Surname)
-                .Select(x => new UserDto() { Id = x.Id, FirstName = x.FirstName, Surname = x.Surname })
+                .Select(x => new UserDto() { Id = x.Id, FirstName = x.FirstName, Surname = x.Surname, Email = x.Email, PaintingsCount = x.Paintings.Count})
                 .ToPagedList(userFilterDto.Page, userFilterDto.PageSize);
         }
 

@@ -14,6 +14,7 @@ namespace Shared.Core.Dtos
         public virtual string Name { get; set; }
         public virtual string Path { get; set; }
         public virtual Guid UserDefinableId { get; set; }
+        public virtual Guid UserDefinableOwnerId { get; set; }
 
         public virtual string Extension { get; set; }
         public virtual Stream Stream { get; set; }

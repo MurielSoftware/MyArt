@@ -31,6 +31,11 @@ namespace Server.Services.Users
             return _userDao.FindByPrefix(userFilterDto.Surname, x => new ReferenceDto() { Id = x.Id, Label = x.FirstName + " " + x.Surname });
         }
 
+        public bool IsEmailUnique(string email)
+        {
+            return !_genericDao.Exists<User>(x => x.Email == email);
+        }
+
         public IPagedList<UserDto> ReadAdministrationPaged(UserFilterDto userFilterDto)
         {
             return _userDao.FindPaged(userFilterDto);

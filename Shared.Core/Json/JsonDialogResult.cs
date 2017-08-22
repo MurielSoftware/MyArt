@@ -6,32 +6,56 @@ using System.Threading.Tasks;
 
 namespace Shared.Core.Json
 {
-    public class JsonDialogResult
+    public class JsonDialogResult : JsonResult
     {
-        public bool Success { get; set; }
-        public object TargetId { get; set; }
-        public JsonRefreshMode RefreshMode { get; set; }
-        public string Action { get; set; }
-        public string Message { get; set; }
+        public string AfterAction { get; private set; }
+        public string Message { get; private set; }
 
-        public JsonDialogResult(bool success, JsonRefreshMode refreshMode)
+        protected JsonDialogResult(bool success, object targetElementId, JsonRefreshMode refreshMode, string message, string afterAction)
+            : base(success, targetElementId, refreshMode)
         {
-            Success = success;
-            RefreshMode = refreshMode;
-        }
-
-        public JsonDialogResult(bool success, object targetId, string action, JsonRefreshMode refreshMode)
-            : this(success, refreshMode)
-        {
-            TargetId = targetId;
-            Action = action;
-        }
-
-        public JsonDialogResult(bool success, object targetId, string message)
-            : this(success, JsonRefreshMode.NONE)
-        {
-            TargetId = targetId;
             Message = message;
+            AfterAction = afterAction;
         }
+
+        public static JsonDialogResult CreateTreeSuccess(object targetElementId, string message, string afterAction)
+        {
+            return new JsonDialogResult(true, targetElementId, JsonRefreshMode.REFRESH_TREE_AFTER_DIALOG_CLOSE, message, afterAction);
+        }
+
+        public static JsonDialogResult CreateSuccess(object targetElementId, string message)
+        {
+            return new JsonDialogResult(true, targetElementId, JsonRefreshMode.REFRESH_AFTER_DIALOG_CLOSE, message, null);
+        }
+
+        public static JsonDialogResult CreateSuccess(object targetElementId, string message, string afterAction)
+        {
+            return new JsonDialogResult(true, targetElementId, JsonRefreshMode.REFRESH_AFTER_DIALOG_CLOSE, message, afterAction);
+        }
+
+        public static JsonDialogResult CreateFail(object targetElementId, string message)
+        {
+            return new JsonDialogResult(false, targetElementId, JsonRefreshMode.NONE, message, null);
+        }
+
+        //public JsonDialogResult(bool success, JsonRefreshMode refreshMode)
+        //{
+        //    Success = success;
+        //    RefreshMode = refreshMode;
+        //}
+
+        //public JsonDialogResult(bool success, object targetId, string action, JsonRefreshMode refreshMode)
+        //    : this(success, refreshMode)
+        //{
+        //    TargetId = targetId;
+        //    Action = action;
+        //}
+
+        //public JsonDialogResult(bool success, object targetId, string message)
+        //    : this(success, JsonRefreshMode.NONE)
+        //{
+        //    TargetId = targetId;
+        //    Message = message;
+        //}
     }
 }

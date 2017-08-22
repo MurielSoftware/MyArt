@@ -94,6 +94,10 @@ namespace Server.Daos
             }
             else
             {
+                if(entity.CreatedDate == DateTime.MinValue)
+                {
+                    entity.CreatedDate = DateTime.Now;
+                }
                 entity.UpdatedDate = DateTime.Now;
                 _modelContext.Entry(entity).State = EntityState.Modified;
             }
