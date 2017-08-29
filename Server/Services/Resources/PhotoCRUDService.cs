@@ -10,6 +10,8 @@ using Shared.Core.Context;
 using Shared.Core.Services;
 using Shared.Core.Dtos;
 using System.Drawing;
+using Shared.Core.Dtos.Resources;
+using Shared.Services.Galleries;
 
 namespace Server.Services.Resources
 {
@@ -36,7 +38,8 @@ namespace Server.Services.Resources
                 photoResourceDto.UserDefinableId = gallery.Id;
                 automaticCoverPhotoSet = true;
             }
-            photoResourceDto.Path = string.Format(photoResourceDto.PhotoThumbnailInfo.Path, photoResourceDto.UserDefinableOwnerId, photoResourceDto.UserDefinableId);
+            PhotoThumbnailInfo photoThumbnailInfo = PhotoThumbnailInfoProvider.GetDefault(photoResourceDto.OwnerType);
+            photoResourceDto.Path = string.Format(photoThumbnailInfo.Path, photoResourceDto.UserDefinableOwnerId, photoResourceDto.UserDefinableId);
             photoResourceDto = base.Persist(photoResourceDto);
             if(automaticCoverPhotoSet)
             {
@@ -51,6 +54,12 @@ namespace Server.Services.Resources
             PhotoSupportService photoSupportService = new PhotoSupportService(_unitOfWork);
             PhotoResourceDto photoResourceDto = Read(photoCropDto.Id);
             photoSupportService.Crop(photoCropDto);
+        }
+
+
+        public IList<PhotoResourceDto> ReadAdministrationAll(ResourceFilterDto resourceFilterDto)
+        {
+            return _resourceDao.FindAll(resourceFilterDto);
         }
 
         private Gallery CreateAndPersistEmptyGallery()

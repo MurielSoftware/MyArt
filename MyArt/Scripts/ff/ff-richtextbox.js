@@ -9,7 +9,7 @@
                 e.preventDefault();
                 var command = $(this).data("command");
                 var parameter = $(this).data("parameter");
-                if (command === null) {
+                if (command == null) {
                     return;
                 }
                 switch (command) {
@@ -53,7 +53,7 @@
             });
 
             $(textArea).on("DOMNodeRemoved", function (e) {
-                if (e.target.nodeName === "IMG") {
+                if (e.target.nodeName == "IMG") {
                     $(e.target).parent("a").remove();
                     _update();
                 }
@@ -63,27 +63,27 @@
                 textArea.append(_createHrefTag(thumbnailSource, source));
                 _update();
                 _save();
-            };
+            }
 
             _update = function () {
                 hiddenToSave.val($(textArea).html());
-            };
+            }
 
             _save = function () {
                 $.post($(this).data("save-action"), $("form").serialize());
-            };
+            }
 
             _createHrefTag = function (thumbnailSource, source) {
                 return $("<a></a>")
                     .attr("href", source)
                     .attr("data-lightbox", "article")
                     .append(_createImgTag(thumbnailSource));
-            };
+            }
 
             _createImgTag = function (thumbnailSource) {
                 return $("<img></img>")
                     .attr("src", thumbnailSource);
-            };
+            }
         });
     };
 }(jQuery));

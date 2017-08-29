@@ -13,6 +13,7 @@ namespace Shared.Core.Constants
         public const string PAGED_LIST_PAINTING = "paged-list-painting";
         public const string PAGED_LIST_COLLECTION = "paged-list-collection";
         public const string PAGED_LIST_EXHIBITION = "paged-list-exhibition";
+        public const string LIST_PHOTOS = "list-photos";
 
         public const string DIALOG_CONFIRMATION = "dialog-confirmation";
         public const string DIALOG_ROLE = "dialog-role";
@@ -22,6 +23,8 @@ namespace Shared.Core.Constants
         public const string DIALOG_USER = "dialog-user";
         public const string DIALOG_COLLECTION = "dialog-collection";
         public const string DIALOG_EXHIBITION = "dialog-exhibition";
+        public const string DIALOG_CHANGE_PASSWORD = "dialog-change-password";
+        public const string DIALOG_UPLOAD = "dialog-upload";
 
         public const string FA_IMAGE_USER = "fa fa-user";
         public const string FA_IMAGE_MENU = "fa fa-map-signs";

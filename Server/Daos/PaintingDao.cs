@@ -9,6 +9,7 @@ using PagedList;
 using Shared.Core.Dtos;
 using Server.Model;
 using Shared.Dtos.Resources;
+using Shared.Core.Context.Expressions;
 
 namespace Server.Daos
 {
@@ -19,10 +20,10 @@ namespace Server.Daos
         {
         }
 
-        public IPagedList<PaintingDto> FindPaged(BaseFilterDto baseFilterDto)
+        public IPagedList<PaintingDto> FindPaged(PaintingFilterDto paintingFilterDto)
         {
             return _modelContext.Set<Painting>()
-                .Where(ExpressionQueryBuilder.BuildWhere<Painting>(baseFilterDto))
+                .Where(ExpressionBuilder.BuildWhere<Painting>(paintingFilterDto))
                 .OrderBy(x => x.Title)
                 .Select(x => new PaintingDto() {
                     Id = x.Id,
@@ -31,12 +32,26 @@ namespace Server.Daos
                     Surface = x.Surface,
                     Width = x.Width,
                     Height = x.Height,
-                    PhotoResourceDto = x.Galleries.Where(y => (y is ProfileGallery)).Select(y => new PhotoResourceDto() { Id = y.CoverPhoto.Id, Path = y.CoverPhoto.Path, Name = y.CoverPhoto.Name }).FirstOrDefault()
+                    CoverPhotoResourceDto = x.Galleries.Where(y => (y is ProfileGallery)).Select(y => new PhotoResourceDto() { Id = y.CoverPhoto.Id, Path = y.CoverPhoto.Path, Name = y.CoverPhoto.Name }).FirstOrDefault()
                 })
-                .ToPagedList(baseFilterDto.Page, baseFilterDto.PageSize);
+                .ToPagedList(paintingFilterDto.Page, paintingFilterDto.PageSize);
         }
 
-        public List<PaintingCheckedDto> FindPaintingsForCheck()
+        public IList<PaintingDto> FindAll(PaintingFilterDto paintingFilterDto)
+        {
+            return _modelContext.Set<Painting>()
+                .Where(ExpressionBuilder.BuildWhere<Painting>(paintingFilterDto))
+                .OrderBy(x => x.Title)
+                .Select(x => new PaintingDto()
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    CoverPhotoResourceDto = x.Galleries.Where(y => (y is ProfileGallery)).Select(y => new PhotoResourceDto() { Id = y.CoverPhoto.Id, Path = y.CoverPhoto.Path, Name = y.CoverPhoto.Name }).FirstOrDefault()
+                })
+                .ToList();
+        }
+
+        public List<PaintingCheckedDto> FindPaintingsForCheck(Guid exhibitionId)
         {
             //return new MultiCheckedDto<PaintingDto>()
             //{
@@ -44,7 +59,15 @@ namespace Server.Daos
 
             //};
 
-            return _modelContext.Set<Painting>().Select(x => new PaintingCheckedDto() { Id = x.Id, Title = x.Title, Checked = false }).ToList();
+            return _modelContext.Set<Painting>()
+                .Select(x => new PaintingCheckedDto()
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    PhotoResourceDto = x.Galleries.Where(y => (y is ProfileGallery)).Select(y => new PhotoResourceDto() { Id = y.CoverPhoto.Id, Path = y.CoverPhoto.Path, Name = y.CoverPhoto.Name }).FirstOrDefault(),
+                    Checked = x.Exhibitions.Where(y => y.Id == exhibitionId).FirstOrDefault() != null
+                })
+                .ToList();
             //_modelContext.Set<Painting>()
             //    .Select(x => new MultiCheckedDto<PaintingDto>()
             //    {

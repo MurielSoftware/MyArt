@@ -9,6 +9,7 @@ using PagedList;
 using Server.Model;
 using System.Linq.Expressions;
 using Shared.Core.Dtos;
+using Shared.Core.Context.Expressions;
 
 namespace Server.Daos
 {
@@ -27,9 +28,15 @@ namespace Server.Daos
         internal IPagedList<UserDto> FindPaged(UserFilterDto userFilterDto)
         {
             return _modelContext.Set<User>()
-                .Where(ExpressionQueryBuilder.BuildWhere<User>(userFilterDto))
+                .Where(ExpressionBuilder.BuildWhere<User>(userFilterDto))
                 .OrderBy(x => x.Surname)
-                .Select(x => new UserDto() { Id = x.Id, FirstName = x.FirstName, Surname = x.Surname, Email = x.Email, PaintingsCount = x.Paintings.Count})
+                .Select(x => new UserDto() {
+                    Id = x.Id,
+                    FirstName = x.FirstName,
+                    Surname = x.Surname,
+                    Email = x.Email,
+                    PaintingsCount = x.Paintings.Count
+                })
                 .ToPagedList(userFilterDto.Page, userFilterDto.PageSize);
         }
 

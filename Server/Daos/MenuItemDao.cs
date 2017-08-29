@@ -26,7 +26,15 @@ namespace Server.Daos
             return _modelContext.Set<MenuItem>()
                 .Where(x => x.ParentMenuItemId == parentMenuItemId)
                 .OrderBy(x => x.Order)
-                .Select(x => new MenuItemDto() { Id = x.Id, Name = x.Name, Url = x.Url, BuiltIn = x.BuiltIn, HasChildren = x.SubMenuItems.Count > 0, Level = x.Level, AssociationType = x.AssociationType })
+                .Select(x => new MenuItemDto()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Url = x.Url,
+                    BuiltIn = x.BuiltIn,
+                    HasChildren = x.SubMenuItems.Count > 0,
+                    Level = x.Level,
+                    AssociationType = x.AssociationType })
                 .ToList();
         }
 
@@ -35,7 +43,16 @@ namespace Server.Daos
             return _modelContext.Set<MenuItem>()
                 .Where(x => x.ParentMenuItemId == parentMenuItemId && x.AssociationType == associationType)
                 .OrderBy(x => x.Order)
-                .Select(x => new MenuItemDto() { Id = x.Id, Name = x.Name, Url = x.Url, BuiltIn = x.BuiltIn, HasChildren = x.SubMenuItems.Count > 0, Level = x.Level, AssociationType = x.AssociationType })
+                .Select(x => new MenuItemDto()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Url = x.Url,
+                    BuiltIn = x.BuiltIn,
+                    HasChildren = x.SubMenuItems.Count > 0,
+                    Level = x.Level,
+                    AssociationType = x.AssociationType
+                })
                 .ToList();
         }
 

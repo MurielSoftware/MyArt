@@ -15,12 +15,11 @@
             @using (Html.BeginForm(WebConstants.VIEW_NEXT, WebConstants.CONTROLLER_USER, FormMethod.Post, new { @class = "asynchronous-form", @data_wizard_current_step = "0" }))
             {
                 <div class="modal-body">
+                    <div id="dialog-validation-summary"></div>
                     <div class="wizard-step" data-wizard-step="0">
                         @Html.HiddenFor(model => model.Id)
-                        @Html.HiddenFor(model => model.CreatedDate)
                         @Html.AntiForgeryToken()
                         <div class="form-horizontal">
-                            <div id="dialog-validation-summary"></div>
                             <div class="form-group">
                                 @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-sm-2 form-control-required" })
                                 <div class="col-sm-4">
@@ -55,11 +54,14 @@
                         </div>
                     </div>
                     <div class="wizard-step" data-wizard-step="1">
+                        @Html.RichTextBoxFor(model => model.Description)
+                    </div>
+                    <div class="wizard-step" data-wizard-step="2">
                         <div class="form-horizontal"> 
-                            <div class="upload" data-upload-target=".uploaded-image" data-upload-mode="replace">
+                            <div class="upload" data-upload-target=".uploaded-image" data-upload-mode="replace" data-return-file-type="image">
                                 <input type="file" class="upload" />
                                 <div class="profile-photo-upload">
-                                    <img class="crop-image uploaded-image" data-min-width="@Model.PhotoResourceDto.PhotoThumbnailInfo.MinimumWidth" data-min-height="@Model.PhotoResourceDto.PhotoThumbnailInfo.MinimumHeight" data-id="@Model.PhotoResourceDto.Id" data-path="" src="" />
+                                    <img class="crop-image uploaded-image" data-min-width="@Model.ProfileGalleryDto.PhotoThumbnailInfo.MinimumWidth" data-min-height="@Model.ProfileGalleryDto.PhotoThumbnailInfo.MinimumHeight" data-id="@Model.ProfileGalleryDto.Id" data-path="" src="" />
                                 </div>
                             </div>
                         </div>

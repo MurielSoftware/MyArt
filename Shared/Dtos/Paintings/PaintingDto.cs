@@ -2,6 +2,7 @@
 using Shared.Core.Constants;
 using Shared.Core.Dtos;
 using Shared.Core.Validators;
+using Shared.Dtos.Galleries;
 using Shared.Dtos.Resources;
 using Shared.I18n.Constants;
 using Shared.I18n.Resources;
@@ -61,12 +62,14 @@ namespace Shared.Dtos.Paintings
         [ReferenceRequired(ErrorMessageResourceName = MessageKeyConstants.VALIDATION_REQUIRED_MESSAGE, ErrorMessageResourceType = typeof(Resource))]
         public virtual ReferenceString UsersReference { get; set; }
 
-        public virtual PhotoResourceDto PhotoResourceDto { get; set; }
+        public virtual ProfileGalleryDto ProfileGalleryDto { get; set; }
+        public virtual PhotoResourceDto CoverPhotoResourceDto { get; set; }
 
         public PaintingDto()
         {
             Date = DateTime.Now;
-            PhotoResourceDto = new PhotoResourceDto(GetType());
+            ProfileGalleryDto = new ProfileGalleryDto(GetType());
+            CoverPhotoResourceDto = new PhotoResourceDto();
         }
 
         public override string ToString()

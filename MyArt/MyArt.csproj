@@ -169,6 +169,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\emoticons\emotion_grin.png" />
+    <Content Include="Content\images\emoticons\emotion_kiss.png" />
+    <Content Include="Content\images\emoticons\emotion_smile.png" />
+    <Content Include="Content\images\emoticons\emotion_sweat.png" />
+    <Content Include="Content\images\emoticons\emotion_tire.png" />
+    <Content Include="Content\images\emoticons\emotion_unhappy.png" />
+    <Content Include="Content\images\emoticons\heart.png" />
+    <Content Include="Content\images\lightbox\close.png" />
+    <Content Include="Content\images\lightbox\loading.gif" />
+    <Content Include="Content\images\lightbox\next.png" />
+    <Content Include="Content\images\lightbox\prev.png" />
+    <Content Include="Content\images\nophoto.png" />
+    <Content Include="Content\lightbox.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\example.jpg" />
@@ -214,11 +227,19 @@
     <Content Include="Areas\Admin\Views\User\Profil.cshtml" />
     <Content Include="Areas\Admin\Views\Exhibition\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Painting\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Photo\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Photo\Profil.cshtml" />
+    <Content Include="Areas\Admin\Views\User\ChangePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Painting\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Exhibition\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Photo\UploadDialog.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_ValidationSummary.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lightbox.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -293,9 +314,7 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\User\Create.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Views\Photo\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

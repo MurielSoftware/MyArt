@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Shared.Services.Exhibitions
 {
-    public interface IExhibitionCRUDService : ICRUDService<ExhibitionDto>, IPagedListAdministrationReaderService<ExhibitionDto, BaseFilterDto>
+    public interface IExhibitionCRUDService : ICRUDService<ExhibitionDto>, IPagedListAdministrationReaderService<ExhibitionDto, ExhibitionFilterDto>, IListAdministrationReaderService<ExhibitionDto, ExhibitionFilterDto>
     {
     }
 }

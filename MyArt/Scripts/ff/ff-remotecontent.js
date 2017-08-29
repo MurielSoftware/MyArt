@@ -20,7 +20,7 @@
     $.fn.remoteTab = function () {
         return this.each(function (index, remoteTab) {
             $(remoteTab).parents(".panel").find(".tab-pane.active:not(#form)").empty();
-            _appendLoading($(remoteTab).attr("href"));
+            //_appendLoading($(remoteTab).attr("href"));
             $(remoteTab.hash).load($(remoteTab).data("action"), function (result) {
 
             });

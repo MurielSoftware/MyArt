@@ -27,7 +27,7 @@
         };
 
         $(".form-control-editable").mouseenter(function () {
-            $(this).prev().slideToggle();
+            $(this).prev().show();
         });
         $(".form-control-editable").mouseleave(function () {
             $(this).prev().hide();

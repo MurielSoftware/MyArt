@@ -18,12 +18,6 @@ namespace MyArt.Areas.Admin.Controllers
     [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
     public class UserController : WizardCRUDController<UserDto, IUserCRUDService>
     {
-        [HttpPost, ValidateInput(false)]
-        public override ActionResult Create(UserDto dto)
-        {
-            return null;
-        }
-
         public override ActionResult DeleteConfirmed(DialogDto dialogDto)
         {
             return DoDeleteConfirmed(AfterSuccessSaveParam.Create(dialogDto.Id, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_USER, null, HtmlConstants.PAGED_LIST_USER));
@@ -51,11 +45,18 @@ namespace MyArt.Areas.Admin.Controllers
             return View(GetService().Read(id));
         }
 
+        public ActionResult ChangePassword(Guid id)
+        {
+            return PartialView(new ChangePasswordDto() { UserId = id });
+        }
+
         protected override ActionResult DoNext(UserDto userDto, int currentStep)
         {
             switch (currentStep)
             {
                 case 0:
+                    return RedirectToActionAfterSuccessCreate(AfterSuccessSaveParam.Create(userDto.Id, null, null, null, null, null, currentStep));
+                case 1:
                     return DoCreate(userDto, AfterSuccessSaveParam.Create(userDto.Id, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_USER, null, HtmlConstants.PAGED_LIST_USER, currentStep)); //null, null, null, currentStep.ToString()));
             }
             return null;
@@ -66,9 +67,10 @@ namespace MyArt.Areas.Admin.Controllers
             switch (afterSuccessSaveParam.NextStep)
             {
                 case 0:
+                case 1:
                     return Json(JsonWizardResult.CreateSuccess(afterSuccessSaveParam.Id, afterSuccessSaveParam.TargetHtmlId, GetNextStep(afterSuccessSaveParam.NextStep), afterSuccessSaveParam.GetAction()));
             }
-            return null;
+            return View(afterSuccessSaveParam.Model);
         }
 
         protected override ActionResult Finish(UserDto userDto, int currentStep)

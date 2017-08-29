@@ -9,5 +9,10 @@ namespace Shared.Dtos.Galleries
     public class ProfileGalleryDto : GalleryDto
     {
         public const string DISC = "PROFILE";
+
+        public ProfileGalleryDto(Type type) 
+            : base(type)
+        {
+        }
     }
 }

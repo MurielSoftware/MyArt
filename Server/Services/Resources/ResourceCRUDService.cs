@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Shared.Core.Context;
 using Shared.Core.Services;
+using Shared.Core.Dtos.Resources;
 
 namespace Server.Services.Resources
 {

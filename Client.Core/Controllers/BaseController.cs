@@ -1,4 +1,5 @@
-﻿using Shared.Core.Dtos;
+﻿using Client.Core.Managers;
+using Shared.Core.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,18 @@ namespace Client.Core.Controllers
 {
     public abstract class BaseController : Controller
     {
+        private TempDataProvider _tempDataManager;
+
+        public BaseController()
+        {
+            _tempDataManager = new TempDataProvider(TempData, ViewData);
+        }
+
+        protected TempDataProvider GetTempDataManager()
+        {
+            return _tempDataManager;
+        }
+
         /// <summary>
         /// Gets the index view.
         /// </summary>
@@ -18,13 +31,6 @@ namespace Client.Core.Controllers
         public virtual ActionResult Index()
         {
             return View();
-        }
-
-        protected object GetFromTemp(string propertyName)
-        {
-            ViewData[propertyName] = TempData[propertyName];
-            TempData[propertyName] = ViewData[propertyName];
-            return ViewData[propertyName];
         }
 
         public ActionResult DialogConfirmation(Guid id, string message, string afterSuccessAction)

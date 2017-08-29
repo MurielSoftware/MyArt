@@ -27,6 +27,8 @@ namespace Shared.Core.Constants
         public const string VIEW_BULK_CREATE = "BulkCreate";
         public const string VIEW_NEXT = "Next";
         public const string VIEW_CHECKED_LIST = "CheckedList";
+        public const string VIEW_CHANGE_PASSWORD = "ChangePassword";
+        public const string VIEW_UPLOAD_DIALOG = "UploadDialog";
 
         public const string DIALOG_CHANGE_PASSWORD = "DialogChangePassword";
         public const string DIALOG_CONFIRMATION = "DialogConfirmation";

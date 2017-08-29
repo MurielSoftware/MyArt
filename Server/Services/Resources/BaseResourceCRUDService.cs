@@ -1,12 +1,9 @@
 ﻿using Server.Model;
-using Shared.Core.Dtos;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Shared.Core.Context;
 using Shared.Core.Services;
+using Server.Daos;
+using Shared.Core.Dtos.Resources;
 
 namespace Server.Services.Resources
 {
@@ -14,9 +11,12 @@ namespace Server.Services.Resources
         where T : ResourceDto
         where U : Resource
     {
+        protected ResourceDao _resourceDao;
+
         public BaseResourceCRUDService(IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
+            _resourceDao = new ResourceDao(unitOfWork);
         }
 
         public abstract BaseResourceUploadService<T> GetUploadResourceService();

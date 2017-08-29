@@ -19,13 +19,15 @@ namespace Client.Core.Controllers
             return base.Create(id);
         }
 
+        [HttpPost]
+        public override ActionResult Create(T dto)
+        {
+            return null;
+        }
+
         public ActionResult Previous(int currentStep)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return null; // currentStep
-            //}
-            return null; // next step
+            return null;
         }
 
         public ActionResult Next(T dto, int currentStep)
@@ -38,10 +40,6 @@ namespace Client.Core.Controllers
             return nextActionResult;
         }
 
-        protected abstract ActionResult Finish(T dto, int currentStep);
-        protected abstract ActionResult DoNext(T dto, int currentStep);
-        protected abstract int GetWizardStepsCount();
-
         public int GetNextStep(int currentStep)
         {
             return currentStep == GetWizardStepsCount() ? currentStep : currentStep + 1;
@@ -51,5 +49,9 @@ namespace Client.Core.Controllers
         {
             return currentStep == 0 ? currentStep : currentStep - 1;
         }
+
+        protected abstract ActionResult Finish(T dto, int currentStep);
+        protected abstract ActionResult DoNext(T dto, int currentStep);
+        protected abstract int GetWizardStepsCount();
     }
 }

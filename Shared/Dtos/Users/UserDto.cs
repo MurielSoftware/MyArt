@@ -1,6 +1,7 @@
 ﻿using Shared.Core.Attributes;
 using Shared.Core.Constants;
 using Shared.Core.Dtos;
+using Shared.Dtos.Galleries;
 using Shared.Dtos.Resources;
 using Shared.I18n.Constants;
 using Shared.I18n.Resources;
@@ -42,12 +43,13 @@ namespace Shared.Dtos.Users
         [Display(Name = MessageKeyConstants.LABEL_PAINTINGS_COUNT, ResourceType = typeof(Resource))]
         public virtual int PaintingsCount { get; set; }
 
-        public virtual PhotoResourceDto PhotoResourceDto { get; set; }
+        public virtual ProfileGalleryDto ProfileGalleryDto { get; set; }
         public virtual PhotoCropDto PhotoCropDto { get; set; }
+        public virtual PhotoResourceDto CoverPhotoResourceDto { get; set; }
 
         public UserDto()
         {
-            PhotoResourceDto = new PhotoResourceDto(GetType());
+            ProfileGalleryDto = new ProfileGalleryDto(GetType());
             PhotoCropDto = new PhotoCropDto();
         }
     }

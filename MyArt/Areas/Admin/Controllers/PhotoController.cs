@@ -13,12 +13,19 @@ using Client.Core.HtmlHelpers;
 using Shared.Core.Constants;
 using Shared.Core.Json;
 using Client.Core.Constants;
+using Shared.Core.Dtos.Resources;
 
 namespace MyArt.Areas.Admin.Controllers
 {
     public class PhotoController : CRUDController<PhotoResourceDto, IPhotoCRUDService>
     {
-        public ActionResult Upload(PhotoResourceDto photoResourceDto, HttpPostedFileBase file)
+        public ActionResult UploadDialog(Guid userDefinableOwnerId)
+        {
+            //TempData[TempDataConstants.PRECREATED_DTO] = photoResourcableDto;
+            return PartialView(GetService().ReadAdministrationAll(new ResourceFilterDto() { UserDefinableOwnerId = userDefinableOwnerId }));
+        }
+
+        public ActionResult Upload(PhotoResourceDto photoResourceDto, string returnFileType, HttpPostedFileBase file)
         {
             try
             {
@@ -26,8 +33,11 @@ namespace MyArt.Areas.Admin.Controllers
                 GetUnitOfWork().StartTransaction();
                 extendedPhotoResourceDto = GetService().Persist(extendedPhotoResourceDto);
                 GetUnitOfWork().EndTransaction();
+                if("thumbnail".Equals(returnFileType))
+                {
+                    return Json(JsonUploadResult.CreateSuccess(extendedPhotoResourceDto.Id, null, JsonRefreshMode.NONE, extendedPhotoResourceDto.GetAbsoluteThumbnailFilePath(), extendedPhotoResourceDto.GetRelativeThumbnailFile()));
+                }
                 return Json(JsonUploadResult.CreateSuccess(extendedPhotoResourceDto.Id, null, JsonRefreshMode.NONE, extendedPhotoResourceDto.GetAbsoluteFilePath(), extendedPhotoResourceDto.GetRelativeFilePath()));
-              //  return Json(JsonDialogResult.CreateSuccess(extendedPhotoResourceDto.Id, extendedPhotoResourceDto.GetRelativeThumbnailFile()));
             }
             catch(ValidationException ex)
             {
@@ -37,9 +47,6 @@ namespace MyArt.Areas.Admin.Controllers
 
         public override ActionResult Create(PhotoResourceDto photoResourceDto)
         {
-            //GetUnitOfWork().StartTransaction();
-            //GetService().Persist(photoResourceDto);
-            //GetUnitOfWork().EndTransaction();
             return null;
         }
 
@@ -52,14 +59,27 @@ namespace MyArt.Areas.Admin.Controllers
             return Json(JsonDialogResult.CreateSuccess(dialogDto.Id, null));
         }
 
+        public ActionResult List(ResourceFilterDto resourceFilterDto)
+        {
+            return PartialView(GetService().ReadAdministrationAll(resourceFilterDto));
+        }
+
+        public ActionResult Profil(ResourceFilterDto resourceFilterDto)
+        {
+            return PartialView(GetService().ReadAdministrationAll(resourceFilterDto));
+        }
+
         private PhotoResourceDto CreatePhotoResourceDto(PhotoResourceDto photoResourceDto, HttpPostedFileBase file)
         {
-            IPhotoResourcableDto photoResourcableDto = ((IPhotoResourcableDto)GetFromTemp(TempDataConstants.DTO));
-            PhotoResourceDto extendedPhotoResourceDto = photoResourcableDto.PhotoResourceDto;
-            extendedPhotoResourceDto.OriginalName = file.FileName;
-            extendedPhotoResourceDto.Stream = file.InputStream;
-            extendedPhotoResourceDto.Extension = Path.GetExtension(file.FileName);
-            extendedPhotoResourceDto.UserDefinableOwnerId = photoResourcableDto.Id;
+            IPhotoResourcableDto photoResourcableDto = GetTempDataManager().GetTempDataWithoutRemove<IPhotoResourcableDto>(TempDataConstants.DTO);//((IPhotoResourcableDto)GetFromTemp(TempDataConstants.DTO));
+            PhotoResourceDto extendedPhotoResourceDto = new PhotoResourceDto()
+            {
+                OwnerType = photoResourcableDto.GetType(),
+                OriginalName = file.FileName,
+                Stream = file.InputStream,
+                Extension = Path.GetExtension(file.FileName),
+                UserDefinableOwnerId = photoResourcableDto.Id
+            };
             return extendedPhotoResourceDto;
         }
     }

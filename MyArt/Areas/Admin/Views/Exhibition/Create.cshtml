@@ -15,12 +15,11 @@
             @using (Html.BeginForm(WebConstants.VIEW_NEXT, WebConstants.CONTROLLER_EXHIBITION, FormMethod.Post, new { @class = "asynchronous-form", @data_wizard_current_step = "0" }))
             {
                 <div class="modal-body">
+                    <div id="dialog-validation-summary"></div>
                     <div class="wizard-step" data-wizard-step="0">
                         @Html.HiddenFor(model => model.Id)
-                        @Html.HiddenFor(model => model.CreatedDate)
                         @Html.AntiForgeryToken()
-                        <div class="form-horizontal">
-                            <div id="dialog-validation-summary"></div>
+                        <div class="form-horizontal">                            
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Name, new { @class = "control-label col-sm-2 form-control-required" })
                                 <div class="col-sm-10">
@@ -29,8 +28,14 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-2">@Html.LocalizedDisplay(MessageKeyConstants.LABEL_DATE)</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-6">
                                     @Html.DateRangeFor(model => model.Start, model => model.End, new { @class = "form-control-editable" })
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.EditorFor(model => model.TimeStart, new { htmlAttributes = new { @class = "form-control", @placeholder = "__ : __", @data_mask = "99 : 99" } })
+                                </div>
+                                <div class="col-sm-2">
+                                    @Html.EditorFor(model => model.TimeEnd, new { htmlAttributes = new { @class = "form-control", @placeholder = "__ : __", @data_mask = "99 : 99" } })
                                 </div>
                             </div>
                             <div class="form-group">
@@ -55,8 +60,11 @@
                         </div>
                     </div>
                     <div class="wizard-step" data-wizard-step="1">
+                        @Html.RichTextBoxFor(model => model.Description)
+                    </div>
+                    <div class="wizard-step" data-wizard-step="2">
                         <div class="form-control-list">
-                            <table class="table">
+                            <table class="table table-hover">
                                 <tbody>
                                     @if (Model.PaintingsCheckedDto != null)
                                     {
@@ -65,19 +73,29 @@
                                         {
                                             <tr>
                                                 <td>
-                                                    @Html.HiddenFor(modelItem => modelItem.PaintingsCheckedDto[j].Id)
-                                                    @Html.CheckBoxFor(modelItem => modelItem.PaintingsCheckedDto[j].Checked)
+                                                    @if (item.PhotoResourceDto == null)
+                                                    {
+                                                        <img src="~/Content/images/nophoto.png" alt="img" class="img-small" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="@item.PhotoResourceDto.GetRelativeThumbnailFile()" alt="img" class="img-small" />
+                                                    }
                                                 </td>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => modelItem.PaintingsCheckedDto[j].Title)
                                                     @Html.HiddenFor(modelItem => modelItem.PaintingsCheckedDto[j].Title)
+                                                </td>
+                                                <td>
+                                                    @Html.HiddenFor(modelItem => modelItem.PaintingsCheckedDto[j].Id)
+                                                    @Html.CheckBoxFor(modelItem => modelItem.PaintingsCheckedDto[j].Checked)
                                                 </td>
                                             </tr>
                                             j++;
                                         }
                                     }
                                 </tbody>
-                            </table>                        
+                            </table>                      
                         </div>
                     </div>
                 </div>
@@ -95,4 +113,4 @@
             }
         </div>
     </div>
-    </div>
+</div>

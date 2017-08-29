@@ -13,54 +13,85 @@
     <h3>@Html.LocalizedDisplay(MessageKeyConstants.LABEL_ARTISTS)</h3>
 </div>
 
-<div class="col-md-12">
-    <div class="panel panel-violet panel-default with-nav-tabs">
-        <div class="panel-heading">
-            <ul class="nav nav-tabs">
-                <li class="active">
-                    <a href="#tab1" data-toggle="tab"><i class="fa fa-user"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_PROFILE)</a>
-                </li>
-            </ul>
-        </div>
-        <div class="panel-body">
-            <div class="tab-content">
-                <div class="tab-pane fade in active" id="tab1">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="admin-button-box">
-                                @Html.DialogActionLink("<i class='fa fa-lock'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_CHANGE_PASSWORD), HtmlConstants.DIALOG_USER, WebConstants.VIEW_CREATE, WebConstants.CONTROLLER_USER, null, new { @class = "btn btn-sm btn-primary" })
-                                @Html.DialogActionLink("<i class='fa fa-upload'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_UPLOAD_PHOTOS), HtmlConstants.DIALOG_USER, WebConstants.VIEW_CREATE, WebConstants.CONTROLLER_USER, null, new { @class = "btn btn-sm btn-info" })
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-violet panel-default with-nav-tabs">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#tab1" data-toggle="tab"><i class="fa fa-user"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_PROFILE)</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="tab1">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="admin-button-box">
+                                    @Html.DialogActionLink("<i class='fa fa-lock'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_CHANGE_PASSWORD), HtmlConstants.DIALOG_CHANGE_PASSWORD, WebConstants.VIEW_CHANGE_PASSWORD, WebConstants.CONTROLLER_USER, new { id = Model.Id }, new { @class = "btn btn-sm btn-primary" })
+                                    @Html.DialogActionLink("<i class='fa fa-upload'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_UPLOAD_PHOTOS), HtmlConstants.DIALOG_USER, WebConstants.VIEW_CREATE, WebConstants.CONTROLLER_USER, null, new { @class = "btn btn-sm btn-info" })
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    @using (Html.BeginForm())
-                    {
-                        if (!Guid.Empty.Equals(Model.Id))
+                        @using (Html.BeginForm())
                         {
-                            @Html.HiddenFor(model => model.Id)
-                            @Html.HiddenFor(model => model.CreatedDate)
-                            @Html.HiddenFor(model => model.Password)
+                            if (!Guid.Empty.Equals(Model.Id))
+                            {
+                                @Html.HiddenFor(model => model.Id)
+                                @Html.HiddenFor(model => model.CreatedDate)
+                                @Html.HiddenFor(model => model.Password)
+                            }
+                            <div class="form-horizontal">
+                                <div id="dialog-validation-summary"></div>
+                                <div class="col-sm-3">
+                                    @Ajax.RemoteContent(WebConstants.VIEW_PROFILE, WebConstants.CONTROLLER_PHOTO, WebConstants.AREA_ADMIN, new { UserDefinableOwnerId = Model.Id })
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-sm-2 form-control-title form-control-required" })
+                                        <div class="col-sm-4">
+                                            @Html.InlineEditableControl(Html.EditableLabelFor(model => model.FirstName, new { @class = "form-control-editable form-control-title" }), Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control form-control-title" } }))
+                                        </div>
+                                        @Html.LabelFor(model => model.Surname, new { @class = "control-label col-sm-2 form-control-title form-control-required" })
+                                        <div class="col-sm-4">
+                                            @Html.InlineEditableControl(Html.EditableLabelFor(model => model.Surname, new { @class = "form-control-editable form-control-title" }), Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control form-control-title" } }))
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Email, new { @class = "control-label col-sm-2 form-control-required" })
+                                        <div class="col-sm-4">
+                                            @Html.InlineEditableControl(Html.EditableLabelFor(model => model.Email, new { @class = "form-control-editable" }), Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } }))
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         }
-                        <div class="form-horizontal">
-                            <div id="dialog-validation-summary"></div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-sm-2 form-control-title form-control-required" })
-                                <div class="col-sm-4">
-                                    @Html.InlineEditableControl(Html.EditableLabelFor(model => model.FirstName, new { @class = "form-control-editable form-control-title" }), Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control form-control-title" } }))
-                                </div>
-                                @Html.LabelFor(model => model.Surname, new { @class = "control-label col-sm-2 form-control-title form-control-required" })
-                                <div class="col-sm-4">
-                                    @Html.InlineEditableControl(Html.EditableLabelFor(model => model.Surname, new { @class = "form-control-editable form-control-title" }), Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control form-control-title" } }))
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Email, new { @class = "control-label col-sm-2 form-control-required" })
-                                <div class="col-sm-4">
-                                    @Html.InlineEditableControl(Html.EditableLabelFor(model => model.Email, new { @class = "form-control-editable" }), Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } }))
-                                </div>
-                            </div>
-                        </div>
-                    }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="panel panel-violet panel-default with-nav-tabs">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs remoteTabs">
+                    <li class="active">
+                        <a class="remoteTab" href="#tab2" data-toggle="tab" data-action="/Admin/Painting/List?UserId=@Model.Id"><i class="fa fa-user"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_PAINTINGS)</a>
+                    </li>
+                    <li>
+                        <a class="remoteTab" href="#tab3" data-toggle="tab" data-action="/Admin/Exhibition/List?UserId=@Model.Id"><i class="fa fa-user"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_EXHIBITIONS)</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="tab2">
+                    </div>
+                    <div class="tab-pane fade in" id="tab3">
+                    </div>
                 </div>
             </div>
         </div>

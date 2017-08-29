@@ -81,6 +81,7 @@
     <Compile Include="Daos\MenuItemDao.cs" />
     <Compile Include="Daos\OrderDao.cs" />
     <Compile Include="Daos\PaintingDao.cs" />
+    <Compile Include="Daos\ResourceDao.cs" />
     <Compile Include="Daos\RoleDao.cs" />
     <Compile Include="Daos\UserDao.cs" />
     <Compile Include="Model\AlbumGallery.cs" />

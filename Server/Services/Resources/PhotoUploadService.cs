@@ -9,6 +9,7 @@ using Shared.Core.Context;
 using Shared.Core.Utils;
 using System.Drawing;
 using System.Drawing.Imaging;
+using Shared.Services.Galleries;
 
 namespace Server.Services.Resources
 {
@@ -24,9 +25,10 @@ namespace Server.Services.Resources
             PhotoSupportService photoSupportService = new PhotoSupportService(_unitOfWork);
             IOUtils.CreateDirectories(photoResourceDto.GetAbsolutePath());
 
+            Size maximumPhotoSize = GetMaximumPhotoSize(photoResourceDto);
             Image imageFromStream = Image.FromStream(photoResourceDto.Stream);
             Image image = photoSupportService.Resize(imageFromStream, 1024, 768);
-            Image thumbnail = photoSupportService.Resize(imageFromStream, photoResourceDto.PhotoThumbnailInfo.MinimumWidth, photoResourceDto.PhotoThumbnailInfo.MinimumHeight);
+            Image thumbnail = photoSupportService.Resize(imageFromStream, maximumPhotoSize.Width, maximumPhotoSize.Height);
             image.Save(photoResourceDto.GetAbsoluteFilePath(), ImageFormat.Jpeg);
             thumbnail.Save(photoResourceDto.GetAbsoluteThumbnailFilePath(), ImageFormat.Jpeg);
 
@@ -38,6 +40,12 @@ namespace Server.Services.Resources
             IOUtils.Delete(photoResourceDto.GetAbsoluteFilePath());
             IOUtils.Delete(photoResourceDto.GetAbsoluteThumbnailFilePath());
             IOUtils.DeleteDirectoryIfNeeded(photoResourceDto.GetAbsolutePath());
+        }
+
+        private Size GetMaximumPhotoSize(PhotoResourceDto photoResourceDto)
+        {
+            PhotoThumbnailInfo photoThumbnailInfo = PhotoThumbnailInfoProvider.GetDefault(photoResourceDto.OwnerType);
+            return new Size(photoThumbnailInfo.MinimumWidth, photoThumbnailInfo.MinimumHeight);
         }
     }
 }

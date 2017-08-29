@@ -11,6 +11,7 @@ namespace Client.Core.AfterSaves
 {
     public class AfterSuccessSaveParam
     {
+        public virtual object Model { get; private set; }
         public virtual string Controller { get; private set; }
         public virtual string Action { get; private set; }
         public virtual object RouteValues { get; private set; }
@@ -30,12 +31,14 @@ namespace Client.Core.AfterSaves
             NextStep = nextStep;
         }
 
-        private AfterSuccessSaveParam(string action, string controller, object routeValues, string targetHtmlId)
+        private AfterSuccessSaveParam(object model, string action, string controller, object routeValues, string targetHtmlId)
         {
+            Model = model;
             Action = action;
             Controller = controller;
             RouteValues = routeValues;
             TargetHtmlId = targetHtmlId;
+            NextStep = -1;
         }
 
         public string GetAction()
@@ -44,14 +47,19 @@ namespace Client.Core.AfterSaves
             return urlHelper.Action(Action, Controller, RouteValues);
         }
 
-        public static AfterSuccessSaveParam Create(string action, string controller = null, object routeValues = null, string targetHtmlId = null)
+        public static AfterSuccessSaveParam Create(object model, string action, string controller = null, object routeValues = null, string targetHtmlId = null)
         {
-            return new AfterSuccessSaveParam(action, controller, routeValues, targetHtmlId);
+            return new AfterSuccessSaveParam(model, action, controller, routeValues, targetHtmlId);
         }
 
-        public static AfterSuccessSaveParam Create(Guid id, Message message, string action, string controller = null, object routeValues = null, string targetHtmlId = null, int nextStep = 0)
+        public static AfterSuccessSaveParam Create(Guid id, Message message, string action, string controller = null, object routeValues = null, string targetHtmlId = null, int nextStep = -1)
         {
             return new AfterSuccessSaveParam(id, message, action, controller, routeValues, targetHtmlId, nextStep);
         }
+
+        //public static AfterSuccessSaveParam Create(object model, string action, string controller = null, object routeValues = null)
+        //{
+        //    return new AfterSuccessSaveParam(model, action, controller, routeValues);
+        //}
     }
 }

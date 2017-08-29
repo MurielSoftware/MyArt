@@ -9,6 +9,6 @@ namespace Shared.Core.Services
 {
     public interface ICheckedListReaderService<T> where T : CheckedDto
     {
-        List<T> ReadCheckedDto();
+        List<T> ReadCheckedDto(Guid id);
     }
 }

@@ -8,6 +8,7 @@ using Shared.Core.Dtos;
 using Server.Model;
 using Shared.Core.Dtos.Roles;
 using PagedList;
+using Shared.Core.Context.Expressions;
 
 namespace Server.Daos
 {
@@ -21,7 +22,7 @@ namespace Server.Daos
         internal ListReferenceDto FindAllReferences(BaseFilterDto baseFilterDto)
         {
             Dictionary<Guid, string> references = _modelContext.Set<Role>()
-                .Where(ExpressionQueryBuilder.BuildWhere<Role>(baseFilterDto))
+                .Where(ExpressionBuilder.BuildWhere<Role>(baseFilterDto))
                 .OrderBy(x => x.Name)
                 .Select(x => new { Id = x.Id, Name = x.Name })
                 .ToDictionary(x => x.Id, x => x.Name);
@@ -37,7 +38,15 @@ namespace Server.Daos
         {
             return _modelContext.Set<Role>()
                 .OrderBy(x => x.Name)
-                .Select(x => new RoleDto() { Id = x.Id, Name = x.Name, CreateUpdateDeleteAll = x.CreateUpdateDeleteAll, MenuCreation = x.MenuCreation, RoleCreation = x.RoleCreation, UserCreation = x.UserCreation })
+                .Select(x => new RoleDto()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    CreateUpdateDeleteAll = x.CreateUpdateDeleteAll,
+                    MenuCreation = x.MenuCreation,
+                    RoleCreation = x.RoleCreation,
+                    UserCreation = x.UserCreation
+                })
                 .ToPagedList(baseFilterDto.Page, baseFilterDto.PageSize);
         }
     }

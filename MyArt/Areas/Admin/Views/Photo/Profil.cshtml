@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Shared.Dtos.Resources.PhotoResourceDto>
+
+@using Shared.Core.Constants
+
+<div id="@HtmlConstants.LIST_PHOTOS">
+    @if (Model != null && Model.Count() > 0)
+    {
+        <div class="row text-center">
+            @foreach (var item in Model)
+            {
+                <img src="@item.GetRelativeFilePath()" alt="profile"/>
+            }
+        </div>
+    }
+</div>

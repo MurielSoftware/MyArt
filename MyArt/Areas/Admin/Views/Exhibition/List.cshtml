@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Shared.Dtos.Exhibitions.ExhibitionDto>
+
+@using Client.Core.HtmlHelpers
+@using Shared.Core.Constants
+@using PagedList.Mvc
+@using Shared.I18n.Constants
+
+<div id="@HtmlConstants.LIST_PHOTOS">
+    @if (Model != null && Model.Count() > 0)
+    {
+        <div class="row text-center">
+            @foreach (var item in Model)
+            {
+                @Html.DisplayFor(modelItem => item.Name)
+            }
+        </div>
+    }
+</div>

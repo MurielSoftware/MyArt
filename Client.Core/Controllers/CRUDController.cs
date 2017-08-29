@@ -29,19 +29,28 @@ namespace Client.Core.Controllers
         {
             if (!id.HasValue)
             {
-                GetFromTemp(TempDataConstants.PRECREATED_DTO);
-                if (ViewData[TempDataConstants.PRECREATED_DTO] == null)
+                GetTempDataManager().GetTempDataWithoutRemove(TempDataConstants.PRECREATED_DTO);
+                if (GetTempDataManager().GetViewData(TempDataConstants.PRECREATED_DTO) == null)
                 {
-                    return View(Activator.CreateInstance<T>());
+                    return RedirectCreate(Activator.CreateInstance<T>());
                 }
-                if (!(ViewData[TempDataConstants.PRECREATED_DTO] is T))
+                if (!(GetTempDataManager().GetViewData(TempDataConstants.PRECREATED_DTO) is T))
                 {
-                    return View(Activator.CreateInstance<T>());
+                    return RedirectCreate(Activator.CreateInstance<T>());
                 }
-                return View(ViewData[TempDataConstants.PRECREATED_DTO]);
+                return RedirectCreate(GetTempDataManager().GetViewData<T>(TempDataConstants.PRECREATED_DTO));
             }
-            T entity = GetService().Read(id.Value);
-            return View(entity);
+            return RedirectCreate(GetService().Read(id.Value));
+        }
+
+        protected virtual ActionResult RedirectCreate(T dto)
+        {
+            return View(dto);
+        }
+
+        public virtual ActionResult Details(Guid id)
+        {
+            return View(GetService().Read(id));
         }
 
         /// <summary>
@@ -51,7 +60,7 @@ namespace Client.Core.Controllers
         /// <returns>The create view with the predefined DTO</returns>
         public virtual ActionResult CreatePredefined(T precreatedDto)
         {
-            TempData[TempDataConstants.PRECREATED_DTO] = precreatedDto;
+            GetTempDataManager().SetTempData(TempDataConstants.PRECREATED_DTO, precreatedDto);
             return RedirectToAction(WebConstants.VIEW_CREATE, GetControllerName());
         }
 
@@ -79,8 +88,8 @@ namespace Client.Core.Controllers
 
                 afterSuccessSaveParam.Id = dto.Id;
 
-                TempData[TempDataConstants.MESSAGE] = afterSuccessSaveParam.Message;
-                TempData[TempDataConstants.DTO] = dto;
+                GetTempDataManager().SetTempData(TempDataConstants.MESSAGE, afterSuccessSaveParam.Message);
+                GetTempDataManager().SetTempData(TempDataConstants.DTO, dto);
             }
             catch (ValidationException ex)
             {
@@ -120,7 +129,7 @@ namespace Client.Core.Controllers
                 GetUnitOfWork().StartTransaction();
                 GetService().Delete(afterSuccessSaveParam.Id);
                 GetUnitOfWork().EndTransaction();
-                TempData[TempDataConstants.MESSAGE] = afterSuccessSaveParam.Message;
+                GetTempDataManager().SetTempData(TempDataConstants.MESSAGE, afterSuccessSaveParam.Message);
             }
             catch(ValidationException ex)
             {

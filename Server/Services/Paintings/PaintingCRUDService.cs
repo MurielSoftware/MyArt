@@ -23,14 +23,19 @@ namespace Server.Services.Paintings
             _paintingDao = new PaintingDao(unitOfWork);
         }
 
-        public IPagedList<PaintingDto> ReadAdministrationPaged(BaseFilterDto baseFilterDto)
+        public IPagedList<PaintingDto> ReadAdministrationPaged(PaintingFilterDto paintingFilterDto)
         {
-            return _paintingDao.FindPaged(baseFilterDto);
+            return _paintingDao.FindPaged(paintingFilterDto);
         }
 
-        public List<PaintingCheckedDto> ReadCheckedDto()
+        public IList<PaintingDto> ReadAdministrationAll(PaintingFilterDto paintingFilterDto)
         {
-            return _paintingDao.FindPaintingsForCheck();
+            return _paintingDao.FindAll(paintingFilterDto);
+        }
+
+        public List<PaintingCheckedDto> ReadCheckedDto(Guid exhibitionId)
+        {
+            return _paintingDao.FindPaintingsForCheck(exhibitionId);
         }
     }
 }

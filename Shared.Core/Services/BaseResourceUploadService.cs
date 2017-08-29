@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Shared.Core.Context;
 using Shared.Core.Utils;
 using System.IO;
+using Shared.Core.Dtos.Resources;
 
 namespace Shared.Core.Services
 {

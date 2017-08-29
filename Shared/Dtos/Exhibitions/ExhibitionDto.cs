@@ -35,10 +35,12 @@ namespace Shared.Dtos.Exhibitions
         [Display(Name = MessageKeyConstants.LABEL_START, ResourceType = typeof(Resource))]
         [Required]
         public virtual DateTime Start { get; set; }
+        public virtual string TimeStart { get; set; }
 
         [Display(Name = MessageKeyConstants.LABEL_END, ResourceType = typeof(Resource))]
         [Required]
         public virtual DateTime End { get; set; }
+        public virtual string TimeEnd { get; set; }
 
         [Display(Name = MessageKeyConstants.LABEL_DESCRIPTION, ResourceType = typeof(Resource))]
         public virtual string Description { get; set; }
@@ -46,7 +48,6 @@ namespace Shared.Dtos.Exhibitions
         [Reference(DaoConstants.ATTRIBUTE_PAINTINGS)]
         public virtual ReferenceString PaintingsReference { get; set; }
 
-        [IgnoreValidation]
         public virtual List<PaintingCheckedDto> PaintingsCheckedDto { get; set; }
 
 

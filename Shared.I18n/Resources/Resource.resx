@@ -330,4 +330,28 @@
   <data name="label_upload_photos" xml:space="preserve">
     <value>Nahrát fotky</value>
   </data>
+  <data name="label_add_role" xml:space="preserve">
+    <value>Přidat roli</value>
+  </data>
+  <data name="label_new_password" xml:space="preserve">
+    <value>Nové heslo</value>
+  </data>
+  <data name="label_new_password_again" xml:space="preserve">
+    <value>Nové heslo (znovu)</value>
+  </data>
+  <data name="label_old_password" xml:space="preserve">
+    <value>Původní heslo</value>
+  </data>
+  <data name="validation_new_passwords_not_equal_message" xml:space="preserve">
+    <value>Nová hesla nejsou stejná</value>
+  </data>
+  <data name="validation_old_password_wrong_message" xml:space="preserve">
+    <value>Původní heslo je chybné</value>
+  </data>
+  <data name="label_change_paintings" xml:space="preserve">
+    <value>Změnit obrazy</value>
+  </data>
+  <data name="label_generate_guide" xml:space="preserve">
+    <value>Generuj průvodce</value>
+  </data>
 </root>

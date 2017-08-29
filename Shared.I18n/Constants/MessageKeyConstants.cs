@@ -70,6 +70,11 @@ namespace Shared.I18n.Constants
         public const string LABEL_OWNER = "label_owner";
         public const string LABEL_CHANGE_PASSWORD = "label_change_password";
         public const string LABEL_UPLOAD_PHOTOS = "label_upload_photos";
+        public const string LABEL_OLD_PASSWORD = "label_old_password";
+        public const string LABEL_NEW_PASSWORD = "label_new_password";
+        public const string LABEL_NEW_PASSWORD_AGAIN = "label_new_password_again";
+        public const string LABEL_CHANGE_PAINTINGS = "label_change_paintings";
+        public const string LABEL_GENERATE_GUIDE = "label_generate_guide";
 
         public const string LABEL_INPUT = "label_input";
         public const string LABEL_LINK = "label_link";
@@ -99,6 +104,8 @@ namespace Shared.I18n.Constants
         public const string VALIDATION_URL_MESSAGE = "validation_url_message";
         public const string VALIDATION_OBJECT_IS_USED_MESSAGE = "validation_object_is_used_message";
         public const string VALIDATION_PARSE_BULK_INPUT_MESSAGE = "validation_parse_bulk_input_message";
+        public const string VALIDATION_OLD_PASSWORD_WRONG_MESSAGE = "validation_old_password_wrong_message";
+        public const string VALIDATION_NEW_PASSWORDS_NOT_EQUAL_MESSAGE = "validation_new_passwords_not_equal_message";
 
         public const string DELETE_INFORMATION_MESSAGE = "delete_information_message";
         public const string OBJECT_SAVE_SUCCESS_MESSAGE = "object_save_success_message";

@@ -1,4 +1,5 @@
 ﻿using Shared.Core.Dtos;
+using Shared.Dtos.Galleries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace Shared.Dtos.Resources
 {
     public interface IPhotoResourcableDto : IDto
     {
-        PhotoResourceDto PhotoResourceDto { get; set; }
+        ProfileGalleryDto ProfileGalleryDto { get; set; }
+        PhotoResourceDto CoverPhotoResourceDto { get; set; }
     }
 }

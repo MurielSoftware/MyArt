@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Shared.Dtos.Resources.PhotoResourceDto>
+
+@using Client.Core.HtmlHelpers
+@using Shared.Core.Constants
+@using Shared.I18n.Constants
+
+<div class="modal-backdrop fade in"></div>
+<div class="modal fade in" style="display:block" id="@HtmlConstants.DIALOG_UPLOAD" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close btn-dialog-close">&times;</button>
+                <h4 class="modal-title">@Html.LocalizedDisplay(MessageKeyConstants.LABEL_UPLOAD_PHOTOS)</h4>
+            </div>
+            @*@using (Html.BeginForm(WebConstants.VIEW_NEXT, WebConstants.CONTROLLER_PHOTO, FormMethod.Post, new { @class = "asynchronous-form", @data_wizard_current_step = "0" }))
+            {*@
+                <div class="modal-body">
+                    <input type="file" id="file-selector" />
+                    <br />
+                    <div class="upload" data-upload-target=".uploaded-images" data-upload-mode="append" data-return-file-type="thumbnail">
+                        <div class="upload-content-dropbox">
+                            <form class="photo-upload-form"></form>
+                            <span class="message">@Html.LocalizedDisplay(MessageKeyConstants.LABEL_DROP_PHOTOS)</span>
+                        </div>
+                        <div class="uploaded-images">
+                            @foreach (var item in Model)
+                            {
+                                <div class="thumbnail-container">
+                                    <img src="@item.GetRelativeThumbnailFile()" alt="photo" class="thumbnail-image" />
+                                    <div class="thumbnail-overlay">
+                                        <div class="thumbnail-text">
+                                            <a class="btn btn-sm btn-danger"><i class="fa fa-remove"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="col-sm-7">
+                            <div class="progress">
+                                <div class="progress-bar"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <button type="button" class="btn btn-default btn-dialog-close"><i class="fa fa-close"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_CLOSE)</button>
+                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_SAVE)</button>
+                        </div>
+                    </div>
+                </div>
+            @*}*@
+        </div>
+    </div>
+</div>

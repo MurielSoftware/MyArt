@@ -20,7 +20,6 @@ namespace Shared.Core.Attributes
 
     public class FilterAttribute : Attribute
     {
-        public string SourceJoinProperty { get; set; }
         public string TargetProperty { get; set; }
         public CompareOperator Operator { get; set; }
         //public int? EnumAttribute { get; set; }
@@ -29,12 +28,6 @@ namespace Shared.Core.Attributes
         {
             TargetProperty = targetProperty;
             Operator = compareOperator;
-        }
-
-        public FilterAttribute(string sourceJoinProperty, string targetProperty, CompareOperator compareOperator)
-            : this(targetProperty, compareOperator)
-        {
-            SourceJoinProperty = sourceJoinProperty;
         }
     }
 }

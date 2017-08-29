@@ -7,7 +7,7 @@ $(document).ready(function () {
         }
     });
 
-    $(".remotecontent").remoteContent();
+    //$(".remotecontent").remoteContent();
     initPlugins();
 });
 
@@ -17,6 +17,9 @@ function initPlugins() {
     $(".upload").imageUpload();
     $(".autocomplete").autocomplete();
     $(".referencelist").referenceList();
+    $(".remoteTabs .active .remoteTab").remoteTab();
+    $(".remoteTabs .remoteTab").click(function () { $(this).remoteTab(); });
+    $(".richtextbox").richTextBox();
     initPluginsOnRemoteContent();
 }
 

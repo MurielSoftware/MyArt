@@ -4,6 +4,7 @@
             var uploadedImages = $(this).find($(this).data("upload-target"));
             var uploadMode = $(this).data("upload-mode");
             var previewTemplate = "<div class='thumbnail'><img /></div>";
+            var returnFileType = $(this).data("return-file-type");
 
             jQuery.event.addProp.drop = { props: ["dataTransfer"] };
 
@@ -70,12 +71,6 @@
                     if (xhr.readyState === 4 && xhr.status === 200) {
                         var jsonResult = jQuery.parseJSON(xhr.response);
                         if (jsonResult.Success) {
-                        //    $.data(file).find(".progress-bar").addClass("progress-bar-success");
-                        //    $.data(file).find("img").attr("src", jsonResult.Message);
-                        //    $.data(file).find("a").each(function () {
-                        //        $(this).attr("data-id", jsonResult.TargetId);
-                        //    });    
-                        //} else {
                             if (uploadMode === "append") {
                                 var img = $(preview).find("img");
                                 $(img).attr("src", jsonResult.RelativeFilePath);
@@ -87,14 +82,13 @@
                                 $(uploadedImages).data("path", jsonResult.AbsoluteFilePath);
                             }
                             initPluginsOnRemoteContent();
-                        //    $(".thumbnail-centralize").last().remove();
                         }
-                        //$("#file-selector").val("");
                     }
                 };
                 var form = $(".photo-upload-form").get(0);
                 var formData = new FormData(form);
                 formData.append("file", file);
+                formData.append("returnFileType", returnFileType);
                 xhr.send(formData);
             }
 

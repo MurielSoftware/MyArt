@@ -3,10 +3,109 @@
 @using Client.Core.HtmlHelpers
 @using Shared.Core.Constants
 @using Shared.I18n.Constants
+@using Shared.I18n.Utils
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Profile";
 }
 
-<h2>Details</h2>
+<div class="content-title">
+    <h3>@Html.LocalizedDisplay(MessageKeyConstants.LABEL_EXHIBITIONS)</h3>
+</div>
 
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-violet panel-default with-nav-tabs">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#tab1" data-toggle="tab"><i class="fa fa-user"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_EXHIBITIONS)</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="tab1">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="admin-button-box">
+                                    @Html.DialogActionLink("<i class='fa fa-image'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_CHANGE_PAINTINGS), HtmlConstants.DIALOG_EXHIBITION, WebConstants.VIEW_CREATE_PREDEFINED, WebConstants.CONTROLLER_EXHIBITION, new { id = Model.Id }, new { @class = "btn btn-sm btn-primary", data_init_step="2" })
+                                    @Html.DialogActionLink("<i class='fa fa-upload'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_UPLOAD_PHOTOS), HtmlConstants.DIALOG_USER, WebConstants.VIEW_CREATE, WebConstants.CONTROLLER_USER, null, new { @class = "btn btn-sm btn-info" })
+                                    @Html.DialogActionLink("<i class='fa fa-book'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_GENERATE_GUIDE), HtmlConstants.DIALOG_USER, WebConstants.VIEW_CREATE, WebConstants.CONTROLLER_USER, null, new { @class = "btn btn-sm btn-warning" })
+                                </div>
+                            </div>
+                        </div>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken();
+                            if (!Guid.Empty.Equals(Model.Id))
+                            {
+                                @Html.HiddenFor(model => model.Id)
+                                @Html.HiddenFor(model => model.CreatedDate)
+                            }
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name, new { @class = "control-label col-sm-2 form-control-title form-control-required" })
+                                    <div class="col-sm-10">
+                                        @Html.InlineEditableControl(Html.EditableLabelFor(model => model.Name, new { @class = "form-control-editable form-control-title" }), Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control form-control-title" } }))
+                                        @Html.ValidationMessageFor(model => model.Name)
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name, new { @class = "control-label col-sm-2 form-control-required" })
+                                    <div class="col-sm-4">
+                                        @Html.InlineEditableControl(Html.EditableDateRangeLabelFor(model => model.Start, model => model.End, new { @class = "form-control-editable" }), Html.DateRangeFor(model => model.Start, model => model.End, new { htmlAttributes = new { @class = "form-control" } }))
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Address, new { @class = "control-label col-sm-2" })
+                                    <div class="col-sm-10">
+                                        @Html.InlineEditableControl(Html.EditableLabelFor(model => model.Address, new { @class = "form-control-editable" }), @Html.TextAreaFor(model => model.Address, new { @class = "form-control" }))
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.City, new { @class = "control-label col-sm-2" })
+                                    <div class="col-sm-4">
+                                        @Html.InlineEditableControl(Html.EditableLabelFor(model => model.City, new { @class = "form-control-editable" }), @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } }))
+                                    </div>
+                                    @Html.LabelFor(model => model.Zipcode, new { @class = "control-label col-sm-2" })
+                                    <div class="col-sm-4">
+                                        @Html.InlineEditableControl(Html.EditableLabelFor(model => model.Zipcode, new { @class = "form-control-editable" }), @Html.EditorFor(model => model.Zipcode, new { htmlAttributes = new { @class = "form-control", @placeholder = "___ __", @data_mask = "999 99" } }))
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.GoogleMapFor(model => model.Gps, new { @style = "height: 142px" })
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-12">
+                                        <div class="pull-right">
+                                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_SAVE)</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="panel panel-violet panel-default with-nav-tabs">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs remoteTabs">
+                    <li class="active">
+                        <a class="remoteTab" href="#tab2" data-toggle="tab" data-action="/Admin/Painting/List?ExhibitionId=@Model.Id"><i class="fa fa-user"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_PAINTINGS)</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="tab2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

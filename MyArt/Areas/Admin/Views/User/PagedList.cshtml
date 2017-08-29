@@ -6,34 +6,36 @@
 @using Shared.I18n.Constants
 
 <div id="@HtmlConstants.PAGED_LIST_USER">
-    <table class="table table-hover">
-        <thead>
-            <tr role="row">
-                <th class="th-icon"></th>
-                <th>@Html.LocalizedDisplay(MessageKeyConstants.LABEL_NAME)</th>
-                <th>@Html.LocalizedDisplay(MessageKeyConstants.LABEL_EMAIL)</th>
-                <th>@Html.LocalizedDisplay(MessageKeyConstants.LABEL_PAINTINGS_COUNT)</th>
-                <th class="th-administration-box"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td><i class='@HtmlConstants.FA_IMAGE_USER'></i></td>                    
-                    <td>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.Surname)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                    <td>@Html.DisplayFor(modelItem => item.PaintingsCount)</td>
-                    <td>
-                        @Html.LocalizedActionLink("<i class='fa fa-pencil-square-o'></i>", WebConstants.VIEW_PROFILE, WebConstants.CONTROLLER_USER, new { id = item.Id }, new { title = MessageKeyConstants.LABEL_UPDATE })
-                        @Html.DialogActionLink("<i class='fa fa-remove'></i>", HtmlConstants.DIALOG_CONFIRMATION, WebConstants.DIALOG_CONFIRMATION, WebConstants.CONTROLLER_USER, new { id = item.Id, message = MessageKeyConstants.DELETE_INFORMATION_MESSAGE, afterSuccessAction = WebConstants.VIEW_DELETE_CONFIRMED }, new { title = MessageKeyConstants.LABEL_DELETE })
-                    </td>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+                <tr role="row">
+                    <th class="th-icon"></th>
+                    <th>@Html.LocalizedDisplay(MessageKeyConstants.LABEL_NAME)</th>
+                    <th>@Html.LocalizedDisplay(MessageKeyConstants.LABEL_EMAIL)</th>
+                    <th>@Html.LocalizedDisplay(MessageKeyConstants.LABEL_PAINTINGS_COUNT)</th>
+                    <th class="th-administration-box"></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    @if (Model.PageCount > 1)
-    {
-        @*@Html.PagedListPager(Model, page => Url.Action(wEBConstants.VIEW_PAGED_LIST, new Shared.Core.Url.PageRouteValueDictionary(ViewBag.FilterDto, new Dictionary<string, object>() { { "page", page } })), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = HtmlConstants.PAGED_LIST_ROLE, LoadingElementId = "loading" }));*@
-    }
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td><i class='@HtmlConstants.FA_IMAGE_USER'></i></td>
+                        <td>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.Surname)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PaintingsCount)</td>
+                        <td>
+                            @Html.LocalizedActionLink("<i class='fa fa-pencil-square-o'></i>", WebConstants.VIEW_PROFILE, WebConstants.CONTROLLER_USER, new { id = item.Id }, new { title = MessageKeyConstants.LABEL_UPDATE })
+                            @Html.DialogActionLink("<i class='fa fa-remove'></i>", HtmlConstants.DIALOG_CONFIRMATION, WebConstants.DIALOG_CONFIRMATION, WebConstants.CONTROLLER_USER, new { id = item.Id, message = MessageKeyConstants.DELETE_INFORMATION_MESSAGE, afterSuccessAction = WebConstants.VIEW_DELETE_CONFIRMED }, new { title = MessageKeyConstants.LABEL_DELETE })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (Model.PageCount > 1)
+        {
+            @*@Html.PagedListPager(Model, page => Url.Action(wEBConstants.VIEW_PAGED_LIST, new Shared.Core.Url.PageRouteValueDictionary(ViewBag.FilterDto, new Dictionary<string, object>() { { "page", page } })), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = HtmlConstants.PAGED_LIST_ROLE, LoadingElementId = "loading" }));*@
+        }
+    </div>
 </div>

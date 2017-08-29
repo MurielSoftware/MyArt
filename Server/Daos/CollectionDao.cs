@@ -8,6 +8,7 @@ using Server.Model;
 using PagedList;
 using Shared.Dtos.Collections;
 using Shared.Core.Dtos;
+using Shared.Core.Context.Expressions;
 
 namespace Server.Daos
 {
@@ -21,9 +22,13 @@ namespace Server.Daos
         internal ListReferenceDto FindAllReferences(BaseFilterDto baseFilterDto)
         {
             Dictionary<Guid, string> references = _modelContext.Set<Collection>()
-                .Where(ExpressionQueryBuilder.BuildWhere<Collection>(baseFilterDto))
+                .Where(ExpressionBuilder.BuildWhere<Collection>(baseFilterDto))
                 .OrderBy(x => x.Name)
-                .Select(x => new { Id = x.Id, Name = x.Name })
+                .Select(x => new
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                })
                 .ToDictionary(x => x.Id, x => x.Name);
             return new ListReferenceDto() { References = references };
         }
@@ -31,9 +36,13 @@ namespace Server.Daos
         public IPagedList<CollectionDto> FindPaged(BaseFilterDto baseFilterDto)
         {
             return _modelContext.Set<Collection>()
-                .Where(ExpressionQueryBuilder.BuildWhere<Collection>(baseFilterDto))
+                .Where(ExpressionBuilder.BuildWhere<Collection>(baseFilterDto))
                 .OrderBy(x => x.Name)
-                .Select(x => new CollectionDto() { Id = x.Id, Name = x.Name })
+                .Select(x => new CollectionDto()
+                {
+                    Id = x.Id,
+                    Name = x.Name
+                })
                 .ToPagedList(baseFilterDto.Page, baseFilterDto.PageSize);
         }
     }

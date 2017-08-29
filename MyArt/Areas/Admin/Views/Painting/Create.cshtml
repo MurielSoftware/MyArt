@@ -15,12 +15,11 @@
             @using (Html.BeginForm(WebConstants.VIEW_NEXT, WebConstants.CONTROLLER_PAINTING, FormMethod.Post, new { @class = "asynchronous-form", @data_wizard_current_step = "0" }))
             {
                 <div class="modal-body">
+                    <div id="dialog-validation-summary"></div>
                     <div class="wizard-step" data-wizard-step="0">
                         @Html.HiddenFor(model => model.Id)
-                        @Html.HiddenFor(model => model.CreatedDate)
                         @Html.AntiForgeryToken()
-                        <div class="form-horizontal">
-                            <div id="dialog-validation-summary"></div>
+                        <div class="form-horizontal">                            
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Title, new { @class = "control-label col-sm-2 form-control-required" })
                                 <div class="col-sm-10">
@@ -71,27 +70,18 @@
                         </div>
                     </div>
                     <div class="wizard-step" data-wizard-step="1">
+                        @Html.RichTextBoxFor(model => model.Description)
+                    </div>
+                    <div class="wizard-step" data-wizard-step="2">
                         <input type="file" id="file-selector" />
                         <br />
-                        <div class="upload" data-upload-target=".uploaded-images" data-upload-mode="append">
+                        <div class="upload" data-upload-target=".uploaded-images" data-upload-mode="append" data-return-file-type="thumbnail">
                             <div class="upload-content-dropbox">
-                                <form class="photo-upload-form">
-                                    @* @Html.Hidden(DaoConstants.USER_DEFINABLE_ID, Model.Id)
-                                        @Html.TextBoxFor(model => model.UserDefinableId)*@
-                                    <div>
-                                        @*@Html.HiddenFor(model => model.PhotoResourceDto.PhotoThumbnailInfo.Path, new { @class = "form-control" })
-                                        @Html.HiddenFor(model => model.PhotoResourceDto.PhotoThumbnailInfo.MinimumWidth)
-                                        @Html.HiddenFor(model => model.PhotoResourceDto.PhotoThumbnailInfo.MinimumHeight)
-                                        @Html.HiddenFor(model => model.PhotoResourceDto.PhotoThumbnailInfo.MaximumPhotos)
-                                        @Html.HiddenFor(model => model.PhotoResourceDto.UserDefinableId)
-                                        @Html.TextBox("UserDefinableOwnerId", Model.Id)*@
-                                    </div>  
-@*   @Html.HiddenFor(model => model.OwnerType)*@
+                                <form class="photo-upload-form">                                  
                                 </form>
                                 <span class="message">@Html.LocalizedDisplay(MessageKeyConstants.LABEL_DROP_PHOTOS)</span>
                             </div>
                             <div class="uploaded-images">
-                                @*@Ajax.RemoteContent(WebConstants.VIEW_LIST, WebConstants.CONTROLLER_PHOTO, WebConstants.AREA_ADMIN, new { UserDefinableId = Model.Id })*@
                             </div>
                         </div>
                     </div>

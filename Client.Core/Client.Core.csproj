@@ -67,6 +67,7 @@
     <Compile Include="HtmlHelpers\RemoteExtensions.cs" />
     <Compile Include="HtmlHelpers\RichTextBoxExtensions.cs" />
     <Compile Include="HtmlHelpers\ValidationSummaryExtensions.cs" />
+    <Compile Include="Managers\TempDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

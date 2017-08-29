@@ -4,25 +4,42 @@
     });
 
     $("body").on("click", ".show-dialog", function () {
-        $(this).dialog();
+        var initStep = $(this).data("init-step");
+        $(this).dialog({ init_step: initStep });
     });
 
-    $.fn.dialog = function () {
+    $.fn.dialog = function (customOptions) {
+
+        var defaultOptions = {
+            init_step: 0,
+        };
+
+        var options = defaultOptions;
+        _setOptions(customOptions);
+
+        function _setOptions(customOptions) {
+            options = $.extend(options, customOptions);
+        }
+
         return this.each(function (index, dialog) {
             _load(dialog);
         });
 
         function _load(dialog) {
             $("#modal-dialogs").load($(dialog).attr("href"), function (result) {
+                var submitButton = $("#modal-dialogs").find(".btn-success");
                 var closeButton = $("#modal-dialogs").find(".btn-dialog-close");
                 var removeFileButton = $("#modal-dialogs").find(".btn-modal-remove-attachement");
-                var submitButton = $("#modal-dialogs").find(".asynchronous-form");
-
+                var form = $("#modal-dialogs").find(".asynchronous-form");
+            
                 closeButton.click(_close);
                 removeFileButton.click(_removeFile);
-                submitButton.submit(_submit);
+                form.submit(_submit);
 
-                $(".wizard-step:not(:first)").hide();
+                $(".wizard-step:not([data-wizard-step='" + options.init_step + "'])").hide();
+                $(form).data("wizard-current-step", options.init_step);
+                _setSubmitLabel(options.init_step);
+                //$(".wizard-step:not(:first)").hide();
 
                 initPlugins();
             });
@@ -105,8 +122,8 @@
         function _refreshWizard(form, data) {
             //if (data.TargetElementId !== null) {
             //    $("#" + data.TargetElementId).html("<div id='loading'><i class='fa fa-circle-o-notch fa-spin'></i></div>");
-                //$.post(data.AfterAction, function (result) {
-                 //   $("#" + data.TargetElementId).html(result);
+            //$.post(data.AfterAction, function (result) {
+            //   $("#" + data.TargetElementId).html(result);
             if (data.TargetElementId !== null) {
                 $("#" + data.TargetElementId).html("<div id='loading'><i class='fa fa-circle-o-notch fa-spin'></i></div>");
                 $.post(data.AfterAction, function (result) {
@@ -119,11 +136,22 @@
             $(".wizard-step:visible").hide();
             $(".wizard-step[data-wizard-step='" + data.NextStepIndex + "']").show();
             $(form).data("wizard-current-step", data.NextStepIndex);
+            _setSubmitLabel(data.NextStepIndex);
+        
                     //initPluginsOnRemoteContent();
                 //});
             //} else {
             //    window.location.href = data.Action;
             //}
+        }
+
+        function _setSubmitLabel(stepIndex) {
+            var wizardStepsCount = $(".wizard-step").length;
+            if (stepIndex < wizardStepsCount-1) {
+                $("#modal-dialogs").find(".btn-success").html("Next <i class='fa fa-angle-right'></i>");
+            } else {
+                $("#modal-dialogs").find(".btn-success").html("<i class='fa fa-save'></i> Finish");
+            }  
         }
 
         function _refreshPartialWithDialogClose(data) {

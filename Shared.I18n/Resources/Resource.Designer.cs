@@ -106,6 +106,15 @@ namespace Shared.I18n.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Přidat roli.
+        /// </summary>
+        public static string label_add_role {
+            get {
+                return ResourceManager.GetString("label_add_role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Adresa.
         /// </summary>
         public static string label_address {
@@ -156,6 +165,15 @@ namespace Shared.I18n.Resources {
         public static string label_chalk {
             get {
                 return ResourceManager.GetString("label_chalk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Změnit obrazy.
+        /// </summary>
+        public static string label_change_paintings {
+            get {
+                return ResourceManager.GetString("label_change_paintings", resourceCulture);
             }
         }
         
@@ -313,6 +331,15 @@ namespace Shared.I18n.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generuj průvodce.
+        /// </summary>
+        public static string label_generate_guide {
+            get {
+                return ResourceManager.GetString("label_generate_guide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sklo.
         /// </summary>
         public static string label_glass {
@@ -394,6 +421,24 @@ namespace Shared.I18n.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nové heslo.
+        /// </summary>
+        public static string label_new_password {
+            get {
+                return ResourceManager.GetString("label_new_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nové heslo (znovu).
+        /// </summary>
+        public static string label_new_password_again {
+            get {
+                return ResourceManager.GetString("label_new_password_again", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ne.
         /// </summary>
         public static string label_no {
@@ -408,6 +453,15 @@ namespace Shared.I18n.Resources {
         public static string label_oil {
             get {
                 return ResourceManager.GetString("label_oil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Původní heslo.
+        /// </summary>
+        public static string label_old_password {
+            get {
+                return ResourceManager.GetString("label_old_password", resourceCulture);
             }
         }
         
@@ -669,6 +723,24 @@ namespace Shared.I18n.Resources {
         public static string validation_email_message {
             get {
                 return ResourceManager.GetString("validation_email_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nová hesla nejsou stejná.
+        /// </summary>
+        public static string validation_new_passwords_not_equal_message {
+            get {
+                return ResourceManager.GetString("validation_new_passwords_not_equal_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Původní heslo je chybné.
+        /// </summary>
+        public static string validation_old_password_wrong_message {
+            get {
+                return ResourceManager.GetString("validation_old_password_wrong_message", resourceCulture);
             }
         }
         

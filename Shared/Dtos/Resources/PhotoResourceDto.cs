@@ -1,4 +1,5 @@
 ﻿using Shared.Core.Dtos;
+using Shared.Core.Dtos.Resources;
 using Shared.Services.Resources;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Shared.Dtos.Resources
     public class PhotoResourceDto : ResourceDto
     {
         public Type OwnerType { get; set; }
-        public PhotoThumbnailInfo PhotoThumbnailInfo { get; set; }
+        //public PhotoThumbnailInfo PhotoThumbnailInfo { get; set; }
 
         public string GetThumbnailName()
         {
@@ -30,12 +31,12 @@ namespace Shared.Dtos.Resources
 
         public PhotoResourceDto()
         {
-
+            Path = "/Content/images/nophoto.png";
         }
 
-        public PhotoResourceDto(Type type)
-        {
-            PhotoThumbnailInfo = PhotoThumbnailInfoProvider.GetDefault(type);
-        }
+        //public PhotoResourceDto(Type type)
+        //{
+        //    //PhotoThumbnailInfo = PhotoThumbnailInfoProvider.GetDefault(type);
+        //}
     }
 }

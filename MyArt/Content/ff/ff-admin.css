@@ -244,10 +244,13 @@ header {
 .panel.with-nav-tabs.nav-tabs > li.active > a:focus {
     border: none;
     background-color: #fff;
+    color: #333;
 }
 
 .nav-tabs > li > a {
     border-radius: 0;
+    border: none;
+    color: #555;
 }
 
 .nav-tabs > li > a .fa {
@@ -326,4 +329,91 @@ input[type=file] {
 .admin-button-box {
     margin-bottom: 15px;
     float: right;
+}
+
+.thumbnail-container {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.thumbnail-container a { 
+    color: #fff;
+}
+
+.thumbnail-image {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    width: auto;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+.thumbnail-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(0, 140, 186, 0.8);
+}
+
+.thumbnail-container:hover .thumbnail-overlay {
+    opacity: 1;
+}
+
+.thumbnail-text {
+    color: #fff;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+/*.thumbnail-container {
+    width: auto;
+    position: relative;
+}
+
+.thumbnail-image {
+    height: 140px;
+}
+
+.thumbnail-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    transition: .5s ease;
+    background-color: rgba(0, 140, 186, 0.8);
+}*/
+
+img.img-small {
+    height: 64px;
+}
+
+.field-validation-error {
+    color: #b62c17;
+    font-size: 12px;
+    float: right;
+}
+
+.input-validation-error {
+    border-color: #b62c17;
 }

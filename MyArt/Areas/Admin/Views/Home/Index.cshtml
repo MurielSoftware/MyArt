@@ -2,6 +2,7 @@
 
 @using Client.Core.HtmlHelpers
 @using Shared.I18n.Constants
+@using Shared.Core.Constants
 
 @{
     ViewBag.Title = "Index";
@@ -24,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <a class="#">
+        <a href="@Url.Action(WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_PAINTING)">
             <div class="panel-footer">
                 <span class="pull-left">
                     @Html.LocalizedDisplay(MessageKeyConstants.LABEL_VIEW_DETAILS)
@@ -51,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <a class="#">
+        <a href="@Url.Action(WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_USER)">
             <div class="panel-footer">
                 <span class="pull-left">
                     @Html.LocalizedDisplay(MessageKeyConstants.LABEL_VIEW_DETAILS)
@@ -78,7 +79,7 @@
                 </div>
             </div>
         </div>
-        <a class="#">
+        <a href="@Url.Action(WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_EXHIBITION)">
             <div class="panel-footer">
                 <span class="pull-left">
                     @Html.LocalizedDisplay(MessageKeyConstants.LABEL_VIEW_DETAILS)
@@ -105,7 +106,7 @@
                 </div>
             </div>
         </div>
-        <a class="#">
+        <a href="@Url.Action(WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_COLLECTION)">
             <div class="panel-footer">
                 <span class="pull-left">
                     @Html.LocalizedDisplay(MessageKeyConstants.LABEL_VIEW_DETAILS)

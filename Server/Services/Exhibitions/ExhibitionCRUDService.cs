@@ -24,19 +24,26 @@ namespace Server.Services.Exhibitions
             _exhibitionDao = new ExhibitionDao(unitOfWork);
         }
 
-        public IPagedList<ExhibitionDto> ReadAdministrationPaged(BaseFilterDto baseFilterDto)
-        {
-            return _exhibitionDao.FindPaged(baseFilterDto);
-        }
-
         public override ExhibitionDto Persist(ExhibitionDto exhibitionDto)
         {
             if (exhibitionDto.PaintingsCheckedDto != null)
             {
+                //Exhibition exhibition = _genericDao.Find<Exhibition>(exhibitionDto.Id);
+                //exhibition.Paintings.Clear();
                 List<PaintingCheckedDto> paintingCheckedDtos = exhibitionDto.PaintingsCheckedDto.Where(x => x.Checked == true).Select(x => x).ToList();
                 exhibitionDto.PaintingsReference = ReferenceString.Create<PaintingCheckedDto>(paintingCheckedDtos);
             }
             return base.Persist(exhibitionDto);
+        }
+
+        public IPagedList<ExhibitionDto> ReadAdministrationPaged(ExhibitionFilterDto exhibitionFilterDto)
+        {
+            return _exhibitionDao.FindPaged(exhibitionFilterDto);
+        }
+
+        public IList<ExhibitionDto> ReadAdministrationAll(ExhibitionFilterDto exhibitionFilterDto)
+        {
+            return _exhibitionDao.FindAll(exhibitionFilterDto);
         }
     }
 }

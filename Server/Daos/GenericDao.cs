@@ -1,5 +1,6 @@
 ﻿using Server.Model;
 using Shared.Core.Context;
+using Shared.Core.Context.Expressions;
 using Shared.Core.Dtos;
 using System;
 using System.Collections.Generic;
@@ -51,7 +52,7 @@ namespace Server.Daos
         internal List<ReferenceDto> FindByPrefix<T>(BaseFilterDto baseFilterDto, Expression<Func<T, ReferenceDto>> selector) where T : BaseEntity
         {
             return _modelContext.Set<T>()
-                .Where(ExpressionQueryBuilder.BuildWhere<T>(baseFilterDto))
+                .Where(ExpressionBuilder.BuildWhere<T>(baseFilterDto))
                 .Select(selector)
                 .ToList();
         }

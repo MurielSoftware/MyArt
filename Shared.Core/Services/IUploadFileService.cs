@@ -1,10 +1,6 @@
-﻿using Shared.Core.Dtos;
+﻿using Shared.Core.Dtos.Resources;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shared.Core.Services
 {

@@ -22,14 +22,18 @@ namespace MyArt.Areas.Admin.Controllers
     {
         public override ActionResult CreatePredefined(ExhibitionDto precreatedDto)
         {
-            precreatedDto.PaintingsCheckedDto = GetPaintings();
+            if(!Guid.Empty.Equals(precreatedDto.Id))
+            {
+                precreatedDto = GetService().Read(precreatedDto.Id);
+            }
+            precreatedDto.PaintingsCheckedDto = GetPaintings(precreatedDto.Id);
             return base.CreatePredefined(precreatedDto);
         }
 
         [HttpPost, ValidateInput(false)]
-        public override ActionResult Create(ExhibitionDto dto)
+        public ActionResult Details(ExhibitionDto exhibitionDto)
         {
-            return null;
+            return base.DoCreate(exhibitionDto, AfterSuccessSaveParam.Create(exhibitionDto, WebConstants.VIEW_DETAILS, WebConstants.CONTROLLER_EXHIBITION, new { id = exhibitionDto.Id}));
         }
 
         public override ActionResult DeleteConfirmed(DialogDto dialogDto)
@@ -37,22 +41,25 @@ namespace MyArt.Areas.Admin.Controllers
             return DoDeleteConfirmed(AfterSuccessSaveParam.Create(dialogDto.Id, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_EXHIBITION, null, HtmlConstants.PAGED_LIST_EXHIBITION));
         }
 
-        public ActionResult Details(Guid id)
+        public ActionResult PagedList(ExhibitionFilterDto exhibitionFilterDto)
         {
-            return View(GetService().Read(id));
+            ViewBag.FilterDto = exhibitionFilterDto;
+            return PartialView(WebConstants.VIEW_PAGED_LIST, GetService().ReadAdministrationPaged(exhibitionFilterDto));
         }
 
-        public ActionResult PagedList(BaseFilterDto baseFilterDto)
+        public ActionResult List(ExhibitionFilterDto exhibitionFilterDto)
         {
-            ViewBag.FilterDto = baseFilterDto;
-            return PartialView(WebConstants.VIEW_PAGED_LIST, GetService().ReadAdministrationPaged(baseFilterDto));
+            return PartialView(GetService().ReadAdministrationAll(exhibitionFilterDto));
         }
+
 
         protected override ActionResult DoNext(ExhibitionDto exhibitionDto, int currentStep)
         {
             switch (currentStep)
             {
                 case 0:
+                    return RedirectToActionAfterSuccessCreate(AfterSuccessSaveParam.Create(exhibitionDto.Id, null, null, null, null, null, currentStep));
+                case 1:
                     return DoCreate(exhibitionDto, AfterSuccessSaveParam.Create(exhibitionDto.Id, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_EXHIBITION, null, HtmlConstants.PAGED_LIST_EXHIBITION, currentStep)); //null, null, null, currentStep.ToString()));
             }
             return null;
@@ -63,9 +70,10 @@ namespace MyArt.Areas.Admin.Controllers
             switch (afterSuccessSaveParam.NextStep)
             {
                 case 0:
+                case 1:
                     return Json(JsonWizardResult.CreateSuccess(afterSuccessSaveParam.Id, afterSuccessSaveParam.TargetHtmlId, GetNextStep(afterSuccessSaveParam.NextStep), afterSuccessSaveParam.GetAction()));
             }
-            return null;
+            return View(afterSuccessSaveParam.Model);
         }
 
         protected override ActionResult Finish(ExhibitionDto exhibitionDto, int currentStep)
@@ -78,13 +86,13 @@ namespace MyArt.Areas.Admin.Controllers
 
         protected override int GetWizardStepsCount()
         {
-            return 2;
+            return 3;
         }
 
-        private List<PaintingCheckedDto> GetPaintings()
+        private List<PaintingCheckedDto> GetPaintings(Guid exhibitionId)
         {
             IPaintingCRUDService paintingCRUDService = GetServiceManager().Get<IPaintingCRUDService>();
-            return paintingCRUDService.ReadCheckedDto();
+            return paintingCRUDService.ReadCheckedDto(exhibitionId);
         }
     }
 }

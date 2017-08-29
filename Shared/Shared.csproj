@@ -47,16 +47,19 @@
     <Compile Include="Dtos\Administration\AdministrationDto.cs" />
     <Compile Include="Dtos\Collections\CollectionDto.cs" />
     <Compile Include="Dtos\Exhibitions\ExhibitionDto.cs" />
+    <Compile Include="Dtos\Exhibitions\ExhibitionFilterDto.cs" />
     <Compile Include="Dtos\Galleries\AlbumGalleryDto.cs" />
     <Compile Include="Dtos\Galleries\GalleryDto.cs" />
     <Compile Include="Dtos\Galleries\ProfileGalleryDto.cs" />
     <Compile Include="Dtos\Paintings\PaintingCheckedDto.cs" />
     <Compile Include="Dtos\Paintings\PaintingDto.cs" />
+    <Compile Include="Dtos\Paintings\PaintingFilterDto.cs" />
     <Compile Include="Dtos\Paintings\Surface.cs" />
     <Compile Include="Dtos\Paintings\Technique.cs" />
     <Compile Include="Dtos\Resources\IPhotoResourcableDto.cs" />
     <Compile Include="Dtos\Resources\PhotoResourceDto.cs" />
     <Compile Include="Dtos\UserDefinableDto.cs" />
+    <Compile Include="Dtos\Users\ChangePasswordDto.cs" />
     <Compile Include="Dtos\Users\UserDto.cs" />
     <Compile Include="Dtos\Users\UserFilterDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,8 +68,8 @@
     <Compile Include="Services\Exhibitions\IExhibitionCRUDService.cs" />
     <Compile Include="Services\Paintings\IPaintingCRUDService.cs" />
     <Compile Include="Services\Resources\IPhotoCRUDService.cs" />
-    <Compile Include="Services\Resources\PhotoThumbnailInfo.cs" />
-    <Compile Include="Services\Resources\PhotoThumbnailInfoProvider.cs" />
+    <Compile Include="Services\Galleries\PhotoThumbnailInfo.cs" />
+    <Compile Include="Services\Galleries\PhotoThumbnailInfoProvider.cs" />
     <Compile Include="Services\Roles\IRoleCRUDService.cs" />
     <Compile Include="Services\Users\IUserCRUDService.cs" />
   </ItemGroup>
