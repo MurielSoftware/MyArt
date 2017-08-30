@@ -11,8 +11,8 @@ namespace Shared.Core.Validators.Comparators
     {
         public bool Compare(string first, string second, CompareOperator expectedCompareOperator)
         {
-            DateTime firstDateTime = StringUtils.ParseTime(first);
-            DateTime secondDateTime = StringUtils.ParseTime(second);
+            DateTime? firstDateTime = StringUtils.ParseTime(first);
+            DateTime? secondDateTime = StringUtils.ParseTime(second);
 
             if(firstDateTime > secondDateTime)
             {

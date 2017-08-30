@@ -8,8 +8,12 @@
         <div class="row text-center">
             @foreach (var item in Model)
             {
-                <img src="@item.GetRelativeFilePath()" alt="profile"/>
+                <img src="@item.GetRelativeFilePath()" alt="profile" class="thumbnail-image-profile"/>
             }
         </div>
+    }
+    else
+    {
+        <img src="~/Content/images/nophoto.png" alt="profile" class="thumbnail-image-profile" />
     }
 </div>

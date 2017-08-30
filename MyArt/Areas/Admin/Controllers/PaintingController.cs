@@ -24,6 +24,12 @@ namespace MyArt.Areas.Admin.Controllers
             return DoDeleteConfirmed(AfterSuccessSaveParam.Create(dialogDto.Id, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_PAINTING, null, HtmlConstants.PAGED_LIST_PAINTING));
         }
 
+        [HttpPost, ValidateInput(false)]
+        public ActionResult Details(PaintingDto paintingDto)
+        {
+            return base.DoCreate(paintingDto, AfterSuccessSaveParam.Create(paintingDto, WebConstants.VIEW_DETAILS, WebConstants.CONTROLLER_PAINTING, new { id = paintingDto.Id }));
+        }
+
         public ActionResult PagedList(PaintingFilterDto paintingFilterDto)
         {
             ViewBag.FilterDto = paintingFilterDto;

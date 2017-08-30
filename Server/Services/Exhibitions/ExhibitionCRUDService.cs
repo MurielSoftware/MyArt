@@ -12,6 +12,7 @@ using PagedList;
 using Shared.Core.Dtos;
 using Shared.Dtos.Paintings;
 using Shared.Core.Dtos.References;
+using Shared.Core.Utils;
 
 namespace Server.Services.Exhibitions
 {
@@ -35,6 +36,30 @@ namespace Server.Services.Exhibitions
                 exhibitionDto.PaintingsReference = ReferenceString.Create<PaintingCheckedDto>(paintingCheckedDtos);
             }
             return base.Persist(exhibitionDto);
+        }
+
+        protected override Exhibition CreateEntity(ExhibitionDto exhibitionDto)
+        {
+            Exhibition exhibition = base.CreateEntity(exhibitionDto);
+            DateTime? timeStart = StringUtils.ParseTime(exhibitionDto.TimeStart);
+            DateTime? timeEnd = StringUtils.ParseTime(exhibitionDto.TimeEnd);
+            if (timeStart.HasValue)
+            {
+                exhibition.Start = new DateTime(exhibitionDto.Start.Year, exhibitionDto.Start.Month, exhibitionDto.Start.Day, timeStart.Value.Hour, timeStart.Value.Minute, 0);
+            }
+            if (timeEnd.HasValue)
+            {
+                exhibition.End = new DateTime(exhibitionDto.End.Year, exhibitionDto.End.Month, exhibitionDto.End.Day, timeEnd.Value.Hour, timeEnd.Value.Minute, 0);
+            }
+            return exhibition;
+        }
+
+        protected override ExhibitionDto CreateDto(Exhibition exhibition)
+        {
+            ExhibitionDto exhibitionDto = base.CreateDto(exhibition);
+            exhibitionDto.TimeStart = StringUtils.ParseTime(exhibitionDto.Start);
+            exhibitionDto.TimeEnd = StringUtils.ParseTime(exhibitionDto.End);
+            return exhibitionDto;
         }
 
         public IPagedList<ExhibitionDto> ReadAdministrationPaged(ExhibitionFilterDto exhibitionFilterDto)

@@ -1,13 +1,18 @@
-﻿$.navigation = $("nav > ul.nav");
-
-$(document).ready(function () {
-    $.navigation.on("click", "a", function () {
-        if ($(this).hasClass("nav-dropdown-toggle")) {
-            $(this).toggleClass("open");
-        }
+﻿$(document).ready(function () {
+    $(".nav-vertical .nav > li").on("click", function (e) {
+        localStorage.setItem("lastTab", $(e.target).attr("id"))
     });
 
-    //$(".remotecontent").remoteContent();
+    var lastTab = localStorage.getItem("lastTab");
+    if (lastTab) {
+        var active = $("#" + lastTab);
+        $(active).addClass("active");
+        $(active).parents("ul .collapse").each(function (index, collapseUl) {
+            $(collapseUl).addClass("in");
+        });
+        localStorage.removeItem("lastTab");
+    }
+
     initPlugins();
 });
 
@@ -23,15 +28,8 @@ function initPlugins() {
     initPluginsOnRemoteContent();
 }
 
-function initPluginsOnRemoteContent() {
-
-    
+function initPluginsOnRemoteContent() {    
     $(".crop-image").imageCrop();
-
-    //$("#Email").removeData("validator");
-    //$("#Email").removeData("unobtrusiveValidation");
-    //$.validator.unobtrusive.parse("asynchronous-form");
     $.validator.unobtrusive.parse(document);
-    //$.validator.unobtrusive.parse("#Email");
 }
 

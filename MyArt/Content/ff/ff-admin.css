@@ -139,7 +139,7 @@ header {
         padding-left: 20px;
     }
 
-    .nav-vertical .nav > li > a:hover, .nav-vertical .nav > li > a:focus {
+    .nav-vertical .nav > li > a:hover, .nav-vertical .nav > li > a:focus, .nav-vertical .nav > li a.active {
         background: #60b54b;
     }
 
@@ -390,6 +390,11 @@ input[type=file] {
 .thumbnail-text .btn-default:hover {
     background-color: rgba(1, 1, 1, 0.3);
     color: #fff;
+}
+
+.thumbnail-image-profile {
+    width: 140px;
+    height: 190px;
 }
     
 img.img-small {

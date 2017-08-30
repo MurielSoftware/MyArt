@@ -43,7 +43,7 @@
                                 @Html.HiddenFor(model => model.Password)
                             }
                             <div class="form-horizontal">
-                                <div id="dialog-validation-summary"></div>
+                                @*<div id="validation-summary"></div>*@
                                 <div class="col-sm-3">
                                     @Ajax.RemoteContent(WebConstants.VIEW_PROFILE, WebConstants.CONTROLLER_PHOTO, WebConstants.AREA_ADMIN, new { UserDefinableOwnerId = Model.Id })
                                 </div>
@@ -64,8 +64,14 @@
                                             @Html.InlineEditableControl(Html.EditableLabelFor(model => model.Email, new { @class = "form-control-editable" }), Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } }))
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-12">
+                                            <div class="pull-right">
+                                                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_SAVE)</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
                             </div>
                         }
                     </div>

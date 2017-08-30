@@ -94,8 +94,12 @@ namespace Shared.Core.Utils
         /// </summary>
         /// <param name="time">Time in string format HH : mm</param>
         /// <returns>The DateTime with parsed time</returns>
-        public static DateTime ParseTime(string time)
+        public static DateTime? ParseTime(string time)
         {
+            if(string.IsNullOrEmpty(time))
+            {
+                return null;
+            }
             string[] temp = time.Trim(' ').Split(':');
             return new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, int.Parse(temp[0]), int.Parse(temp[1]), 0);
         }

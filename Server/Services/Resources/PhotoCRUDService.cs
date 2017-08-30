@@ -53,7 +53,10 @@ namespace Server.Services.Resources
         {
             PhotoSupportService photoSupportService = new PhotoSupportService(_unitOfWork);
             PhotoResourceDto photoResourceDto = Read(photoCropDto.Id);
-            photoSupportService.Crop(photoCropDto);
+            if (photoResourceDto != null)
+            {
+                photoSupportService.Crop(photoCropDto);
+            }
         }
 
 

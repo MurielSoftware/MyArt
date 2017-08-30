@@ -48,7 +48,8 @@ namespace Server.Converters.References.Reference.DtoToEntity
 
         private bool IsReferenciesCreated(List<Guid> referencedIds, ICollection<U> referencedEntities)
         {
-            return referencedIds != null && referencedIds.Count > 0 && referencedEntities == null;
+            // return referencedIds != null && referencedIds.Count > 0 && referencedEntities == null;
+            return referencedEntities == null;
         }
 
         private void CreateMultiReferences(IUnitOfWork unitOfWork, object entity, PropertyInfo targetProperty, List<Guid> referencedIds, ICollection<U> referencedEntities)

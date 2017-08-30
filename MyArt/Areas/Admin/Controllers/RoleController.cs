@@ -17,7 +17,7 @@ namespace MyArt.Areas.Admin.Controllers
         [HttpPost, ValidateInput(false)]
         public override ActionResult Create(RoleDto roleDto)
         {
-            return DoCreate(roleDto, AfterSuccessSaveParam.Create(WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_ROLE, null, HtmlConstants.PAGED_LIST_ROLE));
+            return DoCreate(roleDto, AfterSuccessSaveParam.Create(roleDto.Id, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_ROLE, null, HtmlConstants.PAGED_LIST_ROLE));
         }
 
         public override ActionResult DeleteConfirmed(DialogDto dialogDto)

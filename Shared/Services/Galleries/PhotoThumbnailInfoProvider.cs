@@ -23,10 +23,11 @@ namespace Shared.Services.Galleries
 
         private static Dictionary<Type, PhotoThumbnailInfo> CreateTypeToPhotoThumbnailInfo()
         {
-            Dictionary<Type, PhotoThumbnailInfo> map = new Dictionary<Type, PhotoThumbnailInfo>();
-            map.Add(typeof(PaintingDto), new PhotoThumbnailInfo(340, 255, "/Upload/Paintings/{0}/Galleries/{1}/", 5));
-            map.Add(typeof(UserDto), new PhotoThumbnailInfo(140, 190, "/Upload/Users/{0}/Galleries/{1}/", 1));
-            return map;
+            return new Dictionary<Type, PhotoThumbnailInfo>
+            {
+                { typeof(PaintingDto), new PhotoThumbnailInfo(340, 255, "/Upload/Paintings/{0}/Galleries/{1}/", 5) },
+                { typeof(UserDto), new PhotoThumbnailInfo(140, 190, "/Upload/Users/{0}/Galleries/{1}/", 1) }
+            };
         }
     }
 }

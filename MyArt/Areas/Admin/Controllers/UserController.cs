@@ -23,6 +23,12 @@ namespace MyArt.Areas.Admin.Controllers
             return DoDeleteConfirmed(AfterSuccessSaveParam.Create(dialogDto.Id, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_USER, null, HtmlConstants.PAGED_LIST_USER));
         }
 
+        [HttpPost, ValidateInput(false)]
+        public ActionResult Details(UserDto userDto)
+        {
+            return base.DoCreate(userDto, AfterSuccessSaveParam.Create(userDto, WebConstants.VIEW_DETAILS, WebConstants.CONTROLLER_USER, new { id = userDto.Id }));
+        }
+
         public ActionResult PagedList(UserFilterDto userFilterDto)
         {
             ViewBag.FilterDto = userFilterDto;
