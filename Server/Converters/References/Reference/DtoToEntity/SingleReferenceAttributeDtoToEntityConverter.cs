@@ -1,14 +1,10 @@
 ﻿using Server.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Shared.Core.Context;
 using System.Reflection;
 using Shared.Core.Dtos;
 using Shared.Core.Attributes;
 using Server.Converters.References.Utils;
+using Shared.Core.Dtos.References;
 
 namespace Server.Converters.References.Reference.DtoToEntity
 {

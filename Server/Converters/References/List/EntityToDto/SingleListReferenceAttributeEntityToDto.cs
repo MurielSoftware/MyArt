@@ -1,10 +1,10 @@
-﻿using Server.Converters.References.Reference;
-using Server.Model;
+﻿using Server.Model;
 using Shared.Core.Context;
 using Shared.Core.Dtos;
 using System.Reflection;
 using Shared.Core.Attributes;
 using Server.Converters.References.Utils;
+using Shared.Core.Dtos.References;
 
 namespace Server.Converters.References.List.EntityToDto
 {

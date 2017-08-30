@@ -1,16 +1,12 @@
 ﻿using Shared.Core.Attributes;
 using Shared.Core.Constants;
-using Shared.Core.Dtos;
-using Shared.Core.Validators;
+using Shared.Core.Dtos.References;
 using Shared.Dtos.Paintings;
 using Shared.I18n.Constants;
 using Shared.I18n.Resources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shared.Dtos.Exhibitions
 {

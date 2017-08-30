@@ -36,7 +36,7 @@ namespace Client.Core.HtmlHelpers
             return MvcHtmlString.Create(tagBuilder.ToString());
         }
 
-        internal static MvcHtmlString CustomValidationSummary(ModelStateDictionary modelState)
+        public static MvcHtmlString CustomValidationSummary(ModelStateDictionary modelState)
         {
             TagBuilder tagBuilder = new TagBuilder("div");
             tagBuilder.MergeAttributes(HtmlHelper.AnonymousObjectToHtmlAttributes(new { @class = "alert alert-danger", role = "alert" }));

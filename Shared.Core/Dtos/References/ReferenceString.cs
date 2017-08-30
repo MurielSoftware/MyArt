@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.Core.Dtos
+namespace Shared.Core.Dtos.References
 {
     public class ReferenceString
     {

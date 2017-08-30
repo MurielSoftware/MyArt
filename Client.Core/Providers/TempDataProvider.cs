@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace Client.Core.Managers
+namespace Client.Core.Providers
 {
     public class TempDataProvider
     {

@@ -83,6 +83,7 @@
     <Compile Include="Daos\PaintingDao.cs" />
     <Compile Include="Daos\ResourceDao.cs" />
     <Compile Include="Daos\RoleDao.cs" />
+    <Compile Include="Daos\UserAuthenticationDao.cs" />
     <Compile Include="Daos\UserDao.cs" />
     <Compile Include="Model\AlbumGallery.cs" />
     <Compile Include="Model\BaseEntity.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Services\Roles\RoleCRUDService.cs" />
     <Compile Include="Services\UploadFileService.cs" />
     <Compile Include="Services\UserDefinableCRUDService.cs" />
+    <Compile Include="Services\Users\UserAuthenticationService.cs" />
     <Compile Include="Services\Users\UserCRUDService.cs" />
   </ItemGroup>
   <ItemGroup>

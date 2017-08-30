@@ -1,11 +1,5 @@
-﻿using Shared.Core.Dtos;
-using Shared.I18n.Constants;
-using System;
-using System.Collections.Generic;
+﻿using Shared.Core.Dtos.References;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shared.Core.Validators
 {

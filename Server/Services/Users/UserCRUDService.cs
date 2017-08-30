@@ -1,16 +1,12 @@
 ﻿using Server.Model;
 using Shared.Dtos.Users;
 using Shared.Services.Users;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Shared.Core.Context;
 using PagedList;
 using Server.Daos;
-using Shared.Core.Dtos;
 using Shared.Core.Utils;
+using Shared.Core.Dtos.References;
 
 namespace Server.Services.Users
 {

@@ -7,6 +7,7 @@ using Shared.Core.Attributes;
 using Server.Converters.References.Reference.EntityToDto;
 using System;
 using Server.Converters.References.Utils;
+using Shared.Core.Dtos.References;
 
 namespace Server.Converters.References.List.EntityToDto
 {

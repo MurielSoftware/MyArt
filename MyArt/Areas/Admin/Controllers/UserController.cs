@@ -45,11 +45,6 @@ namespace MyArt.Areas.Admin.Controllers
             return View(GetService().Read(id));
         }
 
-        public ActionResult ChangePassword(Guid id)
-        {
-            return PartialView(new ChangePasswordDto() { UserId = id });
-        }
-
         protected override ActionResult DoNext(UserDto userDto, int currentStep)
         {
             switch (currentStep)

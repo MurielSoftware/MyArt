@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Shared.Core.Context;
 using Shared.Dtos.Users;
 using PagedList;
 using Server.Model;
 using System.Linq.Expressions;
-using Shared.Core.Dtos;
 using Shared.Core.Context.Expressions;
+using Shared.Core.Dtos.References;
 
 namespace Server.Daos
 {

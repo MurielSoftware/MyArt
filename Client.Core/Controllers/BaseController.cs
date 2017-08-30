@@ -1,4 +1,4 @@
-﻿using Client.Core.Managers;
+﻿using Client.Core.Providers;
 using Shared.Core.Dtos;
 using System;
 using System.Collections.Generic;

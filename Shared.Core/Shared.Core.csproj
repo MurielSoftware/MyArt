@@ -41,6 +41,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
@@ -88,17 +89,18 @@
     <Compile Include="Dtos\Bulks\BulkPersistDto.cs" />
     <Compile Include="Dtos\DialogDto.cs" />
     <Compile Include="Dtos\IDto.cs" />
-    <Compile Include="Dtos\ListReferenceDto.cs" />
+    <Compile Include="Dtos\References\ListReferenceDto.cs" />
     <Compile Include="Dtos\MenuItems\MenuItemAssociationType.cs" />
     <Compile Include="Dtos\MenuItems\MenuItemDto.cs" />
     <Compile Include="Dtos\MenuItems\MenuItemEntityType.cs" />
     <Compile Include="Dtos\CheckedDto.cs" />
     <Compile Include="Dtos\PhotoCropDto.cs" />
-    <Compile Include="Dtos\ReferencedDto.cs" />
-    <Compile Include="Dtos\ReferenceString.cs" />
+    <Compile Include="Dtos\References\ReferencedDto.cs" />
+    <Compile Include="Dtos\References\ReferenceString.cs" />
     <Compile Include="Dtos\Resources\ResourceDto.cs" />
     <Compile Include="Dtos\Resources\ResourceFilterDto.cs" />
     <Compile Include="Dtos\Roles\RoleDto.cs" />
+    <Compile Include="Dtos\Users\UserAuthenticationDto.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Exceptions\ValidationResult.cs" />
     <Compile Include="Json\JsonDialogResult.cs" />
@@ -123,6 +125,9 @@
     <Compile Include="Services\IService.cs" />
     <Compile Include="Services\ITreeCRUDService.cs" />
     <Compile Include="Services\IUploadFileService.cs" />
+    <Compile Include="Sessions\AbstractSession.cs" />
+    <Compile Include="Sessions\SessionProvider.cs" />
+    <Compile Include="Sessions\UserSession.cs" />
     <Compile Include="Utils\IOUtils.cs" />
     <Compile Include="Utils\PasswordUtils.cs" />
     <Compile Include="Utils\StringUtils.cs" />
@@ -138,9 +143,7 @@
     <Compile Include="Validators\ReferenceRequired.cs" />
     <Compile Include="Validators\TimeValidator.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Sessions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Shared.I18n\Shared.I18n.csproj">
       <Project>{e68def00-ca2f-4eca-bd76-c147018cc0d0}</Project>

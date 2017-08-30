@@ -29,7 +29,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="admin-button-box">
-                                    @Html.DialogActionLink("<i class='fa fa-lock'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_CHANGE_PASSWORD), HtmlConstants.DIALOG_CHANGE_PASSWORD, WebConstants.VIEW_CHANGE_PASSWORD, WebConstants.CONTROLLER_USER, new { id = Model.Id }, new { @class = "btn btn-sm btn-primary" })
+                                    @Html.DialogActionLink("<i class='fa fa-lock'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_CHANGE_PASSWORD), HtmlConstants.DIALOG_CHANGE_PASSWORD, WebConstants.VIEW_CHANGE_PASSWORD, WebConstants.CONTROLLER_LOGIN, new { id = Model.Id }, new { @class = "btn btn-sm btn-primary" })
                                     @Html.DialogActionLink("<i class='fa fa-upload'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_UPLOAD_PHOTOS), HtmlConstants.DIALOG_USER, WebConstants.VIEW_CREATE, WebConstants.CONTROLLER_USER, null, new { @class = "btn btn-sm btn-info" })
                                 </div>
                             </div>

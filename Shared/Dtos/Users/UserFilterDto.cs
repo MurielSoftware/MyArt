@@ -16,5 +16,8 @@ namespace Shared.Dtos.Users
 
         [Filter(DaoConstants.ATTRIBUTE_SURNAME, CompareOperator.CONTAINS)]
         public virtual string Surname { get; set; }
+
+        [Filter(DaoConstants.ATTRIBUTE_EMAIL, CompareOperator.EQUAL)]
+        public virtual string Email { get; set; }
     }
 }

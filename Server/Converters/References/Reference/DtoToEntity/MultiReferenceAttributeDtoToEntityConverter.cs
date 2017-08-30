@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Server.Model;
 using Shared.Core.Attributes;
 using Shared.Core.Context;
@@ -10,6 +8,7 @@ using Shared.Core.Dtos;
 using System.Reflection;
 using System.Collections;
 using Server.Daos;
+using Shared.Core.Dtos.References;
 
 namespace Server.Converters.References.Reference.DtoToEntity
 {

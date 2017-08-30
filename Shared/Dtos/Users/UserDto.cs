@@ -1,6 +1,7 @@
 ﻿using Shared.Core.Attributes;
 using Shared.Core.Constants;
 using Shared.Core.Dtos;
+using Shared.Core.Dtos.References;
 using Shared.Dtos.Galleries;
 using Shared.Dtos.Resources;
 using Shared.I18n.Constants;

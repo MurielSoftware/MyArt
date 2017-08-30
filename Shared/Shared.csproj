@@ -71,6 +71,7 @@
     <Compile Include="Services\Galleries\PhotoThumbnailInfo.cs" />
     <Compile Include="Services\Galleries\PhotoThumbnailInfoProvider.cs" />
     <Compile Include="Services\Roles\IRoleCRUDService.cs" />
+    <Compile Include="Services\Users\IUserAuthenticationService.cs" />
     <Compile Include="Services\Users\IUserCRUDService.cs" />
   </ItemGroup>
   <ItemGroup>

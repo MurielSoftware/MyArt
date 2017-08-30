@@ -158,6 +158,7 @@
     <Compile Include="Areas\Admin\Controllers\CollectionController.cs" />
     <Compile Include="Areas\Admin\Controllers\ExhibitionController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\PaintingController.cs" />
     <Compile Include="Areas\Admin\Controllers\PhotoController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
@@ -229,7 +230,7 @@
     <Content Include="Areas\Admin\Views\Painting\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Photo\List.cshtml" />
     <Content Include="Areas\Admin\Views\Photo\Profil.cshtml" />
-    <Content Include="Areas\Admin\Views\User\ChangePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\ChangePassword.cshtml" />
     <Content Include="Areas\Admin\Views\Painting\List.cshtml" />
     <Content Include="Areas\Admin\Views\Exhibition\List.cshtml" />
     <Content Include="Areas\Admin\Views\Photo\UploadDialog.cshtml" />

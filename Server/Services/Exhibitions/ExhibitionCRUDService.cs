@@ -11,6 +11,7 @@ using Server.Daos;
 using PagedList;
 using Shared.Core.Dtos;
 using Shared.Dtos.Paintings;
+using Shared.Core.Dtos.References;
 
 namespace Server.Services.Exhibitions
 {

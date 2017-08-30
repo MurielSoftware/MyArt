@@ -29,6 +29,7 @@ namespace Shared.Core.Constants
         public const string VIEW_CHECKED_LIST = "CheckedList";
         public const string VIEW_CHANGE_PASSWORD = "ChangePassword";
         public const string VIEW_UPLOAD_DIALOG = "UploadDialog";
+        public const string VIEW_LOGIN = "Login";
 
         public const string DIALOG_CHANGE_PASSWORD = "DialogChangePassword";
         public const string DIALOG_CONFIRMATION = "DialogConfirmation";
@@ -47,6 +48,7 @@ namespace Shared.Core.Constants
         public const string CONTROLLER_PAINTING = "Painting";
         public const string CONTROLLER_EXHIBITION = "Exhibition";
         public const string CONTROLLER_COLLECTION = "Collection";
+        public const string CONTROLLER_LOGIN = "Login";
 
     }
 }
