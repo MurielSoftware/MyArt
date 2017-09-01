@@ -5,13 +5,13 @@
 @using PagedList.Mvc
 @using Shared.I18n.Constants
 
-<div id="@HtmlConstants.LIST_PHOTOS">
+<div id="@HtmlConstants.LIST_PAINTING">
     @if (Model != null && Model.Count() > 0)
     {
         @*<div class="row text-center">*@
         foreach (var item in Model)
         {
-        <div class="col-sm-3 thumbnail">
+        <div class="col-sm-2">
             @if (item.CoverPhotoResourceDto == null)
             {
                 <img src="~/Content/images/nophoto.png" alt="photo" class="img-responsive" />
@@ -21,10 +21,8 @@
                 <img src="@item.CoverPhotoResourceDto.GetRelativeThumbnailFile()" alt="photo" class="img-responsive" />
             }
             <h4>@Html.DisplayFor(modelItem => item.Title)</h4>
-            <a class="btn btn-sm btn-primary pull-right" href="@Url.Action(WebConstants.VIEW_DETAILS, WebConstants.CONTROLLER_PAINTING, new { id = item.Id })">Podívat se</a>
+            <a class="btn btn-sm btn-primary" href="@Url.Action(WebConstants.VIEW_DETAILS, WebConstants.CONTROLLER_PAINTING, new { id = item.Id })">Podívat se</a>
         </div>
-
-
         }
         @*</div>*@
     }

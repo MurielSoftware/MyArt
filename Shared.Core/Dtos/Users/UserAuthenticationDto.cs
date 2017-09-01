@@ -11,6 +11,7 @@ namespace Shared.Core.Dtos.Users
     {
         public string FirstName { get; set; }
         public string Surname { get; set; }
+        public string CoverPhotoPath { get; set; }
 
         [Required]
         public string Email { get; set; }

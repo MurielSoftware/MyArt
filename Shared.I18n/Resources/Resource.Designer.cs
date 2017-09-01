@@ -304,6 +304,24 @@ namespace Shared.I18n.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Zadejte e-mailovou adresu.
+        /// </summary>
+        public static string label_enter_email {
+            get {
+                return ResourceManager.GetString("label_enter_email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zadejte heslo.
+        /// </summary>
+        public static string label_enter_password {
+            get {
+                return ResourceManager.GetString("label_enter_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Výstavy.
         /// </summary>
         public static string label_exhibitions {
@@ -327,6 +345,15 @@ namespace Shared.I18n.Resources {
         public static string label_firstname {
             get {
                 return ResourceManager.GetString("label_firstname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zapomněli jste heslo?.
+        /// </summary>
+        public static string label_forgot_password {
+            get {
+                return ResourceManager.GetString("label_forgot_password", resourceCulture);
             }
         }
         
@@ -538,6 +565,24 @@ namespace Shared.I18n.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Prosím, přihlašte se.
+        /// </summary>
+        public static string label_please_sign_in {
+            get {
+                return ResourceManager.GetString("label_please_sign_in", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zpět.
+        /// </summary>
+        public static string label_previous {
+            get {
+                return ResourceManager.GetString("label_previous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profil.
         /// </summary>
         public static string label_profile {
@@ -579,6 +624,15 @@ namespace Shared.I18n.Resources {
         public static string label_save {
             get {
                 return ResourceManager.GetString("label_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Přihlásit se.
+        /// </summary>
+        public static string label_sign_in {
+            get {
+                return ResourceManager.GetString("label_sign_in", resourceCulture);
             }
         }
         
@@ -642,6 +696,15 @@ namespace Shared.I18n.Resources {
         public static string label_temper {
             get {
                 return ResourceManager.GetString("label_temper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Čas.
+        /// </summary>
+        public static string label_time {
+            get {
+                return ResourceManager.GetString("label_time", resourceCulture);
             }
         }
         

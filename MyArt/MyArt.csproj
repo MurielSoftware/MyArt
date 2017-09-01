@@ -235,6 +235,7 @@
     <Content Include="Areas\Admin\Views\Exhibition\List.cshtml" />
     <Content Include="Areas\Admin\Views\Photo\UploadDialog.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_ValidationSummary.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

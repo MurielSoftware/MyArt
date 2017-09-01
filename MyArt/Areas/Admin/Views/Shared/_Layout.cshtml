@@ -15,6 +15,7 @@
 </head>
 <body>
     <div class="wrapper">
+        @Html.Partial(WebConstants.VIEW_MESSAGE)
         <header>
             <div class="header-left">
                 MyArt
@@ -29,7 +30,7 @@
                             <li>@Html.LocalizedActionLink("<i class='fa fa-user-circle'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_PROFILE), WebConstants.VIEW_PROFILE, WebConstants.CONTROLLER_USER)</li>
                             <li>@Html.LocalizedActionLink("<i class='fa fa-key'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_ROLES), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_ROLE, new { area = "Admin" })</li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="fa fa-sign-out"></i> Odhlásit</a></li>
+                            <li>@Html.LocalizedActionLink("<i class='fa fa-sign-out'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_LOGOUT), WebConstants.VIEW_LOGOUT, WebConstants.CONTROLLER_LOGIN)</li>
                         </ul>
                     </div>
                 </div>

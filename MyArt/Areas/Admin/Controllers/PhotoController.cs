@@ -19,9 +19,11 @@ namespace MyArt.Areas.Admin.Controllers
 {
     public class PhotoController : CRUDController<PhotoResourceDto, IPhotoCRUDService>
     {
-        public ActionResult UploadDialog(Guid userDefinableOwnerId)
+        public ActionResult UploadDialog(Guid userDefinableOwnerId, string userDefinableOwnerType)
         {
-            //TempData[TempDataConstants.PRECREATED_DTO] = photoResourcableDto;
+            BaseDto dto = (BaseDto)Activator.CreateInstance(Type.GetType(userDefinableOwnerType +", Shared"));
+            dto.Id = userDefinableOwnerId;
+            GetTempDataManager().SetTempData(TempDataConstants.DTO, dto);
             return PartialView(GetService().ReadAdministrationAll(new ResourceFilterDto() { UserDefinableOwnerId = userDefinableOwnerId }));
         }
 
@@ -29,7 +31,7 @@ namespace MyArt.Areas.Admin.Controllers
         {
             try
             {
-                PhotoResourceDto extendedPhotoResourceDto = CreatePhotoResourceDto(photoResourceDto, file);
+                PhotoResourceDto extendedPhotoResourceDto = CreatePhotoResourceDto(file);
                 GetUnitOfWork().StartTransaction();
                 extendedPhotoResourceDto = GetService().Persist(extendedPhotoResourceDto);
                 GetUnitOfWork().EndTransaction();
@@ -69,7 +71,7 @@ namespace MyArt.Areas.Admin.Controllers
             return PartialView(GetService().ReadAdministrationAll(resourceFilterDto));
         }
 
-        private PhotoResourceDto CreatePhotoResourceDto(PhotoResourceDto photoResourceDto, HttpPostedFileBase file)
+        private PhotoResourceDto CreatePhotoResourceDto(HttpPostedFileBase file)
         {
             IPhotoResourcableDto photoResourcableDto = GetTempDataManager().GetTempDataWithoutRemove<IPhotoResourcableDto>(TempDataConstants.DTO);//((IPhotoResourcableDto)GetFromTemp(TempDataConstants.DTO));
             PhotoResourceDto extendedPhotoResourceDto = new PhotoResourceDto()

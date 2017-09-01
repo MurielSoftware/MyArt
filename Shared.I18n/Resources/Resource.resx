@@ -354,4 +354,25 @@
   <data name="label_generate_guide" xml:space="preserve">
     <value>Generuj průvodce</value>
   </data>
+  <data name="label_time" xml:space="preserve">
+    <value>Čas</value>
+  </data>
+  <data name="label_enter_email" xml:space="preserve">
+    <value>Zadejte e-mailovou adresu</value>
+  </data>
+  <data name="label_enter_password" xml:space="preserve">
+    <value>Zadejte heslo</value>
+  </data>
+  <data name="label_forgot_password" xml:space="preserve">
+    <value>Zapomněli jste heslo?</value>
+  </data>
+  <data name="label_please_sign_in" xml:space="preserve">
+    <value>Prosím, přihlašte se</value>
+  </data>
+  <data name="label_previous" xml:space="preserve">
+    <value>Zpět</value>
+  </data>
+  <data name="label_sign_in" xml:space="preserve">
+    <value>Přihlásit se</value>
+  </data>
 </root>

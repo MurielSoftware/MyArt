@@ -1,4 +1,15 @@
-﻿$(document).ready(function () {
+﻿$.navigation = $("nav > ul.nav");
+
+$(document).ready(function () {
+    $(".notification").fadeIn(1000);
+    $(".notification").fadeOut(5000);
+
+    $.navigation.on("click", "a", function () {
+        if ($(this).hasClass("nav-dropdown-toggle")) {
+            $(this).toggleClass("open");
+        }
+    });
+
     $(".nav-vertical .nav > li").on("click", function (e) {
         localStorage.setItem("lastTab", $(e.target).attr("id"))
     });
@@ -22,8 +33,7 @@ function initPlugins() {
     $(".upload").imageUpload();
     $(".autocomplete").autocomplete();
     $(".referencelist").referenceList();
-    $(".remoteTabs .active .remoteTab").remoteTab();
-    $(".remoteTabs .remoteTab").click(function () { $(this).remoteTab(); });
+    $(".remoteTabs").remoteTab();
     $(".richtextbox").richTextBox();
     initPluginsOnRemoteContent();
 }

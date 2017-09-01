@@ -33,7 +33,7 @@ namespace Server.Services.Resources
             bool automaticCoverPhotoSet = false;
             if(Guid.Empty.Equals(photoResourceDto.UserDefinableId))
             {
-                gallery = CreateAndPersistEmptyGallery();
+                gallery = CreateAndPersistEmptyProfileGallery();
                 gallery.OwnerId = photoResourceDto.UserDefinableOwnerId;
                 photoResourceDto.UserDefinableId = gallery.Id;
                 automaticCoverPhotoSet = true;
@@ -59,13 +59,21 @@ namespace Server.Services.Resources
             }
         }
 
-
         public IList<PhotoResourceDto> ReadAdministrationAll(ResourceFilterDto resourceFilterDto)
         {
             return _resourceDao.FindAll(resourceFilterDto);
         }
 
-        private Gallery CreateAndPersistEmptyGallery()
+        public override void Delete(Guid id)
+        {
+            Resource resource = _genericDao.Find<Resource>(id);
+            Gallery gallery = _genericDao.Find<Gallery>(resource.UserDefinableId);
+            SetNewCoverPhotoIfNecessarry(resource, gallery);
+            base.Delete(id);
+            RemoveGalleryIfNecessarry(resource, gallery);
+        }
+
+        private Gallery CreateAndPersistEmptyProfileGallery()
         {
             Gallery gallery = new ProfileGallery()
             {
@@ -73,5 +81,38 @@ namespace Server.Services.Resources
             };
             return _genericDao.Persist<Gallery>(gallery);
         }
+
+        private void SetNewCoverPhotoIfNecessarry(Resource resource, Gallery gallery)
+        {
+            Guid? coverPhotoId = null;
+            if (resource.Id.Equals(gallery.CoverPhotoId))
+            {
+                if (gallery.Resources.Count > 1)
+                {
+                    coverPhotoId = gallery.Resources.Where(x => x.Id != resource.Id).FirstOrDefault().Id;
+                }
+                else
+                {
+                    coverPhotoId = null;
+                }
+                gallery.CoverPhotoId = coverPhotoId;
+                _genericDao.Persist<Gallery>(gallery);
+            }
+        }
+
+        private void RemoveGalleryIfNecessarry(Resource resource, Gallery gallery)
+        {
+            if(gallery.Resources.Count == 0)
+            {
+                _genericDao.Delete<Gallery>(gallery);
+            }
+        }
+
+        //private void SetCoverPhoto(Guid? newCoverPhotoId, Guid galleryId)
+        //{
+        //    Gallery gallery = _genericDao.Find<Gallery>(galleryId);
+        //    gallery.CoverPhotoId = newCoverPhotoId;
+        //    _genericDao.Persist<Gallery>(gallery);
+        //}
     }
 }

@@ -30,6 +30,7 @@ namespace Shared.Core.Constants
         public const string VIEW_CHANGE_PASSWORD = "ChangePassword";
         public const string VIEW_UPLOAD_DIALOG = "UploadDialog";
         public const string VIEW_LOGIN = "Login";
+        public const string VIEW_LOGOUT = "Logout";
 
         public const string DIALOG_CHANGE_PASSWORD = "DialogChangePassword";
         public const string DIALOG_CONFIRMATION = "DialogConfirmation";

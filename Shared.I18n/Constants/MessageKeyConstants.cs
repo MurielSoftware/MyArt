@@ -75,6 +75,14 @@ namespace Shared.I18n.Constants
         public const string LABEL_NEW_PASSWORD_AGAIN = "label_new_password_again";
         public const string LABEL_CHANGE_PAINTINGS = "label_change_paintings";
         public const string LABEL_GENERATE_GUIDE = "label_generate_guide";
+        public const string LABEL_TIME = "label_time";
+        public const string LABEL_PLEASE_SIGN_IN = "label_please_sign_in";
+        public const string LABEL_ENTER_EMAIL = "label_enter_email";
+        public const string LABEL_ENTER_PASSWORD = "label_enter_password";
+        public const string LABEL_FORGOT_PASSWORD = "label_forgot_password";
+        public const string LABEL_SIGN_IN = "label_sign_in";
+        public const string LABEL_PREVIOUS = "label_previous";
+        public const string LABEL_LOGOUT = "label_logout";
 
         public const string LABEL_INPUT = "label_input";
         public const string LABEL_LINK = "label_link";

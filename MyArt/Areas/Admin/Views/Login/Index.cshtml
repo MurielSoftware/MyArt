@@ -1,0 +1,109 @@
+﻿@model Shared.Core.Dtos.Users.UserAuthenticationDto
+
+@using Client.Core.HtmlHelpers
+@using Shared.Core.Constants
+@using Shared.I18n.Constants
+@using Shared.I18n.Utils
+
+@{
+    Layout = "";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Admin</title>    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    @Styles.Render("~/Content/css-admin")
+    <style>
+        body {
+            width: 100px;
+            height: 100px;
+            background: -webkit-linear-gradient(90deg, #16222A 10%, #3A6073 90%);
+            background: -moz-linear-gradient(90deg, #16222A 10%, #3A6073 90%);
+            background: -o-linear-gradient(90deg, #16222A 10%, #3A6073 90%);
+            background: linear-gradient(90deg, #16222A 10%, #3A6073 90%);
+        }
+
+        p {
+            color: #ccc;
+        }
+
+        .spacing {
+            padding-top: 7px;
+            padding-bottom: 7px;
+        }
+
+        .middle-page {
+            width: 680px;
+            height: 500px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .logo {
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    @Html.Partial(WebConstants.VIEW_MESSAGE)
+    <div class="middle-page">
+        <div class="page-header">
+            <h1 class="logo">MyArt <small>Place for your art!</small></h1>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">@Html.LocalizedDisplay(MessageKeyConstants.LABEL_PLEASE_SIGN_IN)</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-5">
+                        <a href="#"><img src="http://techulus.com/buttons/fb.png" /></a><br />
+                        <a href="#"><img src="http://techulus.com/buttons/tw.png" /></a><br />
+                        <a href="#"><img src="http://techulus.com/buttons/gplus.png" /></a>
+                    </div>
+                    <div class="col-md-7" style="border-left:1px solid #ccc;height:160px">
+                        @using (Html.BeginForm(WebConstants.VIEW_LOGIN, WebConstants.CONTROLLER_LOGIN))
+                        {
+                            <div class="form-horizontal">
+                                <fieldset>
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control input-md", @placeholder = ResourceUtils.GetString(MessageKeyConstants.LABEL_ENTER_EMAIL) } })
+                                    @Html.ValidationMessageFor(model => model.Email)
+                                    <div class="spacing" />
+                                    @Html.PasswordFor(model => model.Password, new { @class = "form-control input-md", @placeholder = ResourceUtils.GetString(MessageKeyConstants.LABEL_ENTER_PASSWORD) })
+                                    @Html.ValidationMessageFor(model => model.Password)
+                                    <div class="spacing">
+                                        @Html.LocalizedActionLink(MessageKeyConstants.LABEL_FORGOT_PASSWORD)
+                                    </div>
+                                </fieldset>
+                                <button type="submit" class="btn btn-info btn-sm pull-right">
+                                    <span class="fa fa-check"></span> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_SIGN_IN)
+                                </button>
+                            </div>
+                        }
+                        @*<form class="form-horizontal">
+                            <fieldset>
+                                <input id="textinput" name="textinput" type="text" placeholder="Enter User Name" class="form-control input-md">
+                                <div class="spacing"><input type="checkbox" name="checkboxes" id="checkboxes-0" value="1"><small> Remember me</small></div>
+                                <input id="textinput" name="textinput" type="text" placeholder="Enter Password" class="form-control input-md">
+                                <div class="spacing"><a href="#"><small> Forgot Password?</small></a><br /></div>
+                                <button id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right">Sign In</button>
+
+                            </fieldset>
+                        </form>*@
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <p>&copy; 2017 Jaromír Krpec</p>
+    </div>
+</body>
+</html>

@@ -29,10 +29,12 @@
             $("#modal-dialogs").load($(dialog).attr("href"), function (result) {
                 var submitButton = $("#modal-dialogs").find(".btn-success");
                 var closeButton = $("#modal-dialogs").find(".btn-dialog-close");
+                var previousButton = $("#modal-dialogs").find(".btn-dialog-previous");
                 var removeFileButton = $("#modal-dialogs").find(".btn-modal-remove-attachement");
                 var form = $("#modal-dialogs").find(".asynchronous-form");
             
                 closeButton.click(_close);
+                previousButton.click(_previous);
                 removeFileButton.click(_removeFile);
                 form.submit(_submit);
 
@@ -47,6 +49,18 @@
 
         function _close() {
             $("#modal-dialogs").empty();
+        }
+
+        function _previous(e) {
+            var form = $("#modal-dialogs").find(".asynchronous-form");
+            var currentStepIndex = form.data("wizard-current-step");
+            if (currentStepIndex == 0) {
+                return;
+            }
+            currentStepIndex--;
+            $(".wizard-step:visible").hide();
+            $(".wizard-step[data-wizard-step='" + currentStepIndex + "']").show();
+            $(form).data("wizard-current-step", currentStepIndex);
         }
 
         function _removeFile() {

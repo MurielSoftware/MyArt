@@ -12,6 +12,6 @@ namespace Shared.Services.Resources
 {
     public interface IPhotoCRUDService : ICRUDService<PhotoResourceDto>, IListAdministrationReaderService<PhotoResourceDto, ResourceFilterDto>
     {
-        void Crop(PhotoCropDto photoCropDto);
+        void Crop(PhotoCropDto photoCropDto);         
     }
 }

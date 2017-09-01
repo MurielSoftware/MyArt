@@ -19,7 +19,7 @@ namespace MyArt.Areas.Admin.Controllers
 {
     public class LoginController : ServiceController<IUserAuthenticationService>
     {
-        public ActionResult Login()
+        public override ActionResult Index()
         {
             return View(new UserAuthenticationDto());
         }
@@ -36,14 +36,14 @@ namespace MyArt.Areas.Admin.Controllers
                 }
                 GetTempDataManager().SetTempData(TempDataConstants.MESSAGE, Message.CreateErrorMessage(MessageKeyConstants.LOGIN_FAILURE_MESSAGE));
             }
-            return View(userAuthenticationDto);
+            return View("Index", userAuthenticationDto);
         }
 
         public ActionResult Logout()
         {
             SessionProvider.GetInstance().RemoveSession(UserSession.SESSION_NAME);
             GetTempDataManager().SetTempData(TempDataConstants.MESSAGE, Message.CreateSuccessMessage(MessageKeyConstants.LOGOUT_SUCCESSFUL_MESSAGE));
-            return RedirectToAction(WebConstants.VIEW_LOGIN);
+            return View("Index");
         }
 
         public ActionResult ChangePassword(Guid id)

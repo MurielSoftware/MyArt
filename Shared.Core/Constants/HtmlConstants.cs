@@ -14,6 +14,8 @@ namespace Shared.Core.Constants
         public const string PAGED_LIST_COLLECTION = "paged-list-collection";
         public const string PAGED_LIST_EXHIBITION = "paged-list-exhibition";
         public const string LIST_PHOTOS = "list-photos";
+        public const string LIST_EXHIBITION = "list-exhibition";
+        public const string LIST_PAINTING = "list-painting";
 
         public const string DIALOG_CONFIRMATION = "dialog-confirmation";
         public const string DIALOG_ROLE = "dialog-role";

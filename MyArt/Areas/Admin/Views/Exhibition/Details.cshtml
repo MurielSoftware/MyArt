@@ -52,9 +52,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Name, new { @class = "control-label col-sm-2 form-control-required" })
-                                    <div class="col-sm-4">
+                                    <label class="control-label col-sm-2">@Html.LocalizedDisplay(MessageKeyConstants.LABEL_DATE)</label>                                    <div class="col-sm-4">
                                         @Html.InlineEditableControl(Html.EditableDateRangeLabelFor(model => model.Start, model => model.End, new { @class = "form-control-editable" }), Html.DateRangeFor(model => model.Start, model => model.End, new { htmlAttributes = new { @class = "form-control" } }))
+                                    </div>
+                                    <label class="control-label col-sm-2">@Html.LocalizedDisplay(MessageKeyConstants.LABEL_TIME)</label>                                    <div class="col-sm-2">
+                                        @Html.InlineEditableControl(Html.EditableLabelFor(model => model.TimeStart, new { @class = "form-control-editable" }), @Html.EditorFor(model => model.TimeStart, new { htmlAttributes = new { @class = "form-control", @placeholder = "__ : __", @data_mask = "99 : 99" } }))
+                                    </div>
+                                    <div class="col-sm-2">
+                                        @Html.InlineEditableControl(Html.EditableLabelFor(model => model.TimeEnd, new { @class = "form-control-editable" }), @Html.EditorFor(model => model.TimeEnd, new { htmlAttributes = new { @class = "form-control", @placeholder = "__ : __", @data_mask = "99 : 99" } }))
                                     </div>
                                 </div>
                                 <div class="form-group">

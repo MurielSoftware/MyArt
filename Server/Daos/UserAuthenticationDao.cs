@@ -22,7 +22,14 @@ namespace Server.Daos
         {
             return _modelContext.Set<User>()
                 .Where(ExpressionBuilder.BuildWhere<User>(userFilterDto))
-                .Select(x => new UserAuthenticationDto() { Id = x.Id, FirstName = x.FirstName, Surname = x.Surname, Email = x.Email, Password = x.Password })
+                .Select(x => new UserAuthenticationDto() {
+                    Id = x.Id,
+                    FirstName = x.FirstName,
+                    Surname = x.Surname,
+                    Email = x.Email,
+                    Password = x.Password,
+                    CoverPhotoPath = x.Galleries.Where(y => (y is ProfileGallery)).Select(y => y.CoverPhoto.Path).FirstOrDefault()
+                })
                 .SingleOrDefault();
         }
     }

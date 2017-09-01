@@ -3,7 +3,8 @@
         return this.each(function () {
             var uploadedImages = $(this).find($(this).data("upload-target"));
             var uploadMode = $(this).data("upload-mode");
-            var previewTemplate = "<div class='thumbnail'><img /></div>";
+            //var previewTemplate = "<div class='thumbnail'><img /></div>";
+            var previewTemplate = "<div class='thumbnail-container'><img src='' alt='photo' class='thumbnail-image' /><div class='thumbnail-overlay'><div class='thumbnail-text'><a class='btn btn-sm btn-default delete-image'><i class='fa fa-remove'></i></a></div></div></div>";
             var returnFileType = $(this).data("return-file-type");
 
             jQuery.event.addProp.drop = { props: ["dataTransfer"] };
@@ -31,6 +32,15 @@
                 });
             });
             
+            $(uploadedImages).on("click", ".delete-image", function () {
+                $(this).load("/Admin/Photo/DeleteConfirmed", { id: $(this).data("id") }, function (result) {
+                    var jsonResult = jQuery.parseJSON(result);
+                    if (jsonResult.Success) {
+                        $(this).parents(".thumbnail").remove();
+                    }
+                });
+            });
+
 
             function _uploadBySelect(fileSelector, e) {
                 _defaults(e);
@@ -76,11 +86,16 @@
                                 $(img).attr("src", jsonResult.RelativeFilePath);
                                 $(img).data("id", jsonResult.Id);
                                 $(img).data("path", jsonResult.AbsoluteFilePath);
+                                _addIdsToButtons(preview, jsonResult.Id);
                             } else if(uploadMode === "replace") {
                                 $(uploadedImages).attr("src", jsonResult.RelativeFilePath);
                                 $(uploadedImages).data("id", jsonResult.Id);
                                 $(uploadedImages).data("path", jsonResult.AbsoluteFilePath);
+                                _addIdsToButtons(uploadedImages, jsonResult.Id);
                             }
+                            $(preview).find("a").each(function () {
+                                $(this).data("id", jsonResult.Id);
+                            }); 
                             initPluginsOnRemoteContent();
                         }
                     }
@@ -90,6 +105,12 @@
                 formData.append("file", file);
                 formData.append("returnFileType", returnFileType);
                 xhr.send(formData);
+            }
+
+            function _addIdsToButtons(parent, id) {
+                $(parent).find("a").each(function () {
+                    $(this).data("id", id);
+                }); 
             }
 
             function _defaults(e) {

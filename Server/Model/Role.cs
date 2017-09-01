@@ -14,7 +14,6 @@ namespace Server.Model
         [Required]
         public virtual string Name { get; set; }
 
-        public virtual bool DojoCreation { get; set; }
         public virtual bool UserCreation { get; set; }
         public virtual bool RoleCreation { get; set; }
         public virtual bool MenuCreation { get; set; }

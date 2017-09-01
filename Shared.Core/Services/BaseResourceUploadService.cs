@@ -49,10 +49,10 @@ namespace Shared.Core.Services
         /// <param name="resourceDto">The Resource DTO with the all information needed to remove the file</param>
         public virtual void Delete(T resourceDto)
         {
-            if(string.IsNullOrEmpty(resourceDto.GetRelativeFilePath()))
-            {
-                return;
-            }
+            //if(string.IsNullOrEmpty(resourceDto.GetRelativeFilePath()))
+            //{
+            //    return;
+            //}
 
             IOUtils.Delete(resourceDto.GetAbsoluteFilePath());
             IOUtils.DeleteDirectoryIfNeeded(resourceDto.GetAbsolutePath());

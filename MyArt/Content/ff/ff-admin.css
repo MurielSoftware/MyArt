@@ -33,7 +33,7 @@ header {
 }
 
 .header-logged-user a:hover {
-    background-color: #5cb85c;
+    background: #47778f;
 }
 
 .header-logged-user img {
@@ -76,7 +76,7 @@ header {
 }
 
 .profile-box {
-    border-bottom: 1px solid #96cd69;
+    border-bottom: 1px solid #416e85;
     padding: 7px 10px;
     position: relative;
 }
@@ -89,7 +89,11 @@ header {
 }
 
 .nav-vertical {
-    background: #70ca63 none repeat scroll 0 0;
+    background: #3A6073 none repeat scroll 0 0;
+    /*background: -webkit-linear-gradient(90deg, #16222A 10%, #3A6073 90%);
+    background: -moz-linear-gradient(90deg, #16222A 10%, #3A6073 90%);
+    background: -o-linear-gradient(90deg, #16222A 10%, #3A6073 90%);
+    background: linear-gradient(90deg, #16222A 10%, #3A6073 90%);*/
     color: #e5f2da;
     box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
     position: absolute;
@@ -100,11 +104,11 @@ header {
     .nav-vertical .nav > li .fa {
         margin-right: 10px;
     }
-    
+
     .nav-vertical .nav > li > a {
         padding: 7px 9px;
-        color: #e5f2da; 
-        border-bottom: 1px solid #96cd69;
+        color: #e5f2da;
+        border-bottom: 1px solid #416e85; /*#96cd69;*/
     }
 
         .nav-vertical .nav > li > a.nav-dropdown-toggle:after {
@@ -126,9 +130,9 @@ header {
     .nav-vertical .nav > li > a.nav-dropdown-toggle.open::after {
         transform: rotate(90deg);
     }
-        
+
     .nav-vertical .nav > li > ul > li {
-        background: #59b34c;
+        background: #2f5061;
     }
 
     .nav-vertical .nav > li > ul > li > a {
@@ -140,7 +144,8 @@ header {
     }
 
     .nav-vertical .nav > li > a:hover, .nav-vertical .nav > li > a:focus, .nav-vertical .nav > li a.active {
-        background: #60b54b;
+        /*background: #60b54b;*/
+        background: #47778f;
     }
 
 .dropdown-menu-right {
@@ -410,3 +415,26 @@ img.img-small {
 .input-validation-error {
     border-color: #b62c17;
 }
+
+.notification {
+    z-index: 5000;
+    position: absolute;
+    width: 100%;
+    display: none;
+}
+
+    .notification .alert {
+        border-radius: 0;
+        color: #eee;
+    }
+
+    .notification .alert-success {
+        background-color: #ace291;
+        color: #2b5118;
+        border: 1px solid #2b5118;
+    }
+
+    .notification .alert-danger {
+        background-color: #d19090;
+        color: #cc4343;
+    }
