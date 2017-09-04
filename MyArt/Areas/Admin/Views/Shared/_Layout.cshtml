@@ -2,6 +2,7 @@
 @using Shared.Core.Constants
 @using Shared.I18n.Constants
 @using Shared.I18n.Utils
+@using Shared.Core.Sessions
 
 <!DOCTYPE html>
 <html>
@@ -21,23 +22,11 @@
                 MyArt
             </div>
             <div class="header-right">
-                <div class="header-logged-user">
-                    <div class="btn-group">
-                        <a class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img /> <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li>@Html.LocalizedActionLink("<i class='fa fa-user-circle'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_PROFILE), WebConstants.VIEW_PROFILE, WebConstants.CONTROLLER_USER)</li>
-                            <li>@Html.LocalizedActionLink("<i class='fa fa-key'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_ROLES), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_ROLE, new { area = "Admin" })</li>
-                            <li role="separator" class="divider"></li>
-                            <li>@Html.LocalizedActionLink("<i class='fa fa-sign-out'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_LOGOUT), WebConstants.VIEW_LOGOUT, WebConstants.CONTROLLER_LOGIN)</li>
-                        </ul>
-                    </div>
-                </div>
+                @Html.Partial("_TopMenuProfileBox", SessionProvider.GetInstance().GetSession<UserSession>(UserSession.SESSION_NAME).UserAuthenticationDto)
             </div>
         </header>
         <aside class="nav-vertical">
-            <div class="profile-box">
+            @*<div class="profile-box">
                 <div class="media">
                     <div class="media-left media-middle">
                         <img class="media-object" />
@@ -47,7 +36,8 @@
                         Ahojky
                     </div>
                 </div>
-            </div>
+            </div>*@
+            @Html.Partial("_ProfileBox", SessionProvider.GetInstance().GetSession<UserSession>(UserSession.SESSION_NAME).UserAuthenticationDto)
             <nav>
                 <ul class="nav">
                     <li>

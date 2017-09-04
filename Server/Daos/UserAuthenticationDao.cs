@@ -8,6 +8,7 @@ using Shared.Dtos.Users;
 using Shared.Core.Dtos.Users;
 using Server.Model;
 using Shared.Core.Context.Expressions;
+using Shared.Core.Dtos.Resources;
 
 namespace Server.Daos
 {
@@ -26,9 +27,14 @@ namespace Server.Daos
                     Id = x.Id,
                     FirstName = x.FirstName,
                     Surname = x.Surname,
+                    RoleName = x.Role.Name,
                     Email = x.Email,
                     Password = x.Password,
-                    CoverPhotoPath = x.Galleries.Where(y => (y is ProfileGallery)).Select(y => y.CoverPhoto.Path).FirstOrDefault()
+                    PhotoResourceDto = x.Galleries.Where(y => (y is ProfileGallery)).Select(y => new PhotoResourceDto() {
+                        Id = y.CoverPhoto.Id,
+                        Name = y.CoverPhoto.Name,
+                        Path = y.CoverPhoto.Path
+                    }).FirstOrDefault()
                 })
                 .SingleOrDefault();
         }

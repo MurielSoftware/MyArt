@@ -46,10 +46,11 @@ namespace MyArt.Areas.Admin.Controllers
                 return Json(JsonDialogResult.CreateFail(HtmlConstants.DIALOG_VALIDATION_SUMMARY, ValidationSummaryExtensions.CustomValidationSummary(ex.Message).ToString()));
             }
         }
-
+        [HttpPost, ValidateInput(false)]
         public override ActionResult Create(PhotoResourceDto photoResourceDto)
         {
-            return null;
+            //IPhotoResourcableDto photoResourcableDto = GetTempDataManager().GetTempDataWithoutRemove<IPhotoResourcableDto>(TempDataConstants.DTO);//((IPhotoResourcableDto)GetFromTemp(TempDataConstants.DTO));
+            return Json(JsonDialogResult.CreateSuccess(null, null, Request.UrlReferrer.ToString()));
         }
 
         public override ActionResult DeleteConfirmed(DialogDto dialogDto)

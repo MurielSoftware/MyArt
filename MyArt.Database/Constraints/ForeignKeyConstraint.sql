@@ -1,6 +1,8 @@
 ﻿/* User */
 ALTER TABLE [dbo].[USER] ADD  CONSTRAINT [FK_User_UserDefinable] FOREIGN KEY([Id]) REFERENCES [dbo].[USER_DEFINABLE] ([Id])
 GO
+ALTER TABLE [dbo].[USER] ADD  CONSTRAINT [FK_USER_ROLE] FOREIGN KEY([RoleId]) REFERENCES [dbo].[ROLE] ([Id])
+GO
 
 /* Exhibition */
 ALTER TABLE [dbo].[EXHIBITION] ADD  CONSTRAINT [FK_Exhibition_UserDefinable] FOREIGN KEY([Id]) REFERENCES [dbo].[USER_DEFINABLE] ([Id])
@@ -13,8 +15,6 @@ ALTER TABLE [dbo].[PAINTING] ADD  CONSTRAINT [FK_Painting_Collection] FOREIGN KE
 GO
 
 /* Collection */
-ALTER TABLE [dbo].[COLLECTION] ADD  CONSTRAINT [FK_Collection_UserDefinable] FOREIGN KEY([Id]) REFERENCES [dbo].[USER_DEFINABLE] ([Id])
-GO
 
 /* UserDefinable */
 ALTER TABLE [dbo].[USER_DEFINABLE] ADD CONSTRAINT [FK_UserDefinable_User] FOREIGN KEY ([UserCreatorId]) REFERENCES [dbo].[USER] (Id)

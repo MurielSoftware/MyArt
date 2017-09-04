@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shared.Core.Dtos.Resources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,7 +12,8 @@ namespace Shared.Core.Dtos.Users
     {
         public string FirstName { get; set; }
         public string Surname { get; set; }
-        public string CoverPhotoPath { get; set; }
+        public PhotoResourceDto PhotoResourceDto { get; set; }
+        public string RoleName { get; set; }
 
         [Required]
         public string Email { get; set; }

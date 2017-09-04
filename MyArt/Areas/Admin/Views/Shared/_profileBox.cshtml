@@ -1,0 +1,13 @@
+﻿@model Shared.Core.Dtos.Users.UserAuthenticationDto
+
+<div class="profile-box">
+    <div class="media">
+        <div class="media-left media-middle">
+            <img class="media-object" src="@Model.PhotoResourceDto.GetRelativeFilePath()" />
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">@Model.ToString()</h4>
+            @Html.DisplayFor(model => model.RoleName)
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 ﻿using Shared.Core.Dtos;
+using Shared.Core.Dtos.Resources;
 using Shared.Dtos.Galleries;
 using System;
 using System.Collections.Generic;

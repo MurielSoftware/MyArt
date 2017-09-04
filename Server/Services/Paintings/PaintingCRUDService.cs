@@ -10,6 +10,8 @@ using Shared.Core.Context;
 using PagedList;
 using Shared.Core.Dtos;
 using Server.Daos;
+using Shared.Core.Exceptions;
+using Shared.I18n.Constants;
 
 namespace Server.Services.Paintings
 {
@@ -36,6 +38,15 @@ namespace Server.Services.Paintings
         public List<PaintingCheckedDto> ReadCheckedDto(Guid exhibitionId)
         {
             return _paintingDao.FindPaintingsForCheck(exhibitionId);
+        }
+
+        protected override void ValidationBeforePersist(PaintingDto paintingDto)
+        {
+            base.ValidationBeforePersist(paintingDto);
+            if (_genericDao.Exists<Painting>(x => x.Title == paintingDto.Title && x.Id != paintingDto.Id))
+            {
+                throw new ValidationException(MessageKeyConstants.VALIDATION_OBJECT_WITH_VALUE_ALREADY_EXISTS_MESSAGE, paintingDto.Title);
+            }
         }
     }
 }

@@ -438,3 +438,21 @@ img.img-small {
         background-color: #d19090;
         color: #cc4343;
     }
+
+/*.table-hover > tbody > tr:hover {
+    background: #47778f;
+    color: #e5f2da;
+}
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+    border-color: #47778f;
+}
+
+.table-hover > tbody > tr:hover a {
+    color: #fff;
+}
+
+.table > thead > tr > th {
+    border-color: #47778f;
+    color: #47778f;
+}*/

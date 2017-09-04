@@ -799,11 +799,38 @@ namespace Shared.I18n.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Objekt se používá.
+        /// </summary>
+        public static string validation_object_is_used_message {
+            get {
+                return ResourceManager.GetString("validation_object_is_used_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Objekt s hodnotou &apos;{0}&apos; už existuje.
+        /// </summary>
+        public static string validation_object_with_value_already_exists_message {
+            get {
+                return ResourceManager.GetString("validation_object_with_value_already_exists_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Původní heslo je chybné.
         /// </summary>
         public static string validation_old_password_wrong_message {
             get {
                 return ResourceManager.GetString("validation_old_password_wrong_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chyba při zpracování multi-vkládání dat.
+        /// </summary>
+        public static string validation_parse_bulk_input_message {
+            get {
+                return ResourceManager.GetString("validation_parse_bulk_input_message", resourceCulture);
             }
         }
         

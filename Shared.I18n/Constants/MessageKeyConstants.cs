@@ -114,6 +114,7 @@ namespace Shared.I18n.Constants
         public const string VALIDATION_PARSE_BULK_INPUT_MESSAGE = "validation_parse_bulk_input_message";
         public const string VALIDATION_OLD_PASSWORD_WRONG_MESSAGE = "validation_old_password_wrong_message";
         public const string VALIDATION_NEW_PASSWORDS_NOT_EQUAL_MESSAGE = "validation_new_passwords_not_equal_message";
+        public const string VALIDATION_OBJECT_WITH_VALUE_ALREADY_EXISTS_MESSAGE = "validation_object_with_value_already_exists_message";
 
         public const string DELETE_INFORMATION_MESSAGE = "delete_information_message";
         public const string OBJECT_SAVE_SUCCESS_MESSAGE = "object_save_success_message";

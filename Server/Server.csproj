@@ -77,6 +77,7 @@
     <Compile Include="Daos\BaseDao.cs" />
     <Compile Include="Daos\CollectionDao.cs" />
     <Compile Include="Daos\ExhibitionDao.cs" />
+    <Compile Include="Daos\GalleryDao.cs" />
     <Compile Include="Daos\GenericDao.cs" />
     <Compile Include="Daos\MenuItemDao.cs" />
     <Compile Include="Daos\OrderDao.cs" />

@@ -30,12 +30,20 @@ namespace Server.Services.Exhibitions
         {
             if (exhibitionDto.PaintingsCheckedDto != null)
             {
-                //Exhibition exhibition = _genericDao.Find<Exhibition>(exhibitionDto.Id);
-                //exhibition.Paintings.Clear();
                 List<PaintingCheckedDto> paintingCheckedDtos = exhibitionDto.PaintingsCheckedDto.Where(x => x.Checked == true).Select(x => x).ToList();
                 exhibitionDto.PaintingsReference = ReferenceString.Create<PaintingCheckedDto>(paintingCheckedDtos);
             }
             return base.Persist(exhibitionDto);
+        }
+
+        public IPagedList<ExhibitionDto> ReadAdministrationPaged(ExhibitionFilterDto exhibitionFilterDto)
+        {
+            return _exhibitionDao.FindPaged(exhibitionFilterDto);
+        }
+
+        public IList<ExhibitionDto> ReadAdministrationAll(ExhibitionFilterDto exhibitionFilterDto)
+        {
+            return _exhibitionDao.FindAll(exhibitionFilterDto);
         }
 
         protected override Exhibition CreateEntity(ExhibitionDto exhibitionDto)
@@ -60,16 +68,6 @@ namespace Server.Services.Exhibitions
             exhibitionDto.TimeStart = StringUtils.ParseTime(exhibitionDto.Start);
             exhibitionDto.TimeEnd = StringUtils.ParseTime(exhibitionDto.End);
             return exhibitionDto;
-        }
-
-        public IPagedList<ExhibitionDto> ReadAdministrationPaged(ExhibitionFilterDto exhibitionFilterDto)
-        {
-            return _exhibitionDao.FindPaged(exhibitionFilterDto);
-        }
-
-        public IList<ExhibitionDto> ReadAdministrationAll(ExhibitionFilterDto exhibitionFilterDto)
-        {
-            return _exhibitionDao.FindAll(exhibitionFilterDto);
         }
     }
 }

@@ -97,6 +97,7 @@
     <Compile Include="Dtos\PhotoCropDto.cs" />
     <Compile Include="Dtos\References\ReferencedDto.cs" />
     <Compile Include="Dtos\References\ReferenceString.cs" />
+    <Compile Include="Dtos\Resources\PhotoResourceDto.cs" />
     <Compile Include="Dtos\Resources\ResourceDto.cs" />
     <Compile Include="Dtos\Resources\ResourceFilterDto.cs" />
     <Compile Include="Dtos\Roles\RoleDto.cs" />

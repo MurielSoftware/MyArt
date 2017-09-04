@@ -36,7 +36,7 @@
                 $(this).load("/Admin/Photo/DeleteConfirmed", { id: $(this).data("id") }, function (result) {
                     var jsonResult = jQuery.parseJSON(result);
                     if (jsonResult.Success) {
-                        $(this).parents(".thumbnail").remove();
+                        $(this).parents(".thumbnail-container").remove();
                     }
                 });
             });

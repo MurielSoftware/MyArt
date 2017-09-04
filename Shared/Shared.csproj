@@ -50,6 +50,7 @@
     <Compile Include="Dtos\Exhibitions\ExhibitionFilterDto.cs" />
     <Compile Include="Dtos\Galleries\AlbumGalleryDto.cs" />
     <Compile Include="Dtos\Galleries\GalleryDto.cs" />
+    <Compile Include="Dtos\Galleries\GalleryFilterDto.cs" />
     <Compile Include="Dtos\Galleries\ProfileGalleryDto.cs" />
     <Compile Include="Dtos\Paintings\PaintingCheckedDto.cs" />
     <Compile Include="Dtos\Paintings\PaintingDto.cs" />
@@ -57,7 +58,6 @@
     <Compile Include="Dtos\Paintings\Surface.cs" />
     <Compile Include="Dtos\Paintings\Technique.cs" />
     <Compile Include="Dtos\Resources\IPhotoResourcableDto.cs" />
-    <Compile Include="Dtos\Resources\PhotoResourceDto.cs" />
     <Compile Include="Dtos\UserDefinableDto.cs" />
     <Compile Include="Dtos\Users\ChangePasswordDto.cs" />
     <Compile Include="Dtos\Users\UserDto.cs" />

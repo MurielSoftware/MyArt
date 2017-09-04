@@ -21,6 +21,7 @@ namespace Shared.Core.Constants
         public const string ATTRIBUTE_COLLECTION = "Collection";
         public const string ATTRIBUTE_PAINTINGS = "Paintings";
         public const string ATTRIBUTE_USERS_ID = "Users.Id";
+        public const string ATTRIBUTE_OWNER_ID = "OwnerId";
 
         public const string USER_DEFINABLE_ID = "UserDefinableId";
         //public const string ROLE_ID = "RoleId";

@@ -41,13 +41,19 @@
                 $(".wizard-step:not([data-wizard-step='" + options.init_step + "'])").hide();
                 $(form).data("wizard-current-step", options.init_step);
                 _setSubmitLabel(options.init_step);
-                //$(".wizard-step:not(:first)").hide();
 
                 initPlugins();
             });
         }
 
-        function _close() {
+        function _close(e) {
+            var closeButton = e.currentTarget;
+            var afterCloseAction = $(closeButton).data("action");
+            if (afterCloseAction) {
+                $.post(afterCloseAction, null, function (data) {
+                    _onFinish(null, data);
+                });
+            }
             $("#modal-dialogs").empty();
         }
 
@@ -68,7 +74,6 @@
         }
 
         function _submit(e) {
-            // var form = e.parent(".asynchronous-form"); //$(".asynchronous-form").get(0);
             var form = e.currentTarget;
             var formData = new FormData(form);
             formData.append("currentStep", $(form).data("wizard-current-step"));
@@ -134,10 +139,6 @@
         }
 
         function _refreshWizard(form, data) {
-            //if (data.TargetElementId !== null) {
-            //    $("#" + data.TargetElementId).html("<div id='loading'><i class='fa fa-circle-o-notch fa-spin'></i></div>");
-            //$.post(data.AfterAction, function (result) {
-            //   $("#" + data.TargetElementId).html(result);
             if (data.TargetElementId !== null) {
                 $("#" + data.TargetElementId).html("<div id='loading'><i class='fa fa-circle-o-notch fa-spin'></i></div>");
                 $.post(data.AfterAction, function (result) {
@@ -146,17 +147,10 @@
             }
             $("#modal-dialogs").find("#Id").val(data.Id);
             $("#modal-dialogs").find("#CreatedDate").val(data.CreatedDate);
-            //$("#modal-dialogs").find("#UserDefinableOwnerId").val(data.Id);
             $(".wizard-step:visible").hide();
             $(".wizard-step[data-wizard-step='" + data.NextStepIndex + "']").show();
             $(form).data("wizard-current-step", data.NextStepIndex);
-            _setSubmitLabel(data.NextStepIndex);
-        
-                    //initPluginsOnRemoteContent();
-                //});
-            //} else {
-            //    window.location.href = data.Action;
-            //}
+            _setSubmitLabel(data.NextStepIndex);       
         }
 
         function _setSubmitLabel(stepIndex) {
@@ -189,7 +183,5 @@
             $("#modal-dialogs").empty();
             $.richTextBoxSetImage(data.ThumbnailPath, data.Path);
         }
-
-
     };
 }(jQuery));

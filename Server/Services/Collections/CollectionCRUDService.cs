@@ -6,6 +6,8 @@ using PagedList;
 using Shared.Core.Dtos;
 using Server.Daos;
 using Shared.Core.Dtos.References;
+using Shared.Core.Exceptions;
+using Shared.I18n.Constants;
 
 namespace Server.Services.Collections
 {
@@ -27,6 +29,15 @@ namespace Server.Services.Collections
         public IPagedList<CollectionDto> ReadAdministrationPaged(BaseFilterDto baseFilterDto)
         {
             return _collectionDao.FindPaged(baseFilterDto);
+        }
+
+        protected override void ValidationBeforePersist(CollectionDto collectionDto)
+        {
+            base.ValidationBeforePersist(collectionDto);
+            if (_genericDao.Exists<Collection>(x => x.Name == collectionDto.Name && x.Id != collectionDto.Id))
+            {
+                throw new ValidationException(MessageKeyConstants.VALIDATION_OBJECT_WITH_VALUE_ALREADY_EXISTS_MESSAGE, collectionDto.Name);
+            }
         }
     }
 }

@@ -375,4 +375,13 @@
   <data name="label_sign_in" xml:space="preserve">
     <value>Přihlásit se</value>
   </data>
+  <data name="validation_object_is_used_message" xml:space="preserve">
+    <value>Objekt se používá</value>
+  </data>
+  <data name="validation_object_with_value_already_exists_message" xml:space="preserve">
+    <value>Objekt s hodnotou '{0}' už existuje</value>
+  </data>
+  <data name="validation_parse_bulk_input_message" xml:space="preserve">
+    <value>Chyba při zpracování multi-vkládání dat</value>
+  </data>
 </root>

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Shared.Dtos.Resources.PhotoResourceDto>
+﻿@model IEnumerable<Shared.Core.Dtos.Resources.PhotoResourceDto>
 
 @using Client.Core.HtmlHelpers
 @using Shared.Core.Constants
@@ -12,8 +12,8 @@
                 <button type="button" class="close btn-dialog-close">&times;</button>
                 <h4 class="modal-title">@Html.LocalizedDisplay(MessageKeyConstants.LABEL_UPLOAD_PHOTOS)</h4>
             </div>
-            @*@using (Html.BeginForm(WebConstants.VIEW_NEXT, WebConstants.CONTROLLER_PHOTO, FormMethod.Post, new { @class = "asynchronous-form", @data_wizard_current_step = "0" }))
-            {*@
+            @using (Html.BeginForm(WebConstants.VIEW_CREATE, WebConstants.CONTROLLER_PHOTO, FormMethod.Post, new { @class = "asynchronous-form" }))
+            {
                 <div class="modal-body">
                     <input type="file" id="file-selector" />
                     <br />
@@ -43,12 +43,12 @@
                             </div>
                         </div>
                         <div class="col-sm-5">
-                            <button type="button" class="btn btn-default btn-dialog-close"><i class="fa fa-close"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_CLOSE)</button>
-                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_SAVE)</button>
+                            <button type="button" class="btn btn-default btn-dialog-close" data-action="/Admin/Photo/Create"><i class="fa fa-close"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_CLOSE)</button>
                         </div>
                     </div>
                 </div>
-            @*}*@
+            }
         </div>
     </div>
 </div>
+

@@ -21,7 +21,7 @@ $(document).ready(function () {
         $(active).parents("ul .collapse").each(function (index, collapseUl) {
             $(collapseUl).addClass("in");
         });
-        localStorage.removeItem("lastTab");
+     //   localStorage.removeItem("lastTab");
     }
 
     initPlugins();

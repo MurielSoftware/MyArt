@@ -1,4 +1,5 @@
 ﻿using Client.Core.AfterSaves;
+using Client.Core.Constants;
 using Client.Core.Controllers;
 using Shared.Core.Constants;
 using Shared.Core.Dtos;
@@ -48,7 +49,9 @@ namespace MyArt.Areas.Admin.Controllers
 
         public ActionResult Profil(Guid id)
         {
-            return View(GetService().Read(id));
+            UserDto userDto = GetService().Read(id);
+            GetTempDataManager().SetTempData(TempDataConstants.DTO, userDto);
+            return View(userDto);
         }
 
         protected override ActionResult DoNext(UserDto userDto, int currentStep)

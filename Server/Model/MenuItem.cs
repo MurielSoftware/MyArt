@@ -23,7 +23,6 @@ namespace Server.Model
         public virtual MenuItemAssociationType AssociationType { get; set; }
         public virtual int Level { get; set; }
 
-        public virtual Guid? CategoryId { get; set; }
         public virtual Guid? ParentMenuItemId { get; set; }
         public virtual Guid? UserDefinableId { get; set; }
 

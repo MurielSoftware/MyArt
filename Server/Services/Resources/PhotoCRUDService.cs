@@ -12,14 +12,19 @@ using Shared.Core.Dtos;
 using System.Drawing;
 using Shared.Core.Dtos.Resources;
 using Shared.Services.Galleries;
+using Server.Daos;
+using Shared.Dtos.Galleries;
 
 namespace Server.Services.Resources
 {
     public class PhotoCRUDService : BaseResourceCRUDService<PhotoResourceDto, Resource>, IPhotoCRUDService
     {
+        private GalleryDao _galleryDao;
+
         public PhotoCRUDService(IUnitOfWork unitOfWork) 
             : base(unitOfWork)
         {
+            _galleryDao = new GalleryDao(unitOfWork);
         }
 
         public override BaseResourceUploadService<PhotoResourceDto> GetUploadResourceService()
@@ -29,15 +34,14 @@ namespace Server.Services.Resources
 
         public override PhotoResourceDto Persist(PhotoResourceDto photoResourceDto)
         {
-            Gallery gallery = null;
+            Gallery gallery = _galleryDao.Find(new GalleryFilterDto() { OwnerId = photoResourceDto.UserDefinableOwnerId });
             bool automaticCoverPhotoSet = false;
-            if(Guid.Empty.Equals(photoResourceDto.UserDefinableId))
+            if (gallery == null)
             {
-                gallery = CreateAndPersistEmptyProfileGallery();
-                gallery.OwnerId = photoResourceDto.UserDefinableOwnerId;
-                photoResourceDto.UserDefinableId = gallery.Id;
+                gallery = CreateAndPersistEmptyProfileGallery(photoResourceDto.UserDefinableOwnerId);
                 automaticCoverPhotoSet = true;
             }
+            photoResourceDto.UserDefinableId = gallery.Id;
             PhotoThumbnailInfo photoThumbnailInfo = PhotoThumbnailInfoProvider.GetDefault(photoResourceDto.OwnerType);
             photoResourceDto.Path = string.Format(photoThumbnailInfo.Path, photoResourceDto.UserDefinableOwnerId, photoResourceDto.UserDefinableId);
             photoResourceDto = base.Persist(photoResourceDto);
@@ -73,12 +77,13 @@ namespace Server.Services.Resources
             RemoveGalleryIfNecessarry(resource, gallery);
         }
 
-        private Gallery CreateAndPersistEmptyProfileGallery()
+        private Gallery CreateAndPersistEmptyProfileGallery(Guid userDefinableOwnerId)
         {
             Gallery gallery = new ProfileGallery()
             {
                 Name = Guid.NewGuid().ToString()
             };
+            gallery.OwnerId = userDefinableOwnerId;
             return _genericDao.Persist<Gallery>(gallery);
         }
 

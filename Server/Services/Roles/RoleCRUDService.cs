@@ -36,6 +36,15 @@ namespace Server.Services.Roles
             return _roleDao.FindPaged(baseFilterDto);
         }
 
+        protected override void ValidationBeforePersist(RoleDto roleDto)
+        {
+            base.ValidationBeforePersist(roleDto);
+            if(_genericDao.Exists<Role>(x => x.Name == roleDto.Name && x.Id != roleDto.Id))
+            {
+                throw new ValidationException(MessageKeyConstants.VALIDATION_OBJECT_WITH_VALUE_ALREADY_EXISTS_MESSAGE, roleDto.Name);
+            }
+        }
+
         protected override void ValidationBeforeDelete(Role role)
         {
             base.ValidationBeforeDelete(role);

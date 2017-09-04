@@ -10,6 +10,7 @@ using Shared.Core.Utils;
 using System.Drawing;
 using System.Drawing.Imaging;
 using Shared.Services.Galleries;
+using Shared.Core.Dtos.Resources;
 
 namespace Server.Services.Resources
 {
