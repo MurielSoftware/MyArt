@@ -114,6 +114,16 @@ namespace Client.Core.Controllers
             return RedirectToAction(afterSuccessSaveParam.Action, afterSuccessSaveParam.Controller, afterSuccessSaveParam.RouteValues);
         }
 
+        public virtual ActionResult DialogDeleteConfirmation(DeletionDto deletionDto)
+        {
+            return RedirectDialogDeleteConfirmation("_ConfirmationDialog", deletionDto);
+        }
+
+        protected ActionResult RedirectDialogDeleteConfirmation(string view, DeletionDto deletionDto)
+        {
+            return PartialView(view, deletionDto);
+        }
+
         /// <summary>
         /// Delets the object after the confirmation.
         /// </summary>
@@ -122,20 +132,20 @@ namespace Client.Core.Controllers
         /// <param name="controllerName">The name of the controller of the action to call after success deletion</param>
         /// <param name="message">The message ti display after deletion</param>
         /// <returns>The validation summary if the deletion is not possible or appropriate refreshed view</returns>
-        public virtual ActionResult DoDeleteConfirmed(AfterSuccessSaveParam afterSuccessSaveParam)
+        public virtual ActionResult DoDeleteConfirmed(AfterDeleteParam afterDeleteParam)
         {
             try
             {
                 GetUnitOfWork().StartTransaction();
-                GetService().Delete(afterSuccessSaveParam.Id);
+                GetService().Delete(afterDeleteParam.DeletionDto);
                 GetUnitOfWork().EndTransaction();
-                GetTempDataManager().SetTempData(TempDataConstants.MESSAGE, afterSuccessSaveParam.Message);
+                GetTempDataManager().SetTempData(TempDataConstants.MESSAGE, afterDeleteParam.Message);
             }
             catch(ValidationException ex)
             {
                 return RedirectToActionAfterFailDelete(AfterFailSaveParam.Create(ex.GetValidationResults()));
             }
-            return RedirectToActionAfterSuccessDelete(afterSuccessSaveParam);
+            return RedirectToActionAfterSuccessDelete(afterDeleteParam);
         }
 
         protected virtual ActionResult RedirectToActionAfterFailDelete(AfterFailSaveParam afterFailSaveParam)
@@ -143,9 +153,9 @@ namespace Client.Core.Controllers
             return Json(JsonDialogResult.CreateFail(HtmlConstants.DIALOG_VALIDATION_SUMMARY, ValidationSummaryExtensions.CustomValidationSummary(afterFailSaveParam.ValidationMessage).ToString()));
         }
 
-        protected virtual ActionResult RedirectToActionAfterSuccessDelete(AfterSuccessSaveParam afterSuccessSaveParam)
+        protected virtual ActionResult RedirectToActionAfterSuccessDelete(AfterDeleteParam afterDeleteParam)
         {
-            return Json(JsonDialogResult.CreateSuccess(afterSuccessSaveParam.TargetHtmlId, null, afterSuccessSaveParam.GetAction()));
+            return Json(JsonDialogResult.CreateSuccess(afterDeleteParam.TargetHtml, null, afterDeleteParam.GetAction()));
         }
 
         /// <summary>
@@ -170,6 +180,6 @@ namespace Client.Core.Controllers
         /// </summary>
         /// <param name="dialogDto">The DTO for dialog</param>
         /// <returns>Returns the appropriate view</returns>
-        public abstract ActionResult DeleteConfirmed(DialogDto dialogDto);
+       /// public abstract ActionResult DeleteConfirmed(DeletionDto deletionDto);
     }
 }

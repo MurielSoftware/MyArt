@@ -12,6 +12,7 @@ using Shared.Core.Dtos;
 using Server.Daos;
 using Shared.Core.Exceptions;
 using Shared.I18n.Constants;
+using Server.Services.Galleries;
 
 namespace Server.Services.Paintings
 {
@@ -47,6 +48,20 @@ namespace Server.Services.Paintings
             {
                 throw new ValidationException(MessageKeyConstants.VALIDATION_OBJECT_WITH_VALUE_ALREADY_EXISTS_MESSAGE, paintingDto.Title);
             }
+        }
+
+        protected override void DoDelete(DeletionDto deletionDto, Painting painting)
+        {
+            DeleteParts(_unitOfWork, painting.Id);
+            base.DoDelete(deletionDto, painting);
+        }
+
+        private static void DeleteParts(IUnitOfWork unitOfWork, Guid paintingId)
+        {
+            GalleryCRUDService galleryCRUDService = new GalleryCRUDService(unitOfWork);
+            GenericDao genericDao = new GenericDao(unitOfWork);
+
+            genericDao.FindIds<Gallery>(x => x.OwnerId == paintingId).ForEach(x => galleryCRUDService.Delete(new DeletionDto() { Id = x }));
         }
     }
 }

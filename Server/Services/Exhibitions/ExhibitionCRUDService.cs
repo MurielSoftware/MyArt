@@ -13,6 +13,7 @@ using Shared.Core.Dtos;
 using Shared.Dtos.Paintings;
 using Shared.Core.Dtos.References;
 using Shared.Core.Utils;
+using Server.Services.Galleries;
 
 namespace Server.Services.Exhibitions
 {
@@ -68,6 +69,20 @@ namespace Server.Services.Exhibitions
             exhibitionDto.TimeStart = StringUtils.ParseTime(exhibitionDto.Start);
             exhibitionDto.TimeEnd = StringUtils.ParseTime(exhibitionDto.End);
             return exhibitionDto;
+        }
+
+        protected override void DoDelete(DeletionDto deletionDto, Exhibition exhibition)
+        {
+            DeleteParts(_unitOfWork, exhibition.Id);
+            base.DoDelete(deletionDto, exhibition);
+        }
+
+        private static void DeleteParts(IUnitOfWork unitOfWork, Guid exhibitionId)
+        {
+            GalleryCRUDService galleryCRUDService = new GalleryCRUDService(unitOfWork);
+            GenericDao genericDao = new GenericDao(unitOfWork);
+
+            genericDao.FindIds<Gallery>(x => x.OwnerId == exhibitionId).ForEach(x => galleryCRUDService.Delete(new DeletionDto() { Id = x }));
         }
     }
 }

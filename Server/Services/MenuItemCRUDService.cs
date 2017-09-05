@@ -9,6 +9,7 @@ using Shared.Core.Constants;
 using Shared.Core.Exceptions;
 using Shared.I18n.Constants;
 using Shared.Core.Dtos.References;
+using Shared.Core.Dtos;
 
 namespace Server.Services
 {
@@ -89,10 +90,10 @@ namespace Server.Services
             base.ValidationBeforePersist(menuItemDto);
         }
 
-        protected override void DoDelete(MenuItem menuItem)
+        protected override void DoDelete(DeletionDto deletionDto, MenuItem menuItem)
         {
             List<MenuItem> menuItemsToRemoved = DeleteAllIncludeChildren(menuItem);
-            menuItemsToRemoved.ForEach(x => base.DoDelete(x));
+            menuItemsToRemoved.ForEach(x => base.DoDelete(deletionDto, x));
         }
 
         private List<MenuItem> DeleteAllIncludeChildren(MenuItem parentMenuItem)

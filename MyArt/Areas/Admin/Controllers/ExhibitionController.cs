@@ -36,9 +36,9 @@ namespace MyArt.Areas.Admin.Controllers
             return base.DoCreate(exhibitionDto, AfterSuccessSaveParam.Create(exhibitionDto, WebConstants.VIEW_DETAILS, WebConstants.CONTROLLER_EXHIBITION, new { id = exhibitionDto.Id}));
         }
 
-        public override ActionResult DeleteConfirmed(DialogDto dialogDto)
+        public ActionResult DeleteConfirmed(DeletionDto deletionDto)
         {
-            return DoDeleteConfirmed(AfterSuccessSaveParam.Create(dialogDto.Id, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_EXHIBITION, null, HtmlConstants.PAGED_LIST_EXHIBITION));
+            return DoDeleteConfirmed(AfterDeleteParam.Create(deletionDto, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_EXHIBITION, null, HtmlConstants.PAGED_LIST_EXHIBITION));
         }
 
         public ActionResult PagedList(ExhibitionFilterDto exhibitionFilterDto)
@@ -73,7 +73,7 @@ namespace MyArt.Areas.Admin.Controllers
                 case 1:
                     return Json(JsonWizardResult.CreateSuccess(afterSuccessSaveParam.Id, afterSuccessSaveParam.TargetHtmlId, GetNextStep(afterSuccessSaveParam.NextStep), afterSuccessSaveParam.GetAction()));
             }
-            return View(afterSuccessSaveParam.Model);
+            return View(afterSuccessSaveParam.Dto);
         }
 
         protected override ActionResult Finish(ExhibitionDto exhibitionDto, int currentStep)

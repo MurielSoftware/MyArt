@@ -32,7 +32,7 @@ namespace Shared.Core.Services
         /// Deletes the entity.
         /// </summary>
         /// <param name="id">The ID of the entity.</param>
-        void Delete(Guid id);
+        void Delete(DeletionDto deletionDto);
 
         /// <summary>
         /// Disposes the database.

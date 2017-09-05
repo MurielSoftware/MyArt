@@ -61,6 +61,15 @@ namespace Shared.I18n.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Skutečně chcete vymazat daný objekt?.
+        /// </summary>
+        public static string delete_information_message {
+            get {
+                return ResourceManager.GetString("delete_information_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Akryl.
         /// </summary>
         public static string label_acrylic {
@@ -264,6 +273,15 @@ namespace Shared.I18n.Resources {
         public static string label_date_finish {
             get {
                 return ResourceManager.GetString("label_date_finish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vymazat všechny obrazy v kolekci.
+        /// </summary>
+        public static string label_delete_all_paintings {
+            get {
+                return ResourceManager.GetString("label_delete_all_paintings", resourceCulture);
             }
         }
         
@@ -628,6 +646,15 @@ namespace Shared.I18n.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Všechny obrazy v kolekci zachovat.
+        /// </summary>
+        public static string label_set_paintings_to_default_collection {
+            get {
+                return ResourceManager.GetString("label_set_paintings_to_default_collection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Přihlásit se.
         /// </summary>
         public static string label_sign_in {
@@ -786,6 +813,42 @@ namespace Shared.I18n.Resources {
         public static string validation_email_message {
             get {
                 return ResourceManager.GetString("validation_email_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Soubor je ve špatném formátu. Očekáván je typ &apos;{0}&apos;.
+        /// </summary>
+        public static string validation_file_is_in_wrong_format_message {
+            get {
+                return ResourceManager.GetString("validation_file_is_in_wrong_format_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Soubor &apos;{0}&apos; je příliš velký. Maximální velikost může být &apos;{1}&apos; MB.
+        /// </summary>
+        public static string validation_file_is_oversized_message {
+            get {
+                return ResourceManager.GetString("validation_file_is_oversized_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rozměry obrázku jsou &apos;{0} x {1}&apos;. Minimálně však musí být &apos;{2} x {3}&apos;.
+        /// </summary>
+        public static string validation_image_minimum_size_message {
+            get {
+                return ResourceManager.GetString("validation_image_minimum_size_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Počet fotografií pro daný objekt nesmí přesáhnout limit &apos;{0}&apos;.
+        /// </summary>
+        public static string validation_maximum_resources_reached_message {
+            get {
+                return ResourceManager.GetString("validation_maximum_resources_reached_message", resourceCulture);
             }
         }
         

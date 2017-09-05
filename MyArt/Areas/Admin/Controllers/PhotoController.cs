@@ -53,13 +53,13 @@ namespace MyArt.Areas.Admin.Controllers
             return Json(JsonDialogResult.CreateSuccess(null, null, Request.UrlReferrer.ToString()));
         }
 
-        public override ActionResult DeleteConfirmed(DialogDto dialogDto)
+        public ActionResult DeleteConfirmed(DeletionDto deletionDto)
         {
             GetUnitOfWork().StartTransaction();
-            GetService().Delete(dialogDto.Id);
+            GetService().Delete(deletionDto);
             GetUnitOfWork().EndTransaction();
 
-            return Json(JsonDialogResult.CreateSuccess(dialogDto.Id, null));
+            return Json(JsonDialogResult.CreateSuccess(deletionDto.Id, null));
         }
 
         public ActionResult List(ResourceFilterDto resourceFilterDto)

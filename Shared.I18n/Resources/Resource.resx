@@ -384,4 +384,25 @@
   <data name="validation_parse_bulk_input_message" xml:space="preserve">
     <value>Chyba při zpracování multi-vkládání dat</value>
   </data>
+  <data name="label_delete_all_paintings" xml:space="preserve">
+    <value>Vymazat všechny obrazy v kolekci</value>
+  </data>
+  <data name="label_set_paintings_to_default_collection" xml:space="preserve">
+    <value>Všechny obrazy v kolekci zachovat</value>
+  </data>
+  <data name="delete_information_message" xml:space="preserve">
+    <value>Skutečně chcete vymazat daný objekt?</value>
+  </data>
+  <data name="validation_file_is_in_wrong_format_message" xml:space="preserve">
+    <value>Soubor je ve špatném formátu. Očekáván je typ '{0}'</value>
+  </data>
+  <data name="validation_file_is_oversized_message" xml:space="preserve">
+    <value>Soubor '{0}' je příliš velký. Maximální velikost může být '{1}' MB</value>
+  </data>
+  <data name="validation_maximum_resources_reached_message" xml:space="preserve">
+    <value>Počet fotografií pro daný objekt nesmí přesáhnout limit '{0}'</value>
+  </data>
+  <data name="validation_image_minimum_size_message" xml:space="preserve">
+    <value>Rozměry obrázku jsou '{0} x {1}'. Minimálně však musí být '{2} x {3}'</value>
+  </data>
 </root>

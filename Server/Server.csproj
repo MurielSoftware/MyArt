@@ -102,12 +102,14 @@
     <Compile Include="Services\Administration\AdministrationService.cs" />
     <Compile Include="Services\Collections\CollectionCRUDService.cs" />
     <Compile Include="Services\Exhibitions\ExhibitionCRUDService.cs" />
+    <Compile Include="Services\Galleries\GalleryCRUDService.cs" />
     <Compile Include="Services\GenericCRUDService.cs" />
     <Compile Include="Services\MenuItemCRUDService.cs" />
     <Compile Include="Services\Paintings\PaintingCRUDService.cs" />
     <Compile Include="Services\Resources\BaseResourceCRUDService.cs" />
     <Compile Include="Services\Resources\PhotoSupportService.cs" />
     <Compile Include="Services\Resources\PhotoUploadService.cs" />
+    <Compile Include="Services\Resources\PhotoValidationService.cs" />
     <Compile Include="Services\Resources\ResourceCRUDService.cs" />
     <Compile Include="Services\Resources\PhotoCRUDService.cs" />
     <Compile Include="Services\Roles\RoleCRUDService.cs" />

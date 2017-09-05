@@ -1,4 +1,4 @@
-﻿@model Shared.Core.Dtos.DialogDto
+﻿@model Shared.Dtos.Collections.CollectionDeletionDto
 
 @using Client.Core.HtmlHelpers
 @using Shared.Core.Constants
@@ -18,6 +18,18 @@
                     <div id="dialog-validation-summary"></div>
                     @Html.HiddenFor(model => model.Id)
                     @Html.LocalizedDisplay(Model.MessageResourceKey)
+                    <div class="radio">
+                        <label>
+                            @Html.RadioButtonFor(model => model.DeleteAllPaintings, !Model.DeleteAllPaintings)
+                            @Html.LocalizedDisplay(MessageKeyConstants.LABEL_DELETE_ALL_PAINTINGS)
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            @Html.RadioButtonFor(model => model.DeleteAllPaintings, Model.DeleteAllPaintings)
+                            @Html.LocalizedDisplay(MessageKeyConstants.LABEL_SET_PAINTINGS_TO_DEFAULT_COLLECTION)
+                        </label>   
+                    </div>                                     
                 </div>
                 <div class="modal-footer">
                     <div class="col-sm-6">

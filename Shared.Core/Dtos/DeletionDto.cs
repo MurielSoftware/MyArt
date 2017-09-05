@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Shared.Core.Dtos
 {
-    public class DialogDto : BaseDto
+    public class DeletionDto : DialogDto
     {
-        public string MessageResourceKey { get; set; }
-        public string AfterAction { get; set; }
+
     }
 }

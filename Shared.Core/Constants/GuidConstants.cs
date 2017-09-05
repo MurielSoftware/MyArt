@@ -8,7 +8,7 @@ namespace Shared.Core.Constants
 {
     public class GuidConstants
     {
-        public static Guid DOJO_BUJINKAN_ID = Guid.Parse("698cf350-8882-43c9-97e4-4da63b6262b9");
+        public static Guid DEFAULT_COLLECTION_ID = Guid.Parse("3dcfee56-9e51-4a1c-bd9b-44bf88fd480b");
         public static Guid ROLE_SUPER_ADMIN_ID = Guid.Parse("90cfe19d-7bdc-49d1-bf6c-a5358506d99e");
     }
 }

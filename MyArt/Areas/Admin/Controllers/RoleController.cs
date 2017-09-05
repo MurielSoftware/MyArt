@@ -20,9 +20,9 @@ namespace MyArt.Areas.Admin.Controllers
             return DoCreate(roleDto, AfterSuccessSaveParam.Create(roleDto.Id, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_ROLE, null, HtmlConstants.PAGED_LIST_ROLE));
         }
 
-        public override ActionResult DeleteConfirmed(DialogDto dialogDto)
+        public ActionResult DeleteConfirmed(DeletionDto deletionDto)
         {
-            return DoDeleteConfirmed(AfterSuccessSaveParam.Create(dialogDto.Id, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_ROLE, null, HtmlConstants.PAGED_LIST_ROLE));
+            return DoDeleteConfirmed(AfterDeleteParam.Create(deletionDto, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_ROLE, null, HtmlConstants.PAGED_LIST_ROLE));
         }
 
         public ActionResult PagedList(BaseFilterDto baseFilterDto)

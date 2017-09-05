@@ -20,9 +20,14 @@ namespace MyArt.Areas.Admin.Controllers
             return DoCreate(collectionDto, AfterSuccessSaveParam.Create(collectionDto.Id, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_COLLECTION, null, HtmlConstants.PAGED_LIST_COLLECTION));
         }
 
-        public override ActionResult DeleteConfirmed(DialogDto dialogDto)
+        public override ActionResult DialogDeleteConfirmation(DeletionDto deletionDto)
         {
-            return DoDeleteConfirmed(AfterSuccessSaveParam.Create(dialogDto.Id, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_COLLECTION, null, HtmlConstants.PAGED_LIST_COLLECTION));
+            return RedirectDialogDeleteConfirmation("DeleteConfirmationDialog", new CollectionDeletionDto() { Id = deletionDto.Id, MessageResourceKey = deletionDto.MessageResourceKey, AfterAction = deletionDto.AfterAction, DeleteAllPaintings = false, SetPaintingsToDefaultCollection = false });
+        }
+
+        public ActionResult DeleteConfirmed(CollectionDeletionDto collectionDeletionDto)
+        {
+            return DoDeleteConfirmed(AfterDeleteParam.Create(collectionDeletionDto, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_COLLECTION, null, HtmlConstants.PAGED_LIST_COLLECTION));
         }
 
         public ActionResult PagedList(BaseFilterDto baseFilterDto)

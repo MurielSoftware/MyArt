@@ -30,7 +30,7 @@ namespace Server.Daos
                 .ToPagedList(galleryFilterDto.Page, galleryFilterDto.PageSize);
         }
 
-        public Gallery Find(GalleryFilterDto galleryFilterDto)
+        public Gallery FindSingle(GalleryFilterDto galleryFilterDto)
         {
             return _modelContext.Set<Gallery>()
                 .Where(ExpressionBuilder.BuildWhere<Gallery>(galleryFilterDto))

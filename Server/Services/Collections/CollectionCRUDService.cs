@@ -8,6 +8,10 @@ using Server.Daos;
 using Shared.Core.Dtos.References;
 using Shared.Core.Exceptions;
 using Shared.I18n.Constants;
+using Server.Services.Paintings;
+using System;
+using System.Collections.Generic;
+using Shared.Core.Constants;
 
 namespace Server.Services.Collections
 {
@@ -38,6 +42,40 @@ namespace Server.Services.Collections
             {
                 throw new ValidationException(MessageKeyConstants.VALIDATION_OBJECT_WITH_VALUE_ALREADY_EXISTS_MESSAGE, collectionDto.Name);
             }
+        }
+
+        protected override void DoDelete(DeletionDto deletionDto, Collection collection)
+        {
+            CollectionDeletionDto collectionDeletionDto = (CollectionDeletionDto)deletionDto;
+            if (collectionDeletionDto.DeleteAllPaintings)
+            {
+                DeleteAllPaintingsForCollection(_unitOfWork, collection.Id);
+            }
+            else
+            {
+                SetDefaultCollectionToPaintingsInRemovedCollection(_unitOfWork, collection.Id);
+            }
+            base.DoDelete(deletionDto, collection);
+        }
+
+        private static void DeleteAllPaintingsForCollection(IUnitOfWork unitOfWork, Guid collectionId)
+        {
+            GenericDao genericDao = new GenericDao(unitOfWork);
+            PaintingCRUDService paintingCRUDService = new PaintingCRUDService(unitOfWork);
+
+            genericDao.FindIds<Painting>(x => x.CollectionId == collectionId).ForEach(x => paintingCRUDService.Delete(new DeletionDto() { Id = collectionId }));
+        }
+
+        private static void SetDefaultCollectionToPaintingsInRemovedCollection(IUnitOfWork unitOfWork, Guid collectionId)
+        {
+            GenericDao genericDao = new GenericDao(unitOfWork);
+            PaintingCRUDService paintingCRUDService = new PaintingCRUDService(unitOfWork);
+            IList<Painting> paintingsToUpdate = genericDao.Find<Painting>(x => x.CollectionId == collectionId);
+            foreach(Painting paintingToUpdate in paintingsToUpdate)
+            {
+                paintingToUpdate.CollectionId = GuidConstants.DEFAULT_COLLECTION_ID;
+            }
+            genericDao.Persist<Painting>(paintingsToUpdate);
         }
     }
 }

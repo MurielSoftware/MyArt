@@ -33,9 +33,9 @@ namespace Client.Core.Controllers
             return View();
         }
 
-        public ActionResult DialogConfirmation(Guid id, string message, string afterSuccessAction)
-        {
-            return PartialView("_ConfirmationDialog", new DialogDto() { Id = id, MessageResourceKey = message, Action = afterSuccessAction });
-        }
+        //public ActionResult DialogConfirmation(Guid id, string message, string afterSuccessAction)
+        //{
+        //    return PartialView("_ConfirmationDialog", new DialogDto() { Id = id, MessageResourceKey = message, Action = afterSuccessAction });
+        //}
     }
 }

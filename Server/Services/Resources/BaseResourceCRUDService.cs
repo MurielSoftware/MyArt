@@ -4,6 +4,7 @@ using Shared.Core.Context;
 using Shared.Core.Services;
 using Server.Daos;
 using Shared.Core.Dtos.Resources;
+using Shared.Core.Dtos;
 
 namespace Server.Services.Resources
 {
@@ -29,10 +30,10 @@ namespace Server.Services.Resources
             return persistedResourceDto;
         }
 
-        public override void Delete(Guid id)
+        public override void Delete(DeletionDto deletionDto)
         {
-            GetUploadResourceService().Delete(Read(id));
-            base.Delete(id);
+            GetUploadResourceService().Delete(Read(deletionDto.Id));
+            base.Delete(deletionDto);
         }
     }
 }

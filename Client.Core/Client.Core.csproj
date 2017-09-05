@@ -47,8 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AfterSaves\AfterDeleteParam.cs" />
     <Compile Include="AfterSaves\AfterFailSaveParam.cs" />
     <Compile Include="AfterSaves\AfterSuccessSaveParam.cs" />
+    <Compile Include="AfterSaves\BaseAfterParam.cs" />
     <Compile Include="Constants\TempDataConstants.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CRUDController.cs" />

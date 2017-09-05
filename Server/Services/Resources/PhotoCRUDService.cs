@@ -14,17 +14,20 @@ using Shared.Core.Dtos.Resources;
 using Shared.Services.Galleries;
 using Server.Daos;
 using Shared.Dtos.Galleries;
+using Shared.Core.Exceptions;
 
 namespace Server.Services.Resources
 {
     public class PhotoCRUDService : BaseResourceCRUDService<PhotoResourceDto, Resource>, IPhotoCRUDService
     {
         private GalleryDao _galleryDao;
+        private PhotoValidationService _photoValidationService;
 
         public PhotoCRUDService(IUnitOfWork unitOfWork) 
             : base(unitOfWork)
         {
             _galleryDao = new GalleryDao(unitOfWork);
+            _photoValidationService = new PhotoValidationService(unitOfWork);
         }
 
         public override BaseResourceUploadService<PhotoResourceDto> GetUploadResourceService()
@@ -34,7 +37,7 @@ namespace Server.Services.Resources
 
         public override PhotoResourceDto Persist(PhotoResourceDto photoResourceDto)
         {
-            Gallery gallery = _galleryDao.Find(new GalleryFilterDto() { OwnerId = photoResourceDto.UserDefinableOwnerId });
+            Gallery gallery = _galleryDao.FindSingle(new GalleryFilterDto() { OwnerId = photoResourceDto.UserDefinableOwnerId });
             bool automaticCoverPhotoSet = false;
             if (gallery == null)
             {
@@ -68,13 +71,24 @@ namespace Server.Services.Resources
             return _resourceDao.FindAll(resourceFilterDto);
         }
 
-        public override void Delete(Guid id)
+        public override void Delete(DeletionDto deletionDto)
         {
-            Resource resource = _genericDao.Find<Resource>(id);
+            Resource resource = _genericDao.Find<Resource>(deletionDto.Id);
             Gallery gallery = _genericDao.Find<Gallery>(resource.UserDefinableId);
             SetNewCoverPhotoIfNecessarry(resource, gallery);
-            base.Delete(id);
+            base.Delete(deletionDto);
             RemoveGalleryIfNecessarry(resource, gallery);
+        }
+
+        protected override void ValidationBeforePersist(PhotoResourceDto photoResourceDto)
+        {
+            base.ValidationBeforePersist(photoResourceDto);
+            IList<ValidationResult> validationResults = _photoValidationService.CollectBeforePersistValidationResults(photoResourceDto);
+
+            if(validationResults.Count > 0)
+            {
+                throw new ValidationException(validationResults);
+            }
         }
 
         private Gallery CreateAndPersistEmptyProfileGallery(Guid userDefinableOwnerId)

@@ -27,7 +27,7 @@ namespace Client.Core.Controllers
             return base.RedirectToActionAfterSuccessCreate(afterSuccessSaveParam);
         }
 
-        protected override ActionResult RedirectToActionAfterSuccessDelete(AfterSuccessSaveParam afterSuccessSaveParam)
+        protected override ActionResult RedirectToActionAfterSuccessDelete(AfterDeleteParam afterDeleteParam)
         {
             return null;
             //if (affectedId.HasValue)

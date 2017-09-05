@@ -87,6 +87,7 @@
     <Compile Include="Dtos\BulkCreators\RecordDelimiter.cs" />
     <Compile Include="Dtos\Bulks\RecordDelimiterType.cs" />
     <Compile Include="Dtos\Bulks\BulkPersistDto.cs" />
+    <Compile Include="Dtos\DeletionDto.cs" />
     <Compile Include="Dtos\DialogDto.cs" />
     <Compile Include="Dtos\IDto.cs" />
     <Compile Include="Dtos\References\ListReferenceDto.cs" />

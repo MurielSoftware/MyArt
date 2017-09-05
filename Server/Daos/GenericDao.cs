@@ -30,6 +30,16 @@ namespace Server.Daos
             return _modelContext.Set<T>().Where(x => x.Id == id).AsNoTracking().SingleOrDefault();
         }
 
+        internal virtual List<T> Find<T>(Expression<Func<T, bool>> where) where T : BaseEntity
+        {
+            return _modelContext.Set<T>().Where(where).Select(x => x).ToList();
+        }
+
+        internal virtual List<Guid> FindIds<T>(Expression<Func<T, bool>> where) where T : BaseEntity
+        {
+            return _modelContext.Set<T>().Where(where).Select(x => x.Id).ToList();
+        }
+
         /// <summary>
         /// Finds the entity and track it by its ID
         /// </summary>
@@ -64,7 +74,7 @@ namespace Server.Daos
         /// <returns>True if it exists, otherwise it returns false</returns>
         internal virtual bool Exists<T>(Expression<Func<T, bool>> where) where T : BaseEntity
         {
-            return _modelContext.Set<T>().Where(where).Count() > 0;
+            return _modelContext.Set<T>().Where(where).SingleOrDefault() != null;
         }
 
         /// <summary>
@@ -77,6 +87,11 @@ namespace Server.Daos
             return _modelContext.Set<T>().Count();
         }
 
+        internal virtual int Count<T>(Expression<Func<T, bool>> where) where T : BaseEntity
+        {
+            return _modelContext.Set<T>().Where(where).Count();
+        }
+
         /// <summary>
         /// Persists the entity.
         /// </summary>
@@ -84,6 +99,22 @@ namespace Server.Daos
         /// <param name="entity">The entity to persist</param>
         /// <returns>The persisted entity</returns>
         internal virtual T Persist<T>(T entity) where T : BaseEntity
+        {
+            entity = PersistWithoutFlush<T>(entity);
+            Flush();
+            return entity;
+        }
+
+        internal virtual void Persist<T>(IEnumerable<T> entities) where T : BaseEntity
+        {
+            foreach(T entity in entities)
+            {
+                PersistWithoutFlush<T>(entity);
+            }
+            Flush();
+        }
+
+        internal virtual T PersistWithoutFlush<T>(T entity) where T : BaseEntity
         {
             if (entity.Id == Guid.Empty)
             {
@@ -94,14 +125,13 @@ namespace Server.Daos
             }
             else
             {
-                if(entity.CreatedDate == DateTime.MinValue)
+                if (entity.CreatedDate == DateTime.MinValue)
                 {
                     entity.CreatedDate = DateTime.Now;
                 }
                 entity.UpdatedDate = DateTime.Now;
                 _modelContext.Entry(entity).State = EntityState.Modified;
             }
-            Flush();
             return entity;
         }
 

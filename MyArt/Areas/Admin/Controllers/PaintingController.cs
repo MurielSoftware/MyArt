@@ -19,9 +19,9 @@ namespace MyArt.Areas.Admin.Controllers
     [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
     public class PaintingController : WizardCRUDController<PaintingDto, IPaintingCRUDService>
     {
-        public override ActionResult DeleteConfirmed(DialogDto dialogDto)
+        public ActionResult DeleteConfirmed(DeletionDto deletionDto)
         {
-            return DoDeleteConfirmed(AfterSuccessSaveParam.Create(dialogDto.Id, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_PAINTING, null, HtmlConstants.PAGED_LIST_PAINTING));
+            return DoDeleteConfirmed(AfterDeleteParam.Create(deletionDto, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_PAINTING, null, HtmlConstants.PAGED_LIST_PAINTING));
         }
 
         [HttpPost, ValidateInput(false)]
@@ -61,7 +61,7 @@ namespace MyArt.Areas.Admin.Controllers
                 case 1:
                     return Json(JsonWizardResult.CreateSuccess(afterSuccessSaveParam.Id, afterSuccessSaveParam.TargetHtmlId, GetNextStep(afterSuccessSaveParam.NextStep), afterSuccessSaveParam.GetAction()));
             }
-            return View(afterSuccessSaveParam.Model);
+            return View(afterSuccessSaveParam.Dto);
         }
 
         protected override ActionResult Finish(PaintingDto paintingDto, int currentStep)

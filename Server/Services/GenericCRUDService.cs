@@ -26,11 +26,11 @@ namespace Server.Services
             _genericDao = new GenericDao(unitOfWork);
         }
 
-        public virtual void Delete(Guid id)
+        public virtual void Delete(DeletionDto deletionDto)
         {
-            U entityToDelete = _genericDao.FindTracking<U>(id);
+            U entityToDelete = _genericDao.FindTracking<U>(deletionDto.Id);
             ValidationBeforeDelete(entityToDelete);
-            DoDelete(entityToDelete);
+            DoDelete(deletionDto, entityToDelete);
         }
 
         public virtual T Persist(T dto)
@@ -64,7 +64,7 @@ namespace Server.Services
         /// Does the delete the entity from the database.
         /// </summary>
         /// <param name="entity">The entity to delete</param>
-        protected virtual void DoDelete(U entity)
+        protected virtual void DoDelete(DeletionDto deletionDto, U entity)
         {
             _genericDao.Delete<U>(entity);
         }

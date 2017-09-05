@@ -83,6 +83,8 @@ namespace Shared.I18n.Constants
         public const string LABEL_SIGN_IN = "label_sign_in";
         public const string LABEL_PREVIOUS = "label_previous";
         public const string LABEL_LOGOUT = "label_logout";
+        public const string LABEL_DELETE_ALL_PAINTINGS = "label_delete_all_paintings";
+        public const string LABEL_SET_PAINTINGS_TO_DEFAULT_COLLECTION = "label_set_paintings_to_default_collection";
 
         public const string LABEL_INPUT = "label_input";
         public const string LABEL_LINK = "label_link";
@@ -115,6 +117,10 @@ namespace Shared.I18n.Constants
         public const string VALIDATION_OLD_PASSWORD_WRONG_MESSAGE = "validation_old_password_wrong_message";
         public const string VALIDATION_NEW_PASSWORDS_NOT_EQUAL_MESSAGE = "validation_new_passwords_not_equal_message";
         public const string VALIDATION_OBJECT_WITH_VALUE_ALREADY_EXISTS_MESSAGE = "validation_object_with_value_already_exists_message";
+        public const string VALIDATION_FILE_IS_OVERSIZED_MESSAGE = "validation_file_is_oversized_message";
+        public const string VALIDATION_MAXIMUM_RESOURCES_REACHED_MESSAGE = "validation_maximum_resources_reached_message";
+        public const string VALIDATION_FILE_IS_IN_WRONG_FORMAT_MESSAGE = "validation_file_is_in_wrong_format_message";
+        public const string VALIDATION_IMAGE_MINIMUM_SIZE_MESSAGE = "validation_image_minimum_size_message";
 
         public const string DELETE_INFORMATION_MESSAGE = "delete_information_message";
         public const string OBJECT_SAVE_SUCCESS_MESSAGE = "object_save_success_message";

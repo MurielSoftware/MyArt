@@ -7,6 +7,9 @@ using PagedList;
 using Server.Daos;
 using Shared.Core.Utils;
 using Shared.Core.Dtos.References;
+using Shared.Core.Dtos;
+using Server.Services.Galleries;
+using System;
 
 namespace Server.Services.Users
 {
@@ -58,6 +61,20 @@ namespace Server.Services.Users
                 //user.Order = _userDao.FindMaxOrderValue() + 1;
             }
             return user;
+        }
+
+        protected override void DoDelete(DeletionDto deletionDto, User user)
+        {
+            DeleteParts(_unitOfWork, user.Id);
+            base.DoDelete(deletionDto, user);
+        }
+
+        private static void DeleteParts(IUnitOfWork unitOfWork, Guid userId)
+        {
+            GalleryCRUDService galleryCRUDService = new GalleryCRUDService(unitOfWork);
+            GenericDao genericDao = new GenericDao(unitOfWork);
+
+            genericDao.FindIds<Gallery>(x => x.OwnerId == userId).ForEach(x => galleryCRUDService.Delete(new DeletionDto() { Id = x }));
         }
     }
 }

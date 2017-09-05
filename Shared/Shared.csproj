@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dtos\Administration\AdministrationDto.cs" />
+    <Compile Include="Dtos\Collections\CollectionDeletionDto.cs" />
     <Compile Include="Dtos\Collections\CollectionDto.cs" />
     <Compile Include="Dtos\Exhibitions\ExhibitionDto.cs" />
     <Compile Include="Dtos\Exhibitions\ExhibitionFilterDto.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Services\Administration\IAdministrationService.cs" />
     <Compile Include="Services\Collections\ICollectionCRUDService.cs" />
     <Compile Include="Services\Exhibitions\IExhibitionCRUDService.cs" />
+    <Compile Include="Services\Galleries\IGalleryCRUDService.cs" />
     <Compile Include="Services\Paintings\IPaintingCRUDService.cs" />
     <Compile Include="Services\Resources\IPhotoCRUDService.cs" />
     <Compile Include="Services\Galleries\PhotoThumbnailInfo.cs" />

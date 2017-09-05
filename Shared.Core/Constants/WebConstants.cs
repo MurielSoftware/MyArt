@@ -39,6 +39,7 @@ namespace Shared.Core.Constants
         public const string DIALOG_FILE_REFERENCE = "DialogFileReference";
         public const string DIALOG_UPDATE = "DialogUpdate";
         public const string DIALOG_MENU_ITEM = "DialogMenuItem";
+        public const string DIALOG_DELETE_CONFIRMATION = "DialogDeleteConfirmation";
 
         public const string CONTROLLER_GALLERY = "Gallery";
         public const string CONTROLLER_HOME = "Home";
