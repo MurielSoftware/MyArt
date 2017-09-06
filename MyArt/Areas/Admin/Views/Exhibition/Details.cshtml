@@ -31,7 +31,7 @@
                                 <div class="admin-button-box">
                                     @Html.DialogActionLink("<i class='fa fa-image'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_CHANGE_PAINTINGS), HtmlConstants.DIALOG_EXHIBITION, WebConstants.VIEW_CREATE_PREDEFINED, WebConstants.CONTROLLER_EXHIBITION, new { id = Model.Id }, new { @class = "btn btn-sm btn-primary", data_init_step="2" })
                                     @Html.DialogActionLink("<i class='fa fa-upload'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_UPLOAD_PHOTOS), HtmlConstants.DIALOG_USER, WebConstants.VIEW_CREATE, WebConstants.CONTROLLER_USER, null, new { @class = "btn btn-sm btn-info" })
-                                    @Html.DialogActionLink("<i class='fa fa-book'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_GENERATE_GUIDE), HtmlConstants.DIALOG_USER, WebConstants.VIEW_CREATE, WebConstants.CONTROLLER_USER, null, new { @class = "btn btn-sm btn-warning" })
+                                    @Html.DialogActionLink("<i class='fa fa-book'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_GENERATE_GUIDE), HtmlConstants.DIALOG_USER, WebConstants.VIEW_CREATE, WebConstants.CONTROLLER_EXHIBITION_GENERATE, new { exhibitionId = Model.Id }, new { @class = "btn btn-sm btn-warning" })
                                 </div>
                             </div>
                         </div>
@@ -41,8 +41,9 @@
                             if (!Guid.Empty.Equals(Model.Id))
                             {
                                 @Html.HiddenFor(model => model.Id)
-                                @Html.HiddenFor(model => model.PaintingsReference)
+                                @Html.HiddenFor(model => model.PaintingsReference.Value)
                                 @Html.HiddenFor(model => model.CreatedDate)
+                                @Html.HiddenFor(model => model.UserCreatorId)
                             }
                             <div class="form-horizontal">
                                 <div class="form-group">

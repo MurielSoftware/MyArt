@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shared.Core.Utils;
+using System;
 
 namespace Shared.Core.Dtos.Resources
 {
@@ -24,6 +25,11 @@ namespace Shared.Core.Dtos.Resources
         public PhotoResourceDto()
         {
             Path = "/Content/images/nophoto.png";
+        }
+
+        public static string GetAbsoluteThumbnailFilePath(string relativePath, string name)
+        {
+            return IOUtils.GetUploadRoot() + relativePath + "t_" + name;
         }
     }
 }

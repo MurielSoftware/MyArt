@@ -27,17 +27,18 @@ namespace Client.Core.AfterSaves
             NextStep = nextStep;
         }
 
-        private AfterSuccessSaveParam(BaseDto dto, string action, string controller, object routeValues, string targetHtmlId)
+        private AfterSuccessSaveParam(BaseDto dto, Message message, string action, string controller, object routeValues, string targetHtmlId)
             : base(action, controller, routeValues)
         {
             Dto = dto;
+            Message = message;
             TargetHtmlId = targetHtmlId;
             NextStep = -1;
         }
 
-        public static AfterSuccessSaveParam Create(BaseDto dto, string action, string controller = null, object routeValues = null, string targetHtmlId = null)
+        public static AfterSuccessSaveParam Create(BaseDto dto, Message message, string action, string controller = null, object routeValues = null, string targetHtmlId = null)
         {
-            return new AfterSuccessSaveParam(dto, action, controller, routeValues, targetHtmlId);
+            return new AfterSuccessSaveParam(dto, message, action, controller, routeValues, targetHtmlId);
         }
 
         public static AfterSuccessSaveParam Create(Guid id, Message message, string action, string controller = null, object routeValues = null, string targetHtmlId = null, int nextStep = -1)

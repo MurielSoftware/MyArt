@@ -10,19 +10,21 @@ using Shared.Core.Exceptions;
 using Shared.I18n.Constants;
 using Shared.Core.Dtos.References;
 using Shared.Core.Dtos;
+using Shared.Dtos.Exhibitions;
+using Shared.Dtos.Paintings;
 
 namespace Server.Services
 {
-    public class MenuItemCRUDService : GenericCRUDService<MenuItemDto, MenuItem>, IMenuItemCRUDService
+    public class MenuCRUDService : GenericCRUDService<MenuItemDto, MenuItem>, IMenuCRUDService
     {
-        private MenuItemDao _menuItemDao;
+        private MenuDao _menuDao;
         private OrderDao _orderDao;
         private UserDao _userDao;
 
-        public MenuItemCRUDService(IUnitOfWork unitOfWork) 
+        public MenuCRUDService(IUnitOfWork unitOfWork) 
             : base(unitOfWork)
         {
-            _menuItemDao = new MenuItemDao(unitOfWork);
+            _menuDao = new MenuDao(unitOfWork);
             _orderDao = new OrderDao(unitOfWork);
             _userDao = new UserDao(unitOfWork);
         }
@@ -33,18 +35,22 @@ namespace Server.Services
             {
                 case MenuItemEntityType.USER:
                     return _userDao.FindByPrefix(prefix, x => new ReferenceDto() { Id = x.Id, Label = x.FirstName + " " + x.Surname });
+                case MenuItemEntityType.EXHIBITION:
+                    return _genericDao.FindByPrefix<Exhibition>(new ExhibitionFilterDto() { Name = prefix }, x => new ReferenceDto() { Id = x.Id, Label = x.Name });
+                case MenuItemEntityType.PAINTING:
+                    return _genericDao.FindByPrefix<Painting>(new PaintingFilterDto() { Title = prefix }, x => new ReferenceDto() { Id = x.Id, Label = x.Title });
             }
             return null;
         }
 
         public List<MenuItemDto> GetMenuItems(Guid? parentMenuItemId)
         {
-            List<MenuItemDto> menuItemDtos = _menuItemDao.GetMenuItems(parentMenuItemId);
+            List<MenuItemDto> menuItemDtos = _menuDao.GetMenuItems(parentMenuItemId);
             foreach (MenuItemDto menuItemDto in menuItemDtos)
             {
                 if (MenuItemAssociationType.SECTION_MENU.Equals(menuItemDto.AssociationType))
                 {
-                    menuItemDto.SectionSubmenu = _menuItemDao.GetMenuItems(menuItemDto.Id);
+                    menuItemDto.SectionSubmenu = _menuDao.GetMenuItems(menuItemDto.Id);
                 }
             }
             return menuItemDtos;
@@ -52,7 +58,7 @@ namespace Server.Services
 
         public Guid? GetParentId(Guid id)
         {
-            return _menuItemDao.FindParentId(id);
+            return _menuDao.FindParentId(id);
         }
 
         public void TreeNodeChangePosition(Guid sourceId, Guid targetId)
@@ -60,35 +66,36 @@ namespace Server.Services
             _orderDao.ChangeOrder<MenuItem>(sourceId, targetId);
         }
 
-        protected override void ValidationBeforePersist(MenuItemDto menuItemDto)
-        {
-            if (menuItemDto.ParentMenuItemId.HasValue)
-            {
-                MenuItem parentMenuItem = _genericDao.FindTracking<MenuItem>(menuItemDto.ParentMenuItemId.Value);
-                if (MenuItemAssociationType.SECTION_MENU.Equals(menuItemDto.AssociationType) && parentMenuItem.Level != 0)
-                {
-                    throw new ValidationException(MessageKeyConstants.VALIDATION_SECTION_CAN_BE_PLACED_ONLY_UNDER_THE_MAIN_MENU_MESSAGE);
-                }
-                if (!MenuItemAssociationType.SECTION_MENU.Equals(menuItemDto.AssociationType) && parentMenuItem.Level == 0)
-                {
-                    throw new ValidationException(MessageKeyConstants.VALIDATION_UNDER_THE_MAIN_MENU_THE_SECTION_MUST_BE_PLACED_MESSAGE);
-                }
-            }
-            else
-            {
-                if (MenuItemAssociationType.SECTION_MENU.Equals(menuItemDto.AssociationType))
-                {
-                    throw new ValidationException(MessageKeyConstants.VALIDATION_SECTION_CAN_BE_PLACED_ONLY_UNDER_THE_MAIN_MENU_MESSAGE);
-                }
-            }
-            List<MenuItemDto> sectionMenuItemsDto = _menuItemDao.GetMenuItems(MenuItemAssociationType.SECTION_MENU, menuItemDto.ParentMenuItemId);
-            if (sectionMenuItemsDto.Count == 4)
-            {
-                throw new ValidationException(MessageKeyConstants.VALIDATION_ONLY_FOUR_SECTIONS_CAN_BE_UNDER_MAIN_MENU_MESSAGE);
-            }
+        //protected override void ValidationBeforePersist(MenuItemDto menuItemDto)
+        //{
+        //    //if (menuItemDto.ParentMenuItemId.HasValue)
+        //    //{
+        //    //    MenuItem parentMenuItem = _genericDao.FindTracking<MenuItem>(menuItemDto.ParentMenuItemId.Value);
+        //    //    if (MenuItemAssociationType.SECTION_MENU.Equals(menuItemDto.AssociationType) && parentMenuItem.Level != 0)
+        //    //    {
+        //    //        throw new ValidationException(MessageKeyConstants.VALIDATION_SECTION_CAN_BE_PLACED_ONLY_UNDER_THE_MAIN_MENU_MESSAGE);
+        //    //    }
+        //    //    if (!MenuItemAssociationType.SECTION_MENU.Equals(menuItemDto.AssociationType) && parentMenuItem.Level == 0)
+        //    //    {
+        //    //        throw new ValidationException(MessageKeyConstants.VALIDATION_UNDER_THE_MAIN_MENU_THE_SECTION_MUST_BE_PLACED_MESSAGE);
+        //    //    }
+        //    //}
+        //    //else
+        //    //if()
+        //    //{
+        //    //    if (MenuItemAssociationType.SECTION_MENU.Equals(menuItemDto.AssociationType))
+        //    //    {
+        //    //        throw new ValidationException(MessageKeyConstants.VALIDATION_SECTION_CAN_BE_PLACED_ONLY_UNDER_THE_MAIN_MENU_MESSAGE);
+        //    //    }
+        //    //}
+        //    List<MenuItemDto> sectionMenuItemsDto = _menuDao.GetMenuItems(MenuItemAssociationType.SECTION_MENU, menuItemDto.ParentMenuItemId);
+        //    if (sectionMenuItemsDto.Count == 4)
+        //    {
+        //        throw new ValidationException(MessageKeyConstants.VALIDATION_ONLY_FOUR_SECTIONS_CAN_BE_UNDER_MAIN_MENU_MESSAGE);
+        //    }
 
-            base.ValidationBeforePersist(menuItemDto);
-        }
+        //    base.ValidationBeforePersist(menuItemDto);
+        //}
 
         protected override void DoDelete(DeletionDto deletionDto, MenuItem menuItem)
         {
@@ -114,7 +121,7 @@ namespace Server.Services
         {
             if (!EntityExists(menuItemDto))
             {
-                menuItemDto.Order = _menuItemDao.FindMaxOrderValue(menuItemDto.ParentMenuItemId) + 1;
+                menuItemDto.Order = _menuDao.FindMaxOrderValue(menuItemDto.ParentMenuItemId) + 1;
                 if (menuItemDto.ParentMenuItemId.HasValue)
                 {
                     menuItemDto.Level = _genericDao.FindTracking<MenuItem>(menuItemDto.ParentMenuItemId.Value).Level + 1;

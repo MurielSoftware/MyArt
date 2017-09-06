@@ -34,13 +34,15 @@
                                 </div>
                             </div>
                         </div>
-                        @using (Html.BeginForm())
+                        @using (Html.BeginForm(WebConstants.VIEW_DETAILS, WebConstants.CONTROLLER_USER))
                         {
                             if (!Guid.Empty.Equals(Model.Id))
                             {
                                 @Html.HiddenFor(model => model.Id)
                                 @Html.HiddenFor(model => model.CreatedDate)
                                 @Html.HiddenFor(model => model.Password)
+                                @Html.HiddenFor(model => model.UserCreatorId)
+                                @Html.HiddenFor(model => model.RoleId)
                             }
                             <div class="form-horizontal">
                                 @*<div id="validation-summary"></div>*@

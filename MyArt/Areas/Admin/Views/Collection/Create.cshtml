@@ -17,6 +17,7 @@
                 <div class="modal-body">
                     @Html.HiddenFor(model => model.Id)
                     @Html.HiddenFor(model => model.CreatedDate)
+                    @Html.HiddenFor(model => model.UserCreatorId)
                     @Html.AntiForgeryToken()
                     <div class="form-horizontal">
                         <div id="dialog-validation-summary"></div>

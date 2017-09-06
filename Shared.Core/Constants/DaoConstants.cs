@@ -9,7 +9,9 @@ namespace Shared.Core.Constants
     public class DaoConstants
     {
         public const string ENTITY_USER = "User";
-
+        public const string ENTITY_PAINTING = "Painting";
+        public const string ENTITY_EXHIBITION = "Exhibition";
+        
         public const string ATTRIBUTE_EMAIL = "Email";
         public const string ATTRIBUTE_FIRSTNAME = "FirstName";
         public const string ATTRIBUTE_NAME = "Name";
@@ -22,6 +24,7 @@ namespace Shared.Core.Constants
         public const string ATTRIBUTE_PAINTINGS = "Paintings";
         public const string ATTRIBUTE_USERS_ID = "Users.Id";
         public const string ATTRIBUTE_OWNER_ID = "OwnerId";
+        public const string ATTRIBUTE_TITLE = "Title";
 
         public const string USER_DEFINABLE_ID = "UserDefinableId";
         //public const string ROLE_ID = "RoleId";

@@ -22,7 +22,7 @@ namespace Shared.Core.Dtos.MenuItems
 
         public virtual int Order { get; set; }
 
-        [Display(Name = MessageKeyConstants.LABEL_LINK, ResourceType = typeof(Resource))]
+        [Display(Name = MessageKeyConstants.LABEL_ENTITY_TYPE, ResourceType = typeof(Resource))]
         public virtual MenuItemEntityType EntityType { get; set; }
 
         [Display(Name = MessageKeyConstants.LABEL_ASSOCIATION_TYPE, ResourceType = typeof(Resource))]

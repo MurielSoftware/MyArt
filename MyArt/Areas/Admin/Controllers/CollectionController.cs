@@ -2,7 +2,9 @@
 using Client.Core.Controllers;
 using Shared.Core.Constants;
 using Shared.Core.Dtos;
+using Shared.Core.Messages;
 using Shared.Dtos.Collections;
+using Shared.I18n.Constants;
 using Shared.Services.Collections;
 using System;
 using System.Collections.Generic;
@@ -17,7 +19,7 @@ namespace MyArt.Areas.Admin.Controllers
         [HttpPost, ValidateInput(false)]
         public override ActionResult Create(CollectionDto collectionDto)
         {
-            return DoCreate(collectionDto, AfterSuccessSaveParam.Create(collectionDto.Id, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_COLLECTION, null, HtmlConstants.PAGED_LIST_COLLECTION));
+            return DoCreate(collectionDto, AfterSuccessSaveParam.Create(collectionDto.Id, Message.CreateSuccessMessage(MessageKeyConstants.INFO_OBJECT_SAVE_SUCCESS_MESSAGE), WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_COLLECTION, null, HtmlConstants.PAGED_LIST_COLLECTION));
         }
 
         public override ActionResult DialogDeleteConfirmation(DeletionDto deletionDto)
@@ -27,7 +29,7 @@ namespace MyArt.Areas.Admin.Controllers
 
         public ActionResult DeleteConfirmed(CollectionDeletionDto collectionDeletionDto)
         {
-            return DoDeleteConfirmed(AfterDeleteParam.Create(collectionDeletionDto, null, WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_COLLECTION, null, HtmlConstants.PAGED_LIST_COLLECTION));
+            return DoDeleteConfirmed(AfterDeleteParam.Create(collectionDeletionDto, Message.CreateSuccessMessage(MessageKeyConstants.INFO_OBJECT_DELETED_SUCCESS_MESSAGE), WebConstants.VIEW_PAGED_LIST, WebConstants.CONTROLLER_COLLECTION, null, HtmlConstants.PAGED_LIST_COLLECTION));
         }
 
         public ActionResult PagedList(BaseFilterDto baseFilterDto)

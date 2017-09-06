@@ -31,6 +31,7 @@ namespace Shared.Core.Constants
         public const string VIEW_UPLOAD_DIALOG = "UploadDialog";
         public const string VIEW_LOGIN = "Login";
         public const string VIEW_LOGOUT = "Logout";
+        public const string VIEW_GENERATE = "Generate";
 
         public const string DIALOG_CHANGE_PASSWORD = "DialogChangePassword";
         public const string DIALOG_CONFIRMATION = "DialogConfirmation";
@@ -43,7 +44,6 @@ namespace Shared.Core.Constants
 
         public const string CONTROLLER_GALLERY = "Gallery";
         public const string CONTROLLER_HOME = "Home";
-        public const string CONTROLLER_MENU_ITEM = "MenuItem";
         public const string CONTROLLER_PHOTO = "Photo";
         public const string CONTROLLER_ROLE = "Role";
         public const string CONTROLLER_USER = "User";
@@ -51,6 +51,8 @@ namespace Shared.Core.Constants
         public const string CONTROLLER_EXHIBITION = "Exhibition";
         public const string CONTROLLER_COLLECTION = "Collection";
         public const string CONTROLLER_LOGIN = "Login";
+        public const string CONTROLLER_MENU = "Menu";
+        public const string CONTROLLER_EXHIBITION_GENERATE = "ExhibitionGenerate";
 
     }
 }

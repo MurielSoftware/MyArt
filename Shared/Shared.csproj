@@ -53,6 +53,8 @@
     <Compile Include="Dtos\Galleries\GalleryDto.cs" />
     <Compile Include="Dtos\Galleries\GalleryFilterDto.cs" />
     <Compile Include="Dtos\Galleries\ProfileGalleryDto.cs" />
+    <Compile Include="Dtos\Generators\ExhibitionGenerateDto.cs" />
+    <Compile Include="Dtos\Generators\GenerateFormat.cs" />
     <Compile Include="Dtos\Paintings\PaintingCheckedDto.cs" />
     <Compile Include="Dtos\Paintings\PaintingDto.cs" />
     <Compile Include="Dtos\Paintings\PaintingFilterDto.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="Services\Collections\ICollectionCRUDService.cs" />
     <Compile Include="Services\Exhibitions\IExhibitionCRUDService.cs" />
     <Compile Include="Services\Galleries\IGalleryCRUDService.cs" />
+    <Compile Include="Services\Generators\IExhibitionGuideGenerateService.cs" />
     <Compile Include="Services\Paintings\IPaintingCRUDService.cs" />
     <Compile Include="Services\Resources\IPhotoCRUDService.cs" />
     <Compile Include="Services\Galleries\PhotoThumbnailInfo.cs" />

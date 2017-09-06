@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Shared.Core.Services
 {
-    public interface IMenuItemCRUDService : ITreeCRUDService<MenuItemDto>
+    public interface IMenuCRUDService : ITreeCRUDService<MenuItemDto>
     {
         /// <summary>
         /// Gets menu items to the parent item. If parent ID is null, then the root items are returned.

@@ -19,7 +19,7 @@ namespace Shared.I18n.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resource {
@@ -70,11 +70,74 @@ namespace Shared.I18n.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Změna hesla proběhla úspěšně.
+        /// </summary>
+        public static string info_change_password_successful_message {
+            get {
+                return ResourceManager.GetString("info_change_password_successful_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Přihlášení bylo neúspěšné. Zkontrolujte přihlašovací údaje a zkuste to prosím znovu.
+        /// </summary>
+        public static string info_login_failure_message {
+            get {
+                return ResourceManager.GetString("info_login_failure_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Přihlášení proběhlo úspěšně.
+        /// </summary>
+        public static string info_login_successful_message {
+            get {
+                return ResourceManager.GetString("info_login_successful_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Odhlášení proběhlo úspěšně.
+        /// </summary>
+        public static string info_logout_successful_message {
+            get {
+                return ResourceManager.GetString("info_logout_successful_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Objekt byl úspěšně vymazán.
+        /// </summary>
+        public static string info_object_deleted_success_message {
+            get {
+                return ResourceManager.GetString("info_object_deleted_success_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Objekt byl úspěšně uložen.
+        /// </summary>
+        public static string info_object_save_success_message {
+            get {
+                return ResourceManager.GetString("info_object_save_success_message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Akryl.
         /// </summary>
         public static string label_acrylic {
             get {
                 return ResourceManager.GetString("label_acrylic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Přidat.
+        /// </summary>
+        public static string label_add {
+            get {
+                return ResourceManager.GetString("label_add", resourceCulture);
             }
         }
         
@@ -151,11 +214,29 @@ namespace Shared.I18n.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Asociace.
+        /// </summary>
+        public static string label_association_type {
+            get {
+                return ResourceManager.GetString("label_association_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Autor.
         /// </summary>
         public static string label_author {
             get {
                 return ResourceManager.GetString("label_author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Built-in.
+        /// </summary>
+        public static string label_builtin {
+            get {
+                return ResourceManager.GetString("label_builtin", resourceCulture);
             }
         }
         
@@ -340,6 +421,15 @@ namespace Shared.I18n.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Typ objektu.
+        /// </summary>
+        public static string label_entity_type {
+            get {
+                return ResourceManager.GetString("label_entity_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Výstavy.
         /// </summary>
         public static string label_exhibitions {
@@ -372,6 +462,15 @@ namespace Shared.I18n.Resources {
         public static string label_forgot_password {
             get {
                 return ResourceManager.GetString("label_forgot_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generovat.
+        /// </summary>
+        public static string label_generate {
+            get {
+                return ResourceManager.GetString("label_generate", resourceCulture);
             }
         }
         
@@ -417,6 +516,15 @@ namespace Shared.I18n.Resources {
         public static string label_home {
             get {
                 return ResourceManager.GetString("label_home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Odkaz.
+        /// </summary>
+        public static string label_link {
+            get {
+                return ResourceManager.GetString("label_link", resourceCulture);
             }
         }
         
@@ -588,6 +696,15 @@ namespace Shared.I18n.Resources {
         public static string label_please_sign_in {
             get {
                 return ResourceManager.GetString("label_please_sign_in", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prezentace.
+        /// </summary>
+        public static string label_presentation {
+            get {
+                return ResourceManager.GetString("label_presentation", resourceCulture);
             }
         }
         

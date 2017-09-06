@@ -27,6 +27,8 @@ namespace Shared.Core.Constants
         public const string DIALOG_EXHIBITION = "dialog-exhibition";
         public const string DIALOG_CHANGE_PASSWORD = "dialog-change-password";
         public const string DIALOG_UPLOAD = "dialog-upload";
+        public const string DIALOG_MENU_ITEM = "dialog-menu-item";
+        public const string DIALOG_EXHIBITION_GENERATE = "dialog-exhibition-generate";
 
         public const string FA_IMAGE_USER = "fa fa-user";
         public const string FA_IMAGE_MENU = "fa fa-map-signs";

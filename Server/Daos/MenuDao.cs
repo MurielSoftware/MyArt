@@ -9,9 +9,9 @@ using Server.Model;
 
 namespace Server.Daos
 {
-    public class MenuItemDao : BaseDao
+    public class MenuDao : BaseDao
     {
-        public MenuItemDao(IUnitOfWork unitOfWork) 
+        public MenuDao(IUnitOfWork unitOfWork) 
             : base(unitOfWork)
         {
         }
@@ -76,9 +76,10 @@ namespace Server.Daos
         /// <returns>The max order value</returns>
         internal int FindMaxOrderValue(Guid? parentMenuItemId)
         {
-            return _modelContext.Set<MenuItem>()
+            int? order = _modelContext.Set<MenuItem>()
                 .Where(x => x.ParentMenuItemId == parentMenuItemId)
-                .Max(x => x.Order);
+                .Max(x => (int?)x.Order);
+            return order ?? 0;
         }
     }
 }

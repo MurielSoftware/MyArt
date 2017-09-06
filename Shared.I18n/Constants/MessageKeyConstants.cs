@@ -85,12 +85,16 @@ namespace Shared.I18n.Constants
         public const string LABEL_LOGOUT = "label_logout";
         public const string LABEL_DELETE_ALL_PAINTINGS = "label_delete_all_paintings";
         public const string LABEL_SET_PAINTINGS_TO_DEFAULT_COLLECTION = "label_set_paintings_to_default_collection";
+        public const string LABEL_GENERATE = "label_generate";
+        public const string LABEL_PDF = "label_pdf";
+        public const string LABEL_WORD = "label_word";
 
         public const string LABEL_INPUT = "label_input";
         public const string LABEL_LINK = "label_link";
         public const string LABEL_LINK_TO_LIST = "label_link_to_list";
         public const string LABEL_LINK_TO_SPECIFIC = "label_link_to_specific";
         public const string LABEL_ASSOCIATION_TYPE = "label_association_type";
+        public const string LABEL_ENTITY_TYPE = "label_entity_type";
         public const string LABEL_ATTRIBUTE_DELIMITER = "label_attribute_delimiter";
         public const string LABEL_CREATE_UPDATE_DELETE_ALL = "label_create_update_delete_all";
         public const string LABEL_NEW_LINE = "label_new_line";
@@ -107,6 +111,9 @@ namespace Shared.I18n.Constants
         public const string LABEL_UPDATE = "label_update";
         public const string LABEL_DELETE = "label_delete";
         public const string LABEL_LIST = "label_list";
+        public const string LABEL_PRESENTATION = "label_presentation";
+        public const string LABEL_MENU = "label_menu";
+        public const string LABEL_ADD = "label_add";
 
         public const string VALIDATION_EMAIL_MESSAGE = "validation_email_message";
         public const string VALIDATION_RANGE_MESSAGE = "validation_range_message";
@@ -121,20 +128,21 @@ namespace Shared.I18n.Constants
         public const string VALIDATION_MAXIMUM_RESOURCES_REACHED_MESSAGE = "validation_maximum_resources_reached_message";
         public const string VALIDATION_FILE_IS_IN_WRONG_FORMAT_MESSAGE = "validation_file_is_in_wrong_format_message";
         public const string VALIDATION_IMAGE_MINIMUM_SIZE_MESSAGE = "validation_image_minimum_size_message";
-
-        public const string DELETE_INFORMATION_MESSAGE = "delete_information_message";
-        public const string OBJECT_SAVE_SUCCESS_MESSAGE = "object_save_success_message";
-        public const string OBJECT_INFORMATION_DELETE_MESSAGE = "object_information_delete_message";
-        public const string ROLE_INFORMATION_DELETE_MESSAGE = "role_information_delete_message";
-        public const string USER_INFORMATION_DELETE_MESSAGE = "user_information_delete_message";
-        public const string MENU_ITEM_DELETE_MESSAGE = "menu_item_delete_message";
         public const string VALIDATION_SECTION_CAN_BE_PLACED_ONLY_UNDER_THE_MAIN_MENU_MESSAGE = "validation_section_can_be_placed_only_under_the_main_menu_message";
         public const string VALIDATION_UNDER_THE_MAIN_MENU_THE_SECTION_MUST_BE_PLACED_MESSAGE = "validation_under_the_main_menu_the_section_must_be_placed_message";
         public const string VALIDATION_ONLY_FOUR_SECTIONS_CAN_BE_UNDER_MAIN_MENU_MESSAGE = "validation_only_four_sections_can_be_under_main_menu_message";
-        public const string LOGIN_SUCCESSFUL_MESSAGE = "login_successful_message";
-        public const string LOGIN_FAILURE_MESSAGE = "login_failure_message";
-        public const string LOGOUT_SUCCESSFUL_MESSAGE = "logout_successful_message";
-        public const string CHANGE_PASSWORD_SUCCESSFUL_MESSAGE = "change_password_successful_message";
+
+        public const string INFO_DELETE_INFORMATION_MESSAGE = "info_delete_information_message";
+        public const string INFO_OBJECT_SAVE_SUCCESS_MESSAGE = "info_object_save_success_message";
+        public const string INFO_OBJECT_DELETED_SUCCESS_MESSAGE = "info_object_deleted_success_message";
+        //public const string ROLE_INFORMATION_DELETE_MESSAGE = "role_information_delete_message";
+        //public const string USER_INFORMATION_DELETE_MESSAGE = "user_information_delete_message";
+        //public const string MENU_ITEM_DELETE_MESSAGE = "menu_item_delete_message";
+
+        public const string INFO_LOGIN_SUCCESSFUL_MESSAGE = "info_login_successful_message";
+        public const string INFO_LOGIN_FAILURE_MESSAGE = "info_login_failure_message";
+        public const string INFO_LOGOUT_SUCCESSFUL_MESSAGE = "info_logout_successful_message";
+        public const string INFO_CHANGE_PASSWORD_SUCCESSFUL_MESSAGE = "info_change_password_successful_message";
         //public const string PRODUCT_INFORMATION_DELETE_MESSAGE = "product_information_delete_message";
     }
 }

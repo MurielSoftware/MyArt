@@ -1,0 +1,39 @@
+﻿@model  ICollection<Shared.Core.Dtos.MenuItems.MenuItemDto>
+
+@using Shared.Core.Dtos.MenuItems
+@using Client.Core.HtmlHelpers
+@using Shared.Core.Constants
+@using Shared.I18n.Constants
+
+@*@{
+    Culture = UICulture = Shared.Core.Utils.LocalizationUtils.GetCultureString();
+}*@
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li class="tree-node" data-id="@item.Id">
+            <div class="tree-node-content">
+                <div class="text">
+                    @if (item.HasChildren)
+                    {
+                        <a href="#"><i class="fa fa-plus-square-o expand-tree-button"></i></a>
+                    }
+                    @Html.LocalizedDisplayFor(modelItem => item.Name)
+                </div>
+                @if (item.Level == 0 || MenuItemAssociationType.SECTION_MENU.Equals(item.AssociationType))
+                {
+                    @Html.DialogActionLink("<i class='fa fa-plus-square'></i>", HtmlConstants.DIALOG_MENU_ITEM, WebConstants.VIEW_CREATE_PREDEFINED, WebConstants.CONTROLLER_MENU, new { ParentMenuItemId = item.Id }, new { title = MessageKeyConstants.LABEL_ADD })
+                }
+                @if (!item.BuiltIn)
+                {
+                    <a href="#"><i class="fa fa-arrow-up tree-node-up"></i></a>
+                    <a href="#"><i class="fa fa-arrow-down tree-node-down"></i></a>
+                    @Html.DialogActionLink("<i class='fa fa-pencil-square-o'></i>", HtmlConstants.DIALOG_MENU_ITEM, WebConstants.VIEW_CREATE, WebConstants.CONTROLLER_MENU, new { id = item.Id }, new { title = MessageKeyConstants.LABEL_UPDATE, data_init_action = "/Admin/Menu/OnInitDialog?elementId=" + item.Id })
+                    @Html.DialogActionLink("<i class='fa fa-remove'></i>", HtmlConstants.DIALOG_CONFIRMATION, WebConstants.DIALOG_DELETE_CONFIRMATION, WebConstants.CONTROLLER_MENU, new { id = item.Id, messageResourceKey = MessageKeyConstants.INFO_DELETE_INFORMATION_MESSAGE, afterAction = WebConstants.VIEW_DELETE_CONFIRMED }, new { title = MessageKeyConstants.LABEL_DELETE })
+                }
+            </div>
+            <div class="children-nodes"></div>
+        </li>
+    }
+</ul>

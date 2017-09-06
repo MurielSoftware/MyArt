@@ -34,7 +34,7 @@
                     <td class="text-center">@Html.DisplayFor(modelItem => item.MenuCreation)</td>
                     <td>
                         @Html.DialogActionLink("<i class='fa fa-pencil-square-o'></i>", HtmlConstants.DIALOG_ROLE, WebConstants.VIEW_CREATE, WebConstants.CONTROLLER_ROLE, new { id = item.Id }, new { title = MessageKeyConstants.LABEL_UPDATE })
-                        @Html.DialogActionLink("<i class='fa fa-remove'></i>", HtmlConstants.DIALOG_CONFIRMATION, WebConstants.DIALOG_DELETE_CONFIRMATION, WebConstants.CONTROLLER_ROLE, new { id = item.Id, messageResourceKey = MessageKeyConstants.ROLE_INFORMATION_DELETE_MESSAGE, afterAction = WebConstants.VIEW_DELETE_CONFIRMED }, new { title = MessageKeyConstants.LABEL_DELETE })
+                        @Html.DialogActionLink("<i class='fa fa-remove'></i>", HtmlConstants.DIALOG_CONFIRMATION, WebConstants.DIALOG_DELETE_CONFIRMATION, WebConstants.CONTROLLER_ROLE, new { id = item.Id, messageResourceKey = MessageKeyConstants.INFO_DELETE_INFORMATION_MESSAGE, afterAction = WebConstants.VIEW_DELETE_CONFIRMED }, new { title = MessageKeyConstants.LABEL_DELETE })
                     </td>
                 </tr>
             }

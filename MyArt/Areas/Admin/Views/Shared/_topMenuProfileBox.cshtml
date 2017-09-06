@@ -7,11 +7,13 @@
 <div class="header-logged-user">
     <div class="btn-group">
         <a class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="@Model.PhotoResourceDto.GetRelativeFilePath()" /><span class="caret"></span>
+            <img src="@Model.PhotoResourceDto.GetRelativeFilePath()" /> <span class="caret"></span>
         </a>
         <ul class="dropdown-menu dropdown-menu-right">
             <li>@Html.LocalizedActionLink("<i class='fa fa-user-circle'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_PROFILE), WebConstants.VIEW_PROFILE, WebConstants.CONTROLLER_USER, new { Id = Model.Id })</li>
-            <li>@Html.LocalizedActionLink("<i class='fa fa-key'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_ROLES), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_ROLE, new { area = "Admin" })</li>
+            <li>@Html.LocalizedActionLink("<i class='fa fa-key'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_ROLES), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_ROLE, new { area = WebConstants.AREA_ADMIN })</li>
+            <li>@Html.LocalizedActionLink("<i class='fa fa-map-signs'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_MENU), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_MENU, new { area = WebConstants.AREA_ADMIN })</li>
+            <li>@Html.LocalizedActionLink("<i class='fa fa-eye'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_PRESENTATION), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_HOME)</li>
             <li role="separator" class="divider"></li>
             <li>@Html.LocalizedActionLink("<i class='fa fa-sign-out'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_LOGOUT), WebConstants.VIEW_LOGOUT, WebConstants.CONTROLLER_LOGIN)</li>
         </ul>

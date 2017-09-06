@@ -18,11 +18,6 @@ namespace Shared.Core.Json
             AfterAction = afterAction;
         }
 
-        public static JsonDialogResult CreateTreeSuccess(object targetElementId, string message, string afterAction)
-        {
-            return new JsonDialogResult(true, targetElementId, JsonRefreshMode.REFRESH_TREE_AFTER_DIALOG_CLOSE, message, afterAction);
-        }
-
         public static JsonDialogResult CreateSuccess(object targetElementId, string message)
         {
             return new JsonDialogResult(true, targetElementId, JsonRefreshMode.REFRESH_AFTER_DIALOG_CLOSE, message, null);

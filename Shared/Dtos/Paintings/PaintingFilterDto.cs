@@ -16,5 +16,8 @@ namespace Shared.Dtos.Paintings
 
         [Filter("Exhibitions.Id", CompareOperator.IS_IN_COLLECTION)]
         public virtual Guid? ExhibitionId { get; set; }
+
+        [Filter(DaoConstants.ATTRIBUTE_TITLE, CompareOperator.EQUAL)]
+        public virtual string Title { get; set; }
     }
 }

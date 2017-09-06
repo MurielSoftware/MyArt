@@ -1,0 +1,38 @@
+﻿@using Client.Core.HtmlHelpers
+@using Shared.Core.Constants
+@using Shared.Core.Utils
+@using Shared.I18n.Utils
+@using Shared.I18n.Constants
+
+@{
+    ViewBag.Title = ResourceUtils.GetString(MessageKeyConstants.LABEL_MENU);
+}
+
+<div class="content-title">
+    <h3>@Html.LocalizedDisplay(MessageKeyConstants.LABEL_MENU)</h3>
+</div>
+
+<div class="col-md-12">
+    <div class="panel panel-violet panel-default with-nav-tabs">
+        <div class="panel-heading">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#tab1" data-toggle="tab"><i class="fa fa-paint-brush"></i> @Html.LocalizedDisplay(MessageKeyConstants.LABEL_MENU)</a>
+                </li>
+            </ul>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    @Html.DialogActionLink("<i class='fa fa-plus-circle'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_ADD), HtmlConstants.DIALOG_MENU_ITEM, WebConstants.VIEW_CREATE_PREDEFINED, WebConstants.CONTROLLER_MENU, null, new { @class = "btn btn-sm btn-success pull-right" })
+                </div>
+            </div>
+            <div id="loading" style="display:none"><i class="fa fa-circle-o-notch fa-spin"></i></div>
+            <div class="tree">
+                <div id="@HtmlConstants.TREE_MENU_ITEM">
+                    @Ajax.RemoteContent(WebConstants.VIEW_LIST, WebConstants.CONTROLLER_MENU, WebConstants.AREA_ADMIN)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

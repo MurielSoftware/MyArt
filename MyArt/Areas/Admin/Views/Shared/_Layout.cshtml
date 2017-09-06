@@ -15,8 +15,8 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
 <body>
+    @Html.Partial(WebConstants.VIEW_MESSAGE)
     <div class="wrapper">
-        @Html.Partial(WebConstants.VIEW_MESSAGE)
         <header>
             <div class="header-left">
                 MyArt
@@ -26,22 +26,11 @@
             </div>
         </header>
         <aside class="nav-vertical">
-            @*<div class="profile-box">
-                <div class="media">
-                    <div class="media-left media-middle">
-                        <img class="media-object" />
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">Jméno</h4>
-                        Ahojky
-                    </div>
-                </div>
-            </div>*@
             @Html.Partial("_ProfileBox", SessionProvider.GetInstance().GetSession<UserSession>(UserSession.SESSION_NAME).UserAuthenticationDto)
             <nav>
                 <ul class="nav">
                     <li>
-                        @Html.LocalizedActionLink("<i class='fa fa-home'></i> " + "Domů", WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_HOME, new { area = "Admin" }, new { id = "nav-home" })
+                        @Html.LocalizedActionLink("<i class='fa fa-home'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_HOME), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_HOME, new { area = WebConstants.AREA_ADMIN }, new { id = "nav-home" })
                     </li>
                     <li>
                         <a href="#" class="nav-dropdown-toggle" data-toggle="collapse" data-target="#paintings-submenu" aria-expanded="false">
@@ -49,20 +38,20 @@
                         </a>
                         <ul class="nav collapse" id="paintings-submenu" role="menu">
                             <li>
-                                @Html.LocalizedActionLink("<i class='fa fa-paint-brush'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_PAINTINGS), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_PAINTING, new { area = "Admin" }, new { id = "nav-paintings" })
+                                @Html.LocalizedActionLink("<i class='fa fa-paint-brush'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_PAINTINGS), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_PAINTING, new { area = WebConstants.AREA_ADMIN }, new { id = "nav-paintings" })
                             </li>
                             <li>
-                                @Html.LocalizedActionLink("<i class='fa fa-folder'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_COLLECTIONS), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_COLLECTION, new { area = "Admin" }, new { id = "nav-collections" })
+                                @Html.LocalizedActionLink("<i class='fa fa-folder'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_COLLECTIONS), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_COLLECTION, new { area = WebConstants.AREA_ADMIN }, new { id = "nav-collections" })
                             </li>
                         </ul>
                     </li>
                     <li>
                     <li>
-                        @Html.LocalizedActionLink("<i class='fa fa-group'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_ARTISTS), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_USER, new { area = "Admin" }, new { id = "nav-artists" })
+                        @Html.LocalizedActionLink("<i class='fa fa-group'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_ARTISTS), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_USER, new { area = WebConstants.AREA_ADMIN }, new { id = "nav-artists" })
                     </li>
                     <li>
                     <li>
-                        @Html.LocalizedActionLink("<i class='fa fa-institution'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_EXHIBITIONS), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_EXHIBITION, new { area = "Admin" }, new { id = "nav-exhibition" })
+                        @Html.LocalizedActionLink("<i class='fa fa-institution'></i> " + ResourceUtils.GetString(MessageKeyConstants.LABEL_EXHIBITIONS), WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_EXHIBITION, new { area = WebConstants.AREA_ADMIN }, new { id = "nav-exhibition" })
                     </li>
                 </ul>
             </nav>
@@ -71,7 +60,6 @@
             @RenderBody()
         </div>
     </div>
-
     <div id="modal-dialogs"></div>
     @Scripts.Render("~/bundles/scripts-admin")
     @RenderSection("scripts", required: false)

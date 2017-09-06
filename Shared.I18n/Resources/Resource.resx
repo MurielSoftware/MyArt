@@ -405,4 +405,43 @@
   <data name="validation_image_minimum_size_message" xml:space="preserve">
     <value>Rozměry obrázku jsou '{0} x {1}'. Minimálně však musí být '{2} x {3}'</value>
   </data>
+  <data name="info_change_password_successful_message" xml:space="preserve">
+    <value>Změna hesla proběhla úspěšně</value>
+  </data>
+  <data name="info_login_failure_message" xml:space="preserve">
+    <value>Přihlášení bylo neúspěšné. Zkontrolujte přihlašovací údaje a zkuste to prosím znovu</value>
+  </data>
+  <data name="info_login_successful_message" xml:space="preserve">
+    <value>Přihlášení proběhlo úspěšně</value>
+  </data>
+  <data name="info_logout_successful_message" xml:space="preserve">
+    <value>Odhlášení proběhlo úspěšně</value>
+  </data>
+  <data name="info_object_deleted_success_message" xml:space="preserve">
+    <value>Objekt byl úspěšně vymazán</value>
+  </data>
+  <data name="info_object_save_success_message" xml:space="preserve">
+    <value>Objekt byl úspěšně uložen</value>
+  </data>
+  <data name="label_presentation" xml:space="preserve">
+    <value>Prezentace</value>
+  </data>
+  <data name="label_add" xml:space="preserve">
+    <value>Přidat</value>
+  </data>
+  <data name="label_association_type" xml:space="preserve">
+    <value>Asociace</value>
+  </data>
+  <data name="label_builtin" xml:space="preserve">
+    <value>Built-in</value>
+  </data>
+  <data name="label_entity_type" xml:space="preserve">
+    <value>Typ objektu</value>
+  </data>
+  <data name="label_link" xml:space="preserve">
+    <value>Odkaz</value>
+  </data>
+  <data name="label_generate" xml:space="preserve">
+    <value>Generovat</value>
+  </data>
 </root>

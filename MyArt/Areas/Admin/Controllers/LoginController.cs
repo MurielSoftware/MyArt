@@ -31,10 +31,10 @@ namespace MyArt.Areas.Admin.Controllers
             {
                 if (GetService().Login(userAuthenticationDto) != null)
                 {
-                    GetTempDataManager().SetTempData(TempDataConstants.MESSAGE, Message.CreateSuccessMessage(MessageKeyConstants.LOGIN_SUCCESSFUL_MESSAGE));
+                    GetTempDataManager().SetTempData(TempDataConstants.MESSAGE, Message.CreateSuccessMessage(MessageKeyConstants.INFO_LOGIN_SUCCESSFUL_MESSAGE));
                     return RedirectToAction(WebConstants.VIEW_INDEX, WebConstants.CONTROLLER_HOME);
                 }
-                GetTempDataManager().SetTempData(TempDataConstants.MESSAGE, Message.CreateErrorMessage(MessageKeyConstants.LOGIN_FAILURE_MESSAGE));
+                GetTempDataManager().SetTempData(TempDataConstants.MESSAGE, Message.CreateErrorMessage(MessageKeyConstants.INFO_LOGIN_FAILURE_MESSAGE));
             }
             return View("Index", userAuthenticationDto);
         }
@@ -42,7 +42,7 @@ namespace MyArt.Areas.Admin.Controllers
         public ActionResult Logout()
         {
             SessionProvider.GetInstance().RemoveSession(UserSession.SESSION_NAME);
-            GetTempDataManager().SetTempData(TempDataConstants.MESSAGE, Message.CreateSuccessMessage(MessageKeyConstants.LOGOUT_SUCCESSFUL_MESSAGE));
+            GetTempDataManager().SetTempData(TempDataConstants.MESSAGE, Message.CreateSuccessMessage(MessageKeyConstants.INFO_LOGOUT_SUCCESSFUL_MESSAGE));
             return View("Index");
         }
 
@@ -61,7 +61,7 @@ namespace MyArt.Areas.Admin.Controllers
             GetUnitOfWork().StartTransaction();
             GetService().ChangePassword(changePasswordDto);
             GetUnitOfWork().EndTransaction();
-            GetTempDataManager().SetTempData(TempDataConstants.MESSAGE, Message.CreateSuccessMessage(MessageKeyConstants.CHANGE_PASSWORD_SUCCESSFUL_MESSAGE));
+            GetTempDataManager().SetTempData(TempDataConstants.MESSAGE, Message.CreateSuccessMessage(MessageKeyConstants.INFO_CHANGE_PASSWORD_SUCCESSFUL_MESSAGE));
             return Json(JsonDialogResult.CreateSuccess(null, Url.Action(WebConstants.VIEW_PROFILE, WebConstants.CONTROLLER_USER, new { id = changePasswordDto.UserId })));
         }
     }

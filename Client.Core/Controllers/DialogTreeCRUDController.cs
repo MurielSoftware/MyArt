@@ -1,6 +1,7 @@
 ﻿using Client.Core.AfterSaves;
 using Shared.Core.Constants;
 using Shared.Core.Dtos;
+using Shared.Core.Dtos.MenuItems;
 using Shared.Core.Json;
 using Shared.Core.Services;
 using System;
@@ -21,7 +22,7 @@ namespace Client.Core.Controllers
             Guid? parentId = GetService().GetParentId(afterSuccessSaveParam.Id);
             if(parentId.HasValue)
             {
-                return Json(JsonDialogResult.CreateTreeSuccess(afterSuccessSaveParam.TargetHtmlId, null, afterSuccessSaveParam.Action));
+                return Json(JsonTreeResult.CreateTreeSuccess(parentId.Value, afterSuccessSaveParam.TargetHtmlId, null, afterSuccessSaveParam.Action));
                 //return base.RedirectToActionAfterSuccessCreate(id, actionName, controllerName, routeValues, parentId.Value.ToString(), JsonRefreshMode.REFRESH_TREE_AFTER_DIALOG_CLOSE);
             }
             return base.RedirectToActionAfterSuccessCreate(afterSuccessSaveParam);
@@ -29,7 +30,14 @@ namespace Client.Core.Controllers
 
         protected override ActionResult RedirectToActionAfterSuccessDelete(AfterDeleteParam afterDeleteParam)
         {
-            return null;
+            MenuDeletionDto menuDeletionDto = (MenuDeletionDto)afterDeleteParam.DeletionDto;
+            if (menuDeletionDto.ParentMenuItemId.HasValue)
+            {
+                return Json(JsonTreeResult.CreateTreeSuccess(menuDeletionDto.ParentMenuItemId.Value, afterDeleteParam.TargetHtml, null, afterDeleteParam.Action));
+            }
+
+            //if(afterDeleteParam.DeletionDto == null)
+            return Json(JsonTreeResult.CreateTreeSuccess(null, afterDeleteParam.TargetHtml, null, afterDeleteParam.Action));
             //if (affectedId.HasValue)
             //{
             //    return base.RedirectToActionAfterSuccessDelete(affectedId, affectedId.ToString(), action, routeValues, JsonRefreshMode.TREE);
